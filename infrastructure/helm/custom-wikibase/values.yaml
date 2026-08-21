@@ -55,6 +55,13 @@ resources:
   fuseki: {}
   oxigraph: {}
 
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+
 networkPolicy:
   enabled: true
 

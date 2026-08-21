@@ -11,7 +11,13 @@ app.kubernetes.io/name: custom-wikibase
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}
-{{- define "custom-wikibase.image" -}}{{ printf "%s:%s" .repository .tag }}{{- end }}
+{{- define "custom-wikibase.image" -}}
+{{- if .digest -}}
+{{ printf "%s:%s@%s" .repository .tag .digest }}
+{{- else -}}
+{{ printf "%s:%s" .repository .tag }}
+{{- end -}}
+{{- end }}
 {{- define "custom-wikibase.storageClass" -}}
 {{- if .Values.storage.className }}
 storageClassName: {{ .Values.storage.className | quote }}

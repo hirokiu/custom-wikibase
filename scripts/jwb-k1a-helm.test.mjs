@@ -101,3 +101,19 @@ test("K2 URL boundary separates canonical identity, internal fetch, and public q
   assert.match(query, /JWB_PUBLIC_QUERY_URL, value: \{\{ \$\.Values\.publicQueryUrl/u);
   assert.doesNotMatch(values, /^publicUrl:/mu);
 });
+
+test("U1 Core-only values pin the qualified image and disable query discovery", () => {
+  const values = read("values.utirik-qualification.yaml");
+  assert.match(values, /profile: none/u);
+  assert.match(values, /digest: sha256:[a-f0-9]{64}/u);
+  assert.match(values, /pullPolicy: Never/u);
+  assert.match(values, /publicQueryUrl: null/u);
+  assert.match(values, /allowPrivilegeEscalation: false/u);
+  assert.match(values, /type: RuntimeDefault/u);
+});
+
+test("U1 authoritative PVCs survive Helm uninstall and purge remains explicit", () => {
+  const core = read("templates/core.yaml");
+  assert.equal(core.match(/helm\.sh\/resource-policy: keep/gu)?.length, 3);
+  assert.doesNotMatch(core, /persistentVolumeClaimRetentionPolicy:\s*[\s\S]{0,100}whenDeleted:\s*Delete/u);
+});

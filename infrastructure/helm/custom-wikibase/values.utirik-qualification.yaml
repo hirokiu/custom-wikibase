@@ -1,0 +1,41 @@
+profile: none
+
+images:
+  core:
+    repository: japan-wikibase/core
+    tag: 0.1.0-rc.1
+    digest: sha256:287d2ec1b3fb00788378c849f68f5a04d8a101c8f1962554e96ea557090a6f01
+    pullPolicy: Never
+
+canonicalPublicUrl: https://custom-qualification-01.wb.utirik.lodac.nii.ac.jp
+trustedInternalSourceUrl: http://wikibase.wb-custom-qualification-01.svc.cluster.local
+publicQueryUrl: null
+siteName: Custom Wikibase Qualification 01
+timezone: Asia/Tokyo
+
+storage:
+  className: local-path
+  mariadb: 2Gi
+  uploads: 1Gi
+  runtimeState: 256Mi
+
+resources:
+  core:
+    requests: {cpu: 250m, memory: 512Mi}
+    limits: {cpu: "2", memory: 2Gi}
+  jobRunner:
+    requests: {cpu: 50m, memory: 128Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+  mariadb:
+    requests: {cpu: 250m, memory: 512Mi}
+    limits: {cpu: "2", memory: 2Gi}
+
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+
+networkPolicy:
+  enabled: true

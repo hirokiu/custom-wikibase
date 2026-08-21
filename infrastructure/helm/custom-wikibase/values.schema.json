@@ -2,13 +2,13 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
-  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "publicQueryUrl", "siteName", "timezone", "service", "storage", "resources", "networkPolicy", "qualification"],
+  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "siteName", "timezone", "service", "storage", "resources", "podSecurityContext", "containerSecurityContext", "networkPolicy", "qualification"],
   "properties": {
     "profile": { "type": "string", "enum": ["none", "virtuoso", "fuseki-tdb2", "oxigraph"] },
     "existingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
     "canonicalPublicUrl": { "type": "string", "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?$" },
     "trustedInternalSourceUrl": { "type": "string", "pattern": "^http://wikibase(?:\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?\\.svc\\.cluster\\.local)?(?::[0-9]+)?$" },
-    "publicQueryUrl": { "type": "string", "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?/sparql$" },
+    "publicQueryUrl": { "type": ["string", "null"], "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?/sparql$" },
     "siteName": { "type": "string", "minLength": 1, "maxLength": 80 },
     "timezone": { "type": "string", "enum": ["Asia/Tokyo", "UTC"] },
     "images": {
@@ -48,6 +48,14 @@
       "required": ["core", "jobRunner", "mariadb", "runtime", "postgresql", "virtuoso", "fuseki", "oxigraph"],
       "properties": { "core": {"type":"object"}, "jobRunner": {"type":"object"}, "mariadb": {"type":"object"}, "runtime": {"type":"object"}, "postgresql": {"type":"object"}, "virtuoso": {"type":"object"}, "fuseki": {"type":"object"}, "oxigraph": {"type":"object"} }
     },
+    "podSecurityContext": {
+      "type": "object", "additionalProperties": false, "required": ["seccompProfile"],
+      "properties": { "seccompProfile": { "type": "object", "additionalProperties": false, "required": ["type"], "properties": { "type": {"enum":["RuntimeDefault"]} } } }
+    },
+    "containerSecurityContext": {
+      "type": "object", "additionalProperties": false, "required": ["allowPrivilegeEscalation"],
+      "properties": { "allowPrivilegeEscalation": {"type":"boolean"} }
+    },
     "networkPolicy": { "type": "object", "additionalProperties": false, "required": ["enabled"], "properties": { "enabled": {"type":"boolean"} } },
     "qualification": {
       "type": "object", "additionalProperties": false, "required": ["snapshot", "coordinator"],
@@ -63,7 +71,7 @@
   },
   "definitions": {
     "imageReference": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._/:@-]+$" },
-    "applicationImage": { "type": "object", "additionalProperties": false, "required": ["repository", "tag", "pullPolicy"], "properties": { "repository": {"type":"string","minLength":1}, "tag": {"type":"string","minLength":1}, "pullPolicy": {"enum":["Always","IfNotPresent","Never"]} } },
+    "applicationImage": { "type": "object", "additionalProperties": false, "required": ["repository", "tag", "pullPolicy"], "properties": { "repository": {"type":"string","pattern":"^[a-z0-9][a-z0-9._/-]+$"}, "tag": {"type":"string","pattern":"^[A-Za-z0-9_][A-Za-z0-9._-]{0,127}$"}, "digest": {"type":"string","pattern":"^sha256:[a-f0-9]{64}$"}, "pullPolicy": {"enum":["Always","IfNotPresent","Never"]} } },
     "quantity": { "type": "string", "pattern": "^[1-9][0-9]*(Mi|Gi)$" },
     "service": { "type": "object", "additionalProperties": false, "required": ["type", "port"], "properties": { "type": {"enum":["ClusterIP","NodePort","LoadBalancer"]}, "port": {"type":"integer","minimum":1,"maximum":65535} } }
   }

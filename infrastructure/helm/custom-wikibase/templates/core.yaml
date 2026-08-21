@@ -23,10 +23,12 @@ spec:
       labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "mariadb") | nindent 8 }}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: mariadb
           image: {{ .Values.images.mariadb | quote }}
           imagePullPolicy: IfNotPresent
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
           ports: [{name: mysql, containerPort: 3306}]
           env:
@@ -39,7 +41,10 @@ spec:
           resources: {{- toYaml .Values.resources.mariadb | nindent 12 }}
           volumeMounts: [{name: data, mountPath: /var/lib/mysql}]
   volumeClaimTemplates:
-    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: authoritative}}
+    - metadata:
+        name: data
+        annotations: {helm.sh/resource-policy: keep}
+        labels: {custom-wikibase.org/storage-classification: authoritative}
       spec:
         accessModes: [ReadWriteOnce]
         {{- include "custom-wikibase.storageClass" . | nindent 8 }}
@@ -49,6 +54,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: uploads
+  annotations: {helm.sh/resource-policy: keep}
   labels: {custom-wikibase.org/storage-classification: authoritative}
 spec:
   accessModes: [ReadWriteOnce]
@@ -59,6 +65,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: runtime-state
+  annotations: {helm.sh/resource-policy: keep}
   labels: {custom-wikibase.org/storage-classification: authoritative}
 spec:
   accessModes: [ReadWriteOnce]
@@ -90,15 +97,19 @@ spec:
       labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "wikibase") | nindent 8 }}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: wait-mariadb
           image: {{ .Values.images.mariadb | quote }}
           command: [sh, -ec]
           args: ['for i in $(seq 1 120); do mariadb-admin ping -h mariadb --silent && exit 0; sleep 2; done; exit 1']
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          resources: {{- toYaml .Values.resources.mariadb | nindent 12 }}
       containers:
         - name: wikibase
           image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
           imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           ports: [{name: http, containerPort: 80}]
           env: &wikibaseEnv
             - {name: JWB_DB_HOST, value: mariadb}
@@ -112,7 +123,9 @@ spec:
             - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
             - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
             - {name: JWB_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
+            {{- if .Values.publicQueryUrl }}
             - {name: JWB_PUBLIC_QUERY_URL, value: {{ .Values.publicQueryUrl | quote }}}
+            {{- end }}
             - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
             - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile | quote }}}
             - {name: TZ, value: {{ .Values.timezone | quote }}}
@@ -138,10 +151,13 @@ spec:
       labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "job-runner") | nindent 8 }}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: wait-install
           image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
           imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          resources: {{- toYaml .Values.resources.jobRunner | nindent 12 }}
           command: [sh, -ec]
           args: ['for i in $(seq 1 180); do test -f /var/lib/jwb/installed && exit 0; sleep 2; done; exit 1']
           volumeMounts: [{name: runtime-state, mountPath: /var/lib/jwb}]
@@ -149,6 +165,7 @@ spec:
         - name: job-runner
           image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
           imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           args: [jwb-job-runner]
           env:
             - {name: JWB_DB_HOST, value: mariadb}
@@ -162,7 +179,9 @@ spec:
             - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
             - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
             - {name: JWB_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
+            {{- if .Values.publicQueryUrl }}
             - {name: JWB_PUBLIC_QUERY_URL, value: {{ .Values.publicQueryUrl | quote }}}
+            {{- end }}
             - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
             - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile | quote }}}
             - {name: TZ, value: {{ .Values.timezone | quote }}}
