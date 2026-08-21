@@ -10,7 +10,7 @@ Custom Wikibase combines MediaWiki and Wikibase with Japanese-friendly defaults.
 
 A logical Query Router separates clients from physical RDF generations. Snapshot and incremental synchronization share the same canonical Wikibase RDF normalization contract and support validated generation promotion and rollback.
 
-The current `0.1.0-rc.1` candidate has local Apple Silicon/ARM64 and AMD64 qualification evidence. It is a release candidate, not a claim of production readiness. See [qualification](docs/japan-wikibase/qualification.md), [known limitations](docs/japan-wikibase/known-limitations.md), and the [`jwb-runtime-v1`](docs/japan-wikibase/runtime-contract.md) contract.
+The current `0.1.0-rc.1` candidate is qualified locally on Apple Silicon/ARM64. AMD64 build inputs are prepared, but AMD64 runtime qualification remains pending. It is a release candidate, not a claim of production readiness. See [qualification](docs/japan-wikibase/qualification.md), [known limitations](docs/japan-wikibase/known-limitations.md), and the [`jwb-runtime-v1`](docs/japan-wikibase/runtime-contract.md) contract.
 
 ## Quick start
 

@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "custom-wikibase@0.1.0-rc.1",
-  "documentNamespace": "http://spdx.org/spdxdocs/custom-wikibase-0.1.0-rc.1-48d1d016-f50f-4413-ae5a-98bfc5e013bf",
+  "documentNamespace": "http://spdx.org/spdxdocs/custom-wikibase-0.1.0-rc.1-25b62b12-6928-4561-a444-b4810e8856e8",
   "creationInfo": {
-    "created": "2026-08-21T08:05:27.428Z",
+    "created": "2026-08-21T08:11:10.100Z",
     "creators": [
       "Tool: npm/cli-10.8.2"
     ]

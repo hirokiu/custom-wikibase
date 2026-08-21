@@ -1,9 +1,9 @@
 # Japan Wikibase 0.1.0-rc.1 release qualification
 
-- Run ID: j2f-20260821080038-805b3f0e
+- Run ID: j2f-20260821080647-59cb99db
 - Classification: **J2F_STANDALONE_RC_READY**
 - Host: linux/arm64
-- Duration: 278.844 seconds
+- Duration: 239.44 seconds
 - Blockers: none
 
 | Profile | Result | Query | Final equality |
