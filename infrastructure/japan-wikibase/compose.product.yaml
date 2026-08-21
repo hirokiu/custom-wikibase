@@ -1,0 +1,46 @@
+name: japan-wikibase
+services:
+  mariadb:
+    image: mariadb:10.11.14@sha256:dbe56e20372fc6d6b8e0e396866ba89c4c7f128c38c4f59aaa54d957db95790c
+    environment: { MARIADB_DATABASE: "${JWB_DB_NAME:?required}", MARIADB_USER: "${JWB_DB_USER:?required}", MARIADB_PASSWORD: "${JWB_DB_PASSWORD:?required}", MARIADB_ROOT_PASSWORD: "${JWB_DB_ROOT_PASSWORD:?required}" }
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes: [mariadb-data:/var/lib/mysql]
+    healthcheck: { test: [CMD, healthcheck.sh, --connect, --innodb_initialized], interval: 5s, timeout: 5s, retries: 30 }
+    networks: [core-private]
+  wikibase:
+    build: { context: ., args: { WIKIBASE_REF: c79eb4efab9ad27267a6df9034e1b99ad695d1c7 } }
+    image: japan-wikibase/core:0.1.0-rc.1
+    environment: &wikibase-env
+      JWB_DB_HOST: mariadb
+      JWB_DB_NAME: "${JWB_DB_NAME:?required}"
+      JWB_DB_USER: "${JWB_DB_USER:?required}"
+      JWB_DB_PASSWORD: "${JWB_DB_PASSWORD:?required}"
+      JWB_ADMIN_USER: "${JWB_ADMIN_USER:?required}"
+      JWB_ADMIN_PASSWORD: "${JWB_ADMIN_PASSWORD:?required}"
+      JWB_SECRET_KEY: "${JWB_SECRET_KEY:?required}"
+      JWB_UPGRADE_KEY: "${JWB_UPGRADE_KEY:?required}"
+      JWB_PUBLIC_URL: http://127.0.0.1:8280
+      JWB_SITE_NAME: Japan Wikibase
+      JWB_INSTANCE_ID: "${JWB_INSTANCE_ID:?required}"
+      JWB_QUERY_BACKEND: "${JWB_QUERY_BACKEND:-none}"
+      TZ: Asia/Tokyo
+    depends_on: { mariadb: { condition: service_healthy } }
+    ports: ["127.0.0.1:8280:80"]
+    volumes: [uploads:/var/www/html/images, runtime-state:/var/lib/jwb]
+    healthcheck: { test: [CMD-SHELL, "curl --fail --silent 'http://127.0.0.1/api.php?action=query&meta=siteinfo&format=json' | grep --quiet '\"generator\"'"], interval: 5s, timeout: 5s, retries: 60, start_period: 30s }
+    networks: [core-private, product-public]
+  job-runner:
+    image: japan-wikibase/core:0.1.0-rc.1
+    command: [jwb-job-runner]
+    environment: *wikibase-env
+    depends_on: { wikibase: { condition: service_healthy } }
+    healthcheck: { test: [CMD-SHELL, "test -f /var/lib/jwb/installed && grep -aq runJobs /proc/1/cmdline"], interval: 5s, timeout: 3s, retries: 30 }
+    volumes: [uploads:/var/www/html/images, runtime-state:/var/lib/jwb]
+    networks: [core-private]
+volumes:
+  mariadb-data: { labels: { japan-wikibase.local/owned: "true" } }
+  uploads: { labels: { japan-wikibase.local/owned: "true" } }
+  runtime-state: { labels: { japan-wikibase.local/owned: "true" } }
+networks:
+  core-private: { internal: true }
+  product-public: {}

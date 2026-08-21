@@ -1,0 +1,846 @@
+<http://127.0.0.1:8180/entity/P12> <http://schema.org/name> "M9B 20260819145404 string"@en .
+<http://127.0.0.1:8180/entity/P12> <http://schema.org/name> "M9B 20260819145404 string"@ja .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#String> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P12> .
+<http://127.0.0.1:8180/entity/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P12> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 string"@en .
+<http://127.0.0.1:8180/entity/P12> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 string"@ja .
+<http://127.0.0.1:8180/entity/P12> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 string"@en .
+<http://127.0.0.1:8180/entity/P12> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 string"@ja .
+<http://127.0.0.1:8180/entity/P13> <http://schema.org/name> "M9B 20260819145404 externalId"@en .
+<http://127.0.0.1:8180/entity/P13> <http://schema.org/name> "M9B 20260819145404 externalId"@ja .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#directClaimNormalized> <http://127.0.0.1:8180/prop/direct-normalized/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#ExternalId> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#qualifierValueNormalized> <http://127.0.0.1:8180/prop/qualifier/value-normalized/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#referenceValueNormalized> <http://127.0.0.1:8180/prop/reference/value-normalized/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://wikiba.se/ontology#statementValueNormalized> <http://127.0.0.1:8180/prop/statement/value-normalized/P13> .
+<http://127.0.0.1:8180/entity/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P13> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 externalId"@en .
+<http://127.0.0.1:8180/entity/P13> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 externalId"@ja .
+<http://127.0.0.1:8180/entity/P13> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 externalId"@en .
+<http://127.0.0.1:8180/entity/P13> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 externalId"@ja .
+<http://127.0.0.1:8180/entity/P14> <http://schema.org/name> "M9B 20260819145404 item"@en .
+<http://127.0.0.1:8180/entity/P14> <http://schema.org/name> "M9B 20260819145404 item"@ja .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#WikibaseItem> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P14> .
+<http://127.0.0.1:8180/entity/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P14> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 item"@en .
+<http://127.0.0.1:8180/entity/P14> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 item"@ja .
+<http://127.0.0.1:8180/entity/P14> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 item"@en .
+<http://127.0.0.1:8180/entity/P14> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 item"@ja .
+<http://127.0.0.1:8180/entity/P15> <http://schema.org/name> "M9B 20260819145404 quantity"@en .
+<http://127.0.0.1:8180/entity/P15> <http://schema.org/name> "M9B 20260819145404 quantity"@ja .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#directClaimNormalized> <http://127.0.0.1:8180/prop/direct-normalized/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Quantity> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#qualifierValueNormalized> <http://127.0.0.1:8180/prop/qualifier/value-normalized/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#referenceValueNormalized> <http://127.0.0.1:8180/prop/reference/value-normalized/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://wikiba.se/ontology#statementValueNormalized> <http://127.0.0.1:8180/prop/statement/value-normalized/P15> .
+<http://127.0.0.1:8180/entity/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P15> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 quantity"@en .
+<http://127.0.0.1:8180/entity/P15> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 quantity"@ja .
+<http://127.0.0.1:8180/entity/P15> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 quantity"@en .
+<http://127.0.0.1:8180/entity/P15> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 quantity"@ja .
+<http://127.0.0.1:8180/entity/P16> <http://schema.org/name> "M9B 20260819145404 time"@en .
+<http://127.0.0.1:8180/entity/P16> <http://schema.org/name> "M9B 20260819145404 time"@ja .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Time> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P16> .
+<http://127.0.0.1:8180/entity/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P16> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 time"@en .
+<http://127.0.0.1:8180/entity/P16> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 time"@ja .
+<http://127.0.0.1:8180/entity/P16> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 time"@en .
+<http://127.0.0.1:8180/entity/P16> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 time"@ja .
+<http://127.0.0.1:8180/entity/P17> <http://schema.org/name> "M9B 20260819145404 qualifier"@en .
+<http://127.0.0.1:8180/entity/P17> <http://schema.org/name> "M9B 20260819145404 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#String> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P17> .
+<http://127.0.0.1:8180/entity/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P17> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 qualifier"@en .
+<http://127.0.0.1:8180/entity/P17> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P17> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 qualifier"@en .
+<http://127.0.0.1:8180/entity/P17> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P18> <http://schema.org/name> "M9B 20260819145404 reference"@en .
+<http://127.0.0.1:8180/entity/P18> <http://schema.org/name> "M9B 20260819145404 reference"@ja .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Url> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P18> .
+<http://127.0.0.1:8180/entity/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P18> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 reference"@en .
+<http://127.0.0.1:8180/entity/P18> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 reference"@ja .
+<http://127.0.0.1:8180/entity/P18> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 reference"@en .
+<http://127.0.0.1:8180/entity/P18> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 reference"@ja .
+<http://127.0.0.1:8180/entity/P1> <http://schema.org/name> "M3 string"@ja .
+<http://127.0.0.1:8180/entity/P1> <http://schema.org/name> "M9B schema 1787150551980"@en .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#String> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P1> .
+<http://127.0.0.1:8180/entity/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P1> <http://www.w3.org/2000/01/rdf-schema#label> "M3 string"@ja .
+<http://127.0.0.1:8180/entity/P1> <http://www.w3.org/2000/01/rdf-schema#label> "M9B schema 1787150551980"@en .
+<http://127.0.0.1:8180/entity/P1> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 string"@ja .
+<http://127.0.0.1:8180/entity/P1> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B schema 1787150551980"@en .
+<http://127.0.0.1:8180/entity/P2> <http://schema.org/name> "M3 externalId"@en .
+<http://127.0.0.1:8180/entity/P2> <http://schema.org/name> "M3 externalId"@ja .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#directClaimNormalized> <http://127.0.0.1:8180/prop/direct-normalized/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#ExternalId> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#qualifierValueNormalized> <http://127.0.0.1:8180/prop/qualifier/value-normalized/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#referenceValueNormalized> <http://127.0.0.1:8180/prop/reference/value-normalized/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://wikiba.se/ontology#statementValueNormalized> <http://127.0.0.1:8180/prop/statement/value-normalized/P2> .
+<http://127.0.0.1:8180/entity/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P2> <http://www.w3.org/2000/01/rdf-schema#label> "M3 externalId"@en .
+<http://127.0.0.1:8180/entity/P2> <http://www.w3.org/2000/01/rdf-schema#label> "M3 externalId"@ja .
+<http://127.0.0.1:8180/entity/P2> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 externalId"@en .
+<http://127.0.0.1:8180/entity/P2> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 externalId"@ja .
+<http://127.0.0.1:8180/entity/P3> <http://schema.org/name> "M3 item"@en .
+<http://127.0.0.1:8180/entity/P3> <http://schema.org/name> "M3 item"@ja .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#WikibaseItem> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P3> .
+<http://127.0.0.1:8180/entity/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P3> <http://www.w3.org/2000/01/rdf-schema#label> "M3 item"@en .
+<http://127.0.0.1:8180/entity/P3> <http://www.w3.org/2000/01/rdf-schema#label> "M3 item"@ja .
+<http://127.0.0.1:8180/entity/P3> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 item"@en .
+<http://127.0.0.1:8180/entity/P3> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 item"@ja .
+<http://127.0.0.1:8180/entity/P4> <http://schema.org/name> "M3 quantity"@en .
+<http://127.0.0.1:8180/entity/P4> <http://schema.org/name> "M3 quantity"@ja .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#directClaimNormalized> <http://127.0.0.1:8180/prop/direct-normalized/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Quantity> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#qualifierValueNormalized> <http://127.0.0.1:8180/prop/qualifier/value-normalized/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#referenceValueNormalized> <http://127.0.0.1:8180/prop/reference/value-normalized/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://wikiba.se/ontology#statementValueNormalized> <http://127.0.0.1:8180/prop/statement/value-normalized/P4> .
+<http://127.0.0.1:8180/entity/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P4> <http://www.w3.org/2000/01/rdf-schema#label> "M3 quantity"@en .
+<http://127.0.0.1:8180/entity/P4> <http://www.w3.org/2000/01/rdf-schema#label> "M3 quantity"@ja .
+<http://127.0.0.1:8180/entity/P4> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 quantity"@en .
+<http://127.0.0.1:8180/entity/P4> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 quantity"@ja .
+<http://127.0.0.1:8180/entity/P5> <http://schema.org/name> "M3 time"@en .
+<http://127.0.0.1:8180/entity/P5> <http://schema.org/name> "M3 time"@ja .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Time> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P5> .
+<http://127.0.0.1:8180/entity/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P5> <http://www.w3.org/2000/01/rdf-schema#label> "M3 time"@en .
+<http://127.0.0.1:8180/entity/P5> <http://www.w3.org/2000/01/rdf-schema#label> "M3 time"@ja .
+<http://127.0.0.1:8180/entity/P5> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 time"@en .
+<http://127.0.0.1:8180/entity/P5> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 time"@ja .
+<http://127.0.0.1:8180/entity/P6> <http://schema.org/name> "M3 qualifier"@en .
+<http://127.0.0.1:8180/entity/P6> <http://schema.org/name> "M3 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#String> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P6> .
+<http://127.0.0.1:8180/entity/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P6> <http://www.w3.org/2000/01/rdf-schema#label> "M3 qualifier"@en .
+<http://127.0.0.1:8180/entity/P6> <http://www.w3.org/2000/01/rdf-schema#label> "M3 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P6> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 qualifier"@en .
+<http://127.0.0.1:8180/entity/P6> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 qualifier"@ja .
+<http://127.0.0.1:8180/entity/P7> <http://schema.org/name> "M3 reference"@en .
+<http://127.0.0.1:8180/entity/P7> <http://schema.org/name> "M3 reference"@ja .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#Url> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P7> .
+<http://127.0.0.1:8180/entity/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P7> <http://www.w3.org/2000/01/rdf-schema#label> "M3 reference"@en .
+<http://127.0.0.1:8180/entity/P7> <http://www.w3.org/2000/01/rdf-schema#label> "M3 reference"@ja .
+<http://127.0.0.1:8180/entity/P7> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 reference"@en .
+<http://127.0.0.1:8180/entity/P7> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 reference"@ja .
+<http://127.0.0.1:8180/entity/P8> <http://schema.org/name> "M9C lifecycle 1787150552317"@ja .
+<http://127.0.0.1:8180/entity/P8> <http://schema.org/name> "M9C lifecycle property"@en .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#claim> <http://127.0.0.1:8180/prop/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#directClaim> <http://127.0.0.1:8180/prop/direct/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#novalue> <http://127.0.0.1:8180/prop/novalue/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#propertyType> <http://wikiba.se/ontology#String> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#qualifier> <http://127.0.0.1:8180/prop/qualifier/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#qualifierValue> <http://127.0.0.1:8180/prop/qualifier/value/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#reference> <http://127.0.0.1:8180/prop/reference/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#referenceValue> <http://127.0.0.1:8180/prop/reference/value/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#statementProperty> <http://127.0.0.1:8180/prop/statement/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://wikiba.se/ontology#statementValue> <http://127.0.0.1:8180/prop/statement/value/P8> .
+<http://127.0.0.1:8180/entity/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Property> .
+<http://127.0.0.1:8180/entity/P8> <http://www.w3.org/2000/01/rdf-schema#label> "M9C lifecycle 1787150552317"@ja .
+<http://127.0.0.1:8180/entity/P8> <http://www.w3.org/2000/01/rdf-schema#label> "M9C lifecycle property"@en .
+<http://127.0.0.1:8180/entity/P8> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9C lifecycle 1787150552317"@ja .
+<http://127.0.0.1:8180/entity/P8> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9C lifecycle property"@en .
+<http://127.0.0.1:8180/entity/Q1> <http://schema.org/name> "M1 永続性確認項目"@ja .
+<http://127.0.0.1:8180/entity/Q1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q1> <http://www.w3.org/2000/01/rdf-schema#label> "M1 永続性確認項目"@ja .
+<http://127.0.0.1:8180/entity/Q1> <http://www.w3.org/2004/02/skos/core#prefLabel> "M1 永続性確認項目"@ja .
+<http://127.0.0.1:8180/entity/Q2> <http://schema.org/name> "M3 target item"@en .
+<http://127.0.0.1:8180/entity/Q2> <http://schema.org/name> "M3 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q2> <http://www.w3.org/2000/01/rdf-schema#label> "M3 target item"@en .
+<http://127.0.0.1:8180/entity/Q2> <http://www.w3.org/2000/01/rdf-schema#label> "M3 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q2> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 target item"@en .
+<http://127.0.0.1:8180/entity/Q2> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/P1> <http://127.0.0.1:8180/entity/statement/Q3-2196F4A4-4B0B-4185-81AC-82D42B47E139> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/P2> <http://127.0.0.1:8180/entity/statement/Q3-76B91AAF-E13C-492F-B96F-133A4CC4201B> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/P3> <http://127.0.0.1:8180/entity/statement/Q3-A336D93F-4B46-4618-B3C2-582464957DC9> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/P4> <http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/P5> <http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/direct/P1> "changed string" .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/direct/P2> "M3-CHANGED-ID" .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/direct/P3> <http://127.0.0.1:8180/entity/Q4> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/direct/P4> "43"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/Q3> <http://127.0.0.1:8180/prop/direct/P5> "2027-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/Q3> <http://schema.org/description> "M3 changed description"@en .
+<http://127.0.0.1:8180/entity/Q3> <http://schema.org/description> "M3 基準項目"@ja .
+<http://127.0.0.1:8180/entity/Q3> <http://schema.org/name> "M3 item 1"@en .
+<http://127.0.0.1:8180/entity/Q3> <http://schema.org/name> "M9B catch-up item"@ja .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2000/01/rdf-schema#label> "M3 item 1"@en .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2000/01/rdf-schema#label> "M9B catch-up item"@ja .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2004/02/skos/core#altLabel> "M3 alias 1"@en .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2004/02/skos/core#altLabel> "M3別名1"@ja .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 item 1"@en .
+<http://127.0.0.1:8180/entity/Q3> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B catch-up item"@ja .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P1> <http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P1> <http://127.0.0.1:8180/entity/statement/Q4-CE42CA3D-E214-43EB-8BDF-72D16D9B72CE> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P2> <http://127.0.0.1:8180/entity/statement/Q4-E37BD0EA-DD9C-4430-8CBD-F8A7A36E8D8F> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P3> <http://127.0.0.1:8180/entity/statement/Q4-987E5934-5131-4CAF-8193-83E0253AC33A> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P4> <http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/P5> <http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P1> "deletion candidate" .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P1> "shared string" .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P2> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P3> <http://127.0.0.1:8180/entity/Q2> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P4> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/Q4> <http://127.0.0.1:8180/prop/direct/P5> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/Q4> <http://schema.org/description> "M3 shared-value item"@en .
+<http://127.0.0.1:8180/entity/Q4> <http://schema.org/description> "M3 共有値項目"@ja .
+<http://127.0.0.1:8180/entity/Q4> <http://schema.org/name> "M3 item 2"@en .
+<http://127.0.0.1:8180/entity/Q4> <http://schema.org/name> "M3 項目2"@ja .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2000/01/rdf-schema#label> "M3 item 2"@en .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2000/01/rdf-schema#label> "M3 項目2"@ja .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2004/02/skos/core#altLabel> "M3 alias 2"@en .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2004/02/skos/core#altLabel> "M3別名2"@ja .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 item 2"@en .
+<http://127.0.0.1:8180/entity/Q4> <http://www.w3.org/2004/02/skos/core#prefLabel> "M3 項目2"@ja .
+<http://127.0.0.1:8180/entity/Q5> <http://schema.org/name> "M9B 20260819145404 target item"@en .
+<http://127.0.0.1:8180/entity/Q5> <http://schema.org/name> "M9B 20260819145404 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q5> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 target item"@en .
+<http://127.0.0.1:8180/entity/Q5> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q5> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 target item"@en .
+<http://127.0.0.1:8180/entity/Q5> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 対象項目"@ja .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P12> <http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P12> <http://127.0.0.1:8180/entity/statement/Q6-E8CE7C94-EABB-4171-80F0-F76BB9B981DA> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P13> <http://127.0.0.1:8180/entity/statement/Q6-AB3B9B60-3173-47BD-85A8-2E83FFE18FBD> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P14> <http://127.0.0.1:8180/entity/statement/Q6-29CBF49A-BE29-4A6F-9D21-A08ED1B695D6> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P15> <http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/P16> <http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P12> "deletion candidate" .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P12> "shared string" .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P13> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P14> <http://127.0.0.1:8180/entity/Q5> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P15> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/Q6> <http://127.0.0.1:8180/prop/direct/P16> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/Q6> <http://schema.org/description> "M9B baseline item"@en .
+<http://127.0.0.1:8180/entity/Q6> <http://schema.org/description> "M9B 基準項目"@ja .
+<http://127.0.0.1:8180/entity/Q6> <http://schema.org/name> "M9B 20260819145404 item 1"@en .
+<http://127.0.0.1:8180/entity/Q6> <http://schema.org/name> "M9B 20260819145404 項目1"@ja .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 item 1"@en .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 項目1"@ja .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2004/02/skos/core#altLabel> "M9B alias 1"@en .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2004/02/skos/core#altLabel> "M9B別名1"@ja .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 item 1"@en .
+<http://127.0.0.1:8180/entity/Q6> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 項目1"@ja .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P12> <http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P12> <http://127.0.0.1:8180/entity/statement/Q7-E9057FF7-6202-4B22-9367-89DDA9126D29> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P13> <http://127.0.0.1:8180/entity/statement/Q7-5D2A9A8D-4C21-4A6A-A8E5-F33FFCA400D8> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P14> <http://127.0.0.1:8180/entity/statement/Q7-C98759EA-AE2E-4D2C-B31E-5CD3C10766E9> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P15> <http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/P16> <http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P12> "deletion candidate" .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P12> "shared string" .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P13> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P14> <http://127.0.0.1:8180/entity/Q5> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P15> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/Q7> <http://127.0.0.1:8180/prop/direct/P16> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/Q7> <http://schema.org/description> "M9B shared-value item"@en .
+<http://127.0.0.1:8180/entity/Q7> <http://schema.org/description> "M9B 共有値項目"@ja .
+<http://127.0.0.1:8180/entity/Q7> <http://schema.org/name> "M9B 20260819145404 item 2"@en .
+<http://127.0.0.1:8180/entity/Q7> <http://schema.org/name> "M9B 20260819145404 項目2"@ja .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Item> .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 item 2"@en .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2000/01/rdf-schema#label> "M9B 20260819145404 項目2"@ja .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2004/02/skos/core#altLabel> "M9B alias 2"@en .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2004/02/skos/core#altLabel> "M9B別名2"@ja .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 item 2"@en .
+<http://127.0.0.1:8180/entity/Q7> <http://www.w3.org/2004/02/skos/core#prefLabel> "M9B 20260819145404 項目2"@ja .
+<http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> <http://127.0.0.1:8180/prop/statement/P4> "43"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> <http://127.0.0.1:8180/prop/statement/value/P4> <http://127.0.0.1:8180/value/ea97039cef3d0450dbcd2eef36644cfa> .
+<http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-218AC6C6-1C37-4262-9E36-5CC3A0F23871> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q3-2196F4A4-4B0B-4185-81AC-82D42B47E139> <http://127.0.0.1:8180/prop/statement/P1> "changed string" .
+<http://127.0.0.1:8180/entity/statement/Q3-2196F4A4-4B0B-4185-81AC-82D42B47E139> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-2196F4A4-4B0B-4185-81AC-82D42B47E139> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-2196F4A4-4B0B-4185-81AC-82D42B47E139> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> <http://127.0.0.1:8180/prop/statement/P5> "2027-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> <http://127.0.0.1:8180/prop/statement/value/P5> <http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> .
+<http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-702AC9CF-A2A8-4BA8-BC29-F8AEAE94AE47> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q3-76B91AAF-E13C-492F-B96F-133A4CC4201B> <http://127.0.0.1:8180/prop/statement/P2> "M3-CHANGED-ID" .
+<http://127.0.0.1:8180/entity/statement/Q3-76B91AAF-E13C-492F-B96F-133A4CC4201B> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-76B91AAF-E13C-492F-B96F-133A4CC4201B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-76B91AAF-E13C-492F-B96F-133A4CC4201B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q3-A336D93F-4B46-4618-B3C2-582464957DC9> <http://127.0.0.1:8180/prop/statement/P3> <http://127.0.0.1:8180/entity/Q4> .
+<http://127.0.0.1:8180/entity/statement/Q3-A336D93F-4B46-4618-B3C2-582464957DC9> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-A336D93F-4B46-4618-B3C2-582464957DC9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q3-A336D93F-4B46-4618-B3C2-582464957DC9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> <http://127.0.0.1:8180/prop/statement/P4> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> <http://127.0.0.1:8180/prop/statement/value/P4> <http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> .
+<http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-06B1575E-384D-43F9-BBE6-C81D68205636> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://127.0.0.1:8180/prop/qualifier/P6> "shared qualifier" .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://127.0.0.1:8180/prop/statement/P1> "shared string" .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-3282A107-08F5-4528-ACE9-84E251CF8A93> <http://www.w3.org/ns/prov#wasDerivedFrom> <http://127.0.0.1:8180/reference/bbdc0446b13ae4532611ef8d44537df5630a078e> .
+<http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> <http://127.0.0.1:8180/prop/statement/P5> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> <http://127.0.0.1:8180/prop/statement/value/P5> <http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> .
+<http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-7801ACE1-86D5-4ABD-8A38-B5501CB14556> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-987E5934-5131-4CAF-8193-83E0253AC33A> <http://127.0.0.1:8180/prop/statement/P3> <http://127.0.0.1:8180/entity/Q2> .
+<http://127.0.0.1:8180/entity/statement/Q4-987E5934-5131-4CAF-8193-83E0253AC33A> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-987E5934-5131-4CAF-8193-83E0253AC33A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-987E5934-5131-4CAF-8193-83E0253AC33A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-CE42CA3D-E214-43EB-8BDF-72D16D9B72CE> <http://127.0.0.1:8180/prop/statement/P1> "deletion candidate" .
+<http://127.0.0.1:8180/entity/statement/Q4-CE42CA3D-E214-43EB-8BDF-72D16D9B72CE> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-CE42CA3D-E214-43EB-8BDF-72D16D9B72CE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-CE42CA3D-E214-43EB-8BDF-72D16D9B72CE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q4-E37BD0EA-DD9C-4430-8CBD-F8A7A36E8D8F> <http://127.0.0.1:8180/prop/statement/P2> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/statement/Q4-E37BD0EA-DD9C-4430-8CBD-F8A7A36E8D8F> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-E37BD0EA-DD9C-4430-8CBD-F8A7A36E8D8F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q4-E37BD0EA-DD9C-4430-8CBD-F8A7A36E8D8F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-29CBF49A-BE29-4A6F-9D21-A08ED1B695D6> <http://127.0.0.1:8180/prop/statement/P14> <http://127.0.0.1:8180/entity/Q5> .
+<http://127.0.0.1:8180/entity/statement/Q6-29CBF49A-BE29-4A6F-9D21-A08ED1B695D6> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-29CBF49A-BE29-4A6F-9D21-A08ED1B695D6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-29CBF49A-BE29-4A6F-9D21-A08ED1B695D6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> <http://127.0.0.1:8180/prop/statement/P16> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> <http://127.0.0.1:8180/prop/statement/value/P16> <http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> .
+<http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-3796D6B1-81E8-4485-BE2D-6D890188224E> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://127.0.0.1:8180/prop/qualifier/P17> "shared qualifier" .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://127.0.0.1:8180/prop/statement/P12> "shared string" .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-8A862BC1-4953-41FC-B551-6A3B69FE0CBC> <http://www.w3.org/ns/prov#wasDerivedFrom> <http://127.0.0.1:8180/reference/bef876e6732f74d2ee6d036a952fbb9dd6b6bd8c> .
+<http://127.0.0.1:8180/entity/statement/Q6-AB3B9B60-3173-47BD-85A8-2E83FFE18FBD> <http://127.0.0.1:8180/prop/statement/P13> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/statement/Q6-AB3B9B60-3173-47BD-85A8-2E83FFE18FBD> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-AB3B9B60-3173-47BD-85A8-2E83FFE18FBD> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-AB3B9B60-3173-47BD-85A8-2E83FFE18FBD> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> <http://127.0.0.1:8180/prop/statement/P15> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> <http://127.0.0.1:8180/prop/statement/value/P15> <http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> .
+<http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-D8730D32-084F-4ACE-9244-E41BE2585B27> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q6-E8CE7C94-EABB-4171-80F0-F76BB9B981DA> <http://127.0.0.1:8180/prop/statement/P12> "deletion candidate" .
+<http://127.0.0.1:8180/entity/statement/Q6-E8CE7C94-EABB-4171-80F0-F76BB9B981DA> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-E8CE7C94-EABB-4171-80F0-F76BB9B981DA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q6-E8CE7C94-EABB-4171-80F0-F76BB9B981DA> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> <http://127.0.0.1:8180/prop/statement/P16> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> <http://127.0.0.1:8180/prop/statement/value/P16> <http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> .
+<http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-003BD7F5-D9BA-4426-BE30-263AAA92FA12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> <http://127.0.0.1:8180/prop/statement/P15> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> <http://127.0.0.1:8180/prop/statement/value/P15> <http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> .
+<http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-03A3E606-B809-4DAF-8C52-66BEDABC3BF0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-5D2A9A8D-4C21-4A6A-A8E5-F33FFCA400D8> <http://127.0.0.1:8180/prop/statement/P13> "M3-SHARED-ID" .
+<http://127.0.0.1:8180/entity/statement/Q7-5D2A9A8D-4C21-4A6A-A8E5-F33FFCA400D8> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-5D2A9A8D-4C21-4A6A-A8E5-F33FFCA400D8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-5D2A9A8D-4C21-4A6A-A8E5-F33FFCA400D8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://127.0.0.1:8180/prop/qualifier/P17> "shared qualifier" .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://127.0.0.1:8180/prop/statement/P12> "shared string" .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-A9B2FFC5-D11C-46EA-9A4B-49F4B7EE4B2C> <http://www.w3.org/ns/prov#wasDerivedFrom> <http://127.0.0.1:8180/reference/bef876e6732f74d2ee6d036a952fbb9dd6b6bd8c> .
+<http://127.0.0.1:8180/entity/statement/Q7-C98759EA-AE2E-4D2C-B31E-5CD3C10766E9> <http://127.0.0.1:8180/prop/statement/P14> <http://127.0.0.1:8180/entity/Q5> .
+<http://127.0.0.1:8180/entity/statement/Q7-C98759EA-AE2E-4D2C-B31E-5CD3C10766E9> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-C98759EA-AE2E-4D2C-B31E-5CD3C10766E9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-C98759EA-AE2E-4D2C-B31E-5CD3C10766E9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/entity/statement/Q7-E9057FF7-6202-4B22-9367-89DDA9126D29> <http://127.0.0.1:8180/prop/statement/P12> "deletion candidate" .
+<http://127.0.0.1:8180/entity/statement/Q7-E9057FF7-6202-4B22-9367-89DDA9126D29> <http://wikiba.se/ontology#rank> <http://wikiba.se/ontology#NormalRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-E9057FF7-6202-4B22-9367-89DDA9126D29> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#BestRank> .
+<http://127.0.0.1:8180/entity/statement/Q7-E9057FF7-6202-4B22-9367-89DDA9126D29> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Statement> .
+<http://127.0.0.1:8180/prop/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct-normalized/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct-normalized/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct-normalized/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct-normalized/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/direct/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/direct/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/novalue/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P12> <http://www.w3.org/2002/07/owl#complementOf> _:fdcdfd0e07b0def487f1c041e4f54d9a .
+<http://127.0.0.1:8180/prop/novalue/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P13> <http://www.w3.org/2002/07/owl#complementOf> _:a2435ce67c5e647c919089b661379f16 .
+<http://127.0.0.1:8180/prop/novalue/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P14> <http://www.w3.org/2002/07/owl#complementOf> _:e7666bae864b401d6c92b03c375f947d .
+<http://127.0.0.1:8180/prop/novalue/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P15> <http://www.w3.org/2002/07/owl#complementOf> _:c6d630bec22e907a0614fa544be8e394 .
+<http://127.0.0.1:8180/prop/novalue/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P16> <http://www.w3.org/2002/07/owl#complementOf> _:66792a792d1c7f1fe01837b498cdf4ec .
+<http://127.0.0.1:8180/prop/novalue/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P17> <http://www.w3.org/2002/07/owl#complementOf> _:2239e2b1bcf15b06180ded3580bd0cef .
+<http://127.0.0.1:8180/prop/novalue/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P18> <http://www.w3.org/2002/07/owl#complementOf> _:6805f61e02eb4845abffeb9b8a398ef2 .
+<http://127.0.0.1:8180/prop/novalue/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P1> <http://www.w3.org/2002/07/owl#complementOf> _:b96ec5135b6832e1d84209d72460276b .
+<http://127.0.0.1:8180/prop/novalue/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P2> <http://www.w3.org/2002/07/owl#complementOf> _:1f05fece3ad482b53eed1f5510da49fa .
+<http://127.0.0.1:8180/prop/novalue/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P3> <http://www.w3.org/2002/07/owl#complementOf> _:1086e1c4470bf0a461225f75b332f53e .
+<http://127.0.0.1:8180/prop/novalue/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P4> <http://www.w3.org/2002/07/owl#complementOf> _:c298799f0cd3665c958b9d4edf0ffbf3 .
+<http://127.0.0.1:8180/prop/novalue/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P5> <http://www.w3.org/2002/07/owl#complementOf> _:5a6c7a576e39dbbe9a035303bd73cd44 .
+<http://127.0.0.1:8180/prop/novalue/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P6> <http://www.w3.org/2002/07/owl#complementOf> _:756f10bc5f45e99cc0b50f82c4769b77 .
+<http://127.0.0.1:8180/prop/novalue/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P7> <http://www.w3.org/2002/07/owl#complementOf> _:b3316efa17ecac96bd23cd2f352c0a22 .
+<http://127.0.0.1:8180/prop/novalue/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://127.0.0.1:8180/prop/novalue/P8> <http://www.w3.org/2002/07/owl#complementOf> _:acffe14ef7de306a5f3d8961fa66b097 .
+<http://127.0.0.1:8180/prop/qualifier/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value-normalized/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value-normalized/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value-normalized/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value-normalized/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/qualifier/value/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/reference/value-normalized/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value-normalized/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value-normalized/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value-normalized/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/reference/value/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://127.0.0.1:8180/prop/statement/value-normalized/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value-normalized/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value-normalized/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value-normalized/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/prop/statement/value/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://127.0.0.1:8180/reference/bbdc0446b13ae4532611ef8d44537df5630a078e> <http://127.0.0.1:8180/prop/reference/P7> <https://example.invalid/m3-source> .
+<http://127.0.0.1:8180/reference/bbdc0446b13ae4532611ef8d44537df5630a078e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Reference> .
+<http://127.0.0.1:8180/reference/bef876e6732f74d2ee6d036a952fbb9dd6b6bd8c> <http://127.0.0.1:8180/prop/reference/P18> <https://example.invalid/m3-source> .
+<http://127.0.0.1:8180/reference/bef876e6732f74d2ee6d036a952fbb9dd6b6bd8c> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#Reference> .
+<http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> <http://wikiba.se/ontology#timeCalendarModel> <http://www.wikidata.org/entity/Q1985727> .
+<http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> <http://wikiba.se/ontology#timePrecision> "11"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> <http://wikiba.se/ontology#timeTimezone> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> <http://wikiba.se/ontology#timeValue> "2026-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/value/56eced44cd0c218b8bc26152cde058cc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#TimeValue> .
+<http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> <http://wikiba.se/ontology#timeCalendarModel> <http://www.wikidata.org/entity/Q1985727> .
+<http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> <http://wikiba.se/ontology#timePrecision> "11"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> <http://wikiba.se/ontology#timeTimezone> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> <http://wikiba.se/ontology#timeValue> "2027-08-19T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/value/6fa72e28ae9ce1507e4df3adc2e0eb36> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#TimeValue> .
+<http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> <http://wikiba.se/ontology#quantityAmount> "42"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> <http://wikiba.se/ontology#quantityUnit> <http://www.wikidata.org/entity/Q199> .
+<http://127.0.0.1:8180/value/a168135f766cf673e04ee1850837047d> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#QuantityValue> .
+<http://127.0.0.1:8180/value/ea97039cef3d0450dbcd2eef36644cfa> <http://wikiba.se/ontology#quantityAmount> "43"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://127.0.0.1:8180/value/ea97039cef3d0450dbcd2eef36644cfa> <http://wikiba.se/ontology#quantityUnit> <http://www.wikidata.org/entity/Q199> .
+<http://127.0.0.1:8180/value/ea97039cef3d0450dbcd2eef36644cfa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://wikiba.se/ontology#QuantityValue> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P12> <http://schema.org/about> <http://127.0.0.1:8180/entity/P12> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P12> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P12> <http://schema.org/version> "40"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P12> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P12> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P13> <http://schema.org/about> <http://127.0.0.1:8180/entity/P13> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P13> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P13> <http://schema.org/version> "41"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P13> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P14> <http://schema.org/about> <http://127.0.0.1:8180/entity/P14> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P14> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P14> <http://schema.org/version> "42"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P14> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P14> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P15> <http://schema.org/about> <http://127.0.0.1:8180/entity/P15> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P15> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P15> <http://schema.org/version> "43"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P15> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P15> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P16> <http://schema.org/about> <http://127.0.0.1:8180/entity/P16> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P16> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P16> <http://schema.org/version> "44"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P16> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P17> <http://schema.org/about> <http://127.0.0.1:8180/entity/P17> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P17> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P17> <http://schema.org/version> "45"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P17> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P17> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P18> <http://schema.org/about> <http://127.0.0.1:8180/entity/P18> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P18> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P18> <http://schema.org/version> "46"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P18> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P18> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P1> <http://schema.org/about> <http://127.0.0.1:8180/entity/P1> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P1> <http://schema.org/dateModified> "2026-08-19T14:42:31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P1> <http://schema.org/version> "37"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P1> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P2> <http://schema.org/about> <http://127.0.0.1:8180/entity/P2> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P2> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P2> <http://schema.org/version> "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P2> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P3> <http://schema.org/about> <http://127.0.0.1:8180/entity/P3> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P3> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P3> <http://schema.org/version> "5"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P3> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P4> <http://schema.org/about> <http://127.0.0.1:8180/entity/P4> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P4> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P4> <http://schema.org/version> "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P4> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P5> <http://schema.org/about> <http://127.0.0.1:8180/entity/P5> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P5> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P5> <http://schema.org/version> "7"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P5> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P6> <http://schema.org/about> <http://127.0.0.1:8180/entity/P6> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P6> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P6> <http://schema.org/version> "8"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P6> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P7> <http://schema.org/about> <http://127.0.0.1:8180/entity/P7> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P7> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P7> <http://schema.org/version> "9"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P7> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P8> <http://schema.org/about> <http://127.0.0.1:8180/entity/P8> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P8> <http://schema.org/dateModified> "2026-08-19T14:42:32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P8> <http://schema.org/version> "39"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P8> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/P8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q1> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://schema.org/version> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://wikiba.se/ontology#identifiers> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q2> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://schema.org/dateModified> "2026-08-19T14:17:53Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://schema.org/version> "10"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://wikiba.se/ontology#identifiers> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q3> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://schema.org/dateModified> "2026-08-19T14:42:32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://schema.org/version> "38"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://wikiba.se/ontology#identifiers> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://wikiba.se/ontology#statements> "5"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q4> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://schema.org/dateModified> "2026-08-19T14:17:54Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://schema.org/version> "12"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://wikiba.se/ontology#identifiers> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://wikiba.se/ontology#statements> "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q5> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://schema.org/version> "47"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://wikiba.se/ontology#identifiers> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://wikiba.se/ontology#statements> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q6> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://schema.org/version> "48"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://wikiba.se/ontology#identifiers> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://wikiba.se/ontology#statements> "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://schema.org/about> <http://127.0.0.1:8180/entity/Q7> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://schema.org/version> "49"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://wikiba.se/ontology#identifiers> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://wikiba.se/ontology#sitelinks> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://wikiba.se/ontology#statements> "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://127.0.0.1:8180/wiki/Special:EntityData/Q7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://wikiba.se/ontology#Dump> <http://creativecommons.org/ns#license> <http://creativecommons.org/publicdomain/zero/1.0/> .
+<http://wikiba.se/ontology#Dump> <http://schema.org/dateModified> "2026-08-19T14:54:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://wikiba.se/ontology#Dump> <http://schema.org/softwareVersion> "1.0.0" .
+<http://wikiba.se/ontology#Dump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://wikiba.se/ontology#Dump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://wikiba.se/ontology#Dump> <http://www.w3.org/2002/07/owl#imports> <http://wikiba.se/ontology-1.0.owl> .
+_:1086e1c4470bf0a461225f75b332f53e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:1086e1c4470bf0a461225f75b332f53e <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P3> .
+_:1086e1c4470bf0a461225f75b332f53e <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:1f05fece3ad482b53eed1f5510da49fa <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:1f05fece3ad482b53eed1f5510da49fa <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P2> .
+_:1f05fece3ad482b53eed1f5510da49fa <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:2239e2b1bcf15b06180ded3580bd0cef <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:2239e2b1bcf15b06180ded3580bd0cef <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P17> .
+_:2239e2b1bcf15b06180ded3580bd0cef <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:5a6c7a576e39dbbe9a035303bd73cd44 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:5a6c7a576e39dbbe9a035303bd73cd44 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P5> .
+_:5a6c7a576e39dbbe9a035303bd73cd44 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:66792a792d1c7f1fe01837b498cdf4ec <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:66792a792d1c7f1fe01837b498cdf4ec <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P16> .
+_:66792a792d1c7f1fe01837b498cdf4ec <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:6805f61e02eb4845abffeb9b8a398ef2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:6805f61e02eb4845abffeb9b8a398ef2 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P18> .
+_:6805f61e02eb4845abffeb9b8a398ef2 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:756f10bc5f45e99cc0b50f82c4769b77 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:756f10bc5f45e99cc0b50f82c4769b77 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P6> .
+_:756f10bc5f45e99cc0b50f82c4769b77 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:a2435ce67c5e647c919089b661379f16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:a2435ce67c5e647c919089b661379f16 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P13> .
+_:a2435ce67c5e647c919089b661379f16 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:acffe14ef7de306a5f3d8961fa66b097 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:acffe14ef7de306a5f3d8961fa66b097 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P8> .
+_:acffe14ef7de306a5f3d8961fa66b097 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:b3316efa17ecac96bd23cd2f352c0a22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:b3316efa17ecac96bd23cd2f352c0a22 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P7> .
+_:b3316efa17ecac96bd23cd2f352c0a22 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:b96ec5135b6832e1d84209d72460276b <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:b96ec5135b6832e1d84209d72460276b <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P1> .
+_:b96ec5135b6832e1d84209d72460276b <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:c298799f0cd3665c958b9d4edf0ffbf3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:c298799f0cd3665c958b9d4edf0ffbf3 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P4> .
+_:c298799f0cd3665c958b9d4edf0ffbf3 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:c6d630bec22e907a0614fa544be8e394 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:c6d630bec22e907a0614fa544be8e394 <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P15> .
+_:c6d630bec22e907a0614fa544be8e394 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:e7666bae864b401d6c92b03c375f947d <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:e7666bae864b401d6c92b03c375f947d <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P14> .
+_:e7666bae864b401d6c92b03c375f947d <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .
+_:fdcdfd0e07b0def487f1c041e4f54d9a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:fdcdfd0e07b0def487f1c041e4f54d9a <http://www.w3.org/2002/07/owl#onProperty> <http://127.0.0.1:8180/prop/direct/P12> .
+_:fdcdfd0e07b0def487f1c041e4f54d9a <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing> .

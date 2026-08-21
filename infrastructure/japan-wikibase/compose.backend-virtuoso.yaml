@@ -1,0 +1,12 @@
+services:
+  backend-a: &backend
+    image: openlink/virtuoso-opensource-7:7.2.17@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a
+    environment: { DBA_PASSWORD: "${JWB_RDF_ADMIN_PASSWORD:?required}" }
+    volumes: [virtuoso-a:/database]
+    networks: [backend-private]
+  backend-b:
+    <<: *backend
+    volumes: [virtuoso-b:/database]
+volumes:
+  virtuoso-a: { labels: { japan-wikibase.local/owned: "true" } }
+  virtuoso-b: { labels: { japan-wikibase.local/owned: "true" } }

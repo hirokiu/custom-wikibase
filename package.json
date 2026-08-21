@@ -1,0 +1,57 @@
+{
+  "name": "custom-wikibase",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "description": "A customizable Wikibase distribution with pluggable RDF backends for research and knowledge graph projects.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirokiu/custom-wikibase.git"
+  },
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "test": "node --test apps/*/src/*.test.js packages/*/src/*.test.js services/*/src/*.test.js scripts/jwb-*.test.mjs",
+    "jwb:create": "node scripts/jwb-product.mjs create",
+    "jwb:status": "node scripts/jwb-product.mjs status",
+    "jwb:test": "node scripts/jwb-product.mjs test",
+    "jwb:stop": "node scripts/jwb-product.mjs stop",
+    "jwb:start": "node scripts/jwb-product.mjs start",
+    "jwb:destroy": "node scripts/jwb-product.mjs destroy",
+    "jwb:rebuild": "node scripts/jwb-product.mjs rebuild",
+    "jwb:promote": "node scripts/jwb-product.mjs promote",
+    "jwb:rollback": "node scripts/jwb-product.mjs rollback",
+    "jwb:product:select": "node scripts/jwb-product.mjs select",
+    "jwb:serving:validate": "node scripts/jwb-product.mjs validate-serving",
+    "jwb:candidate:validate": "node scripts/jwb-product.mjs validate-candidate",
+    "jwb:candidate:restart-worker": "node scripts/jwb-product.mjs restart-candidate-worker",
+    "jwb:candidate:restart-backend": "node scripts/jwb-product.mjs restart-candidate-backend",
+    "jwb:serving:restart-backend": "node scripts/jwb-product.mjs restart-serving-backend",
+    "jwb:postgresql:restart": "node scripts/jwb-product.mjs restart-postgresql",
+    "jwb:lifecycle:visibility": "node scripts/jwb-lifecycle-visibility.mjs",
+    "jwb:post-promotion:test": "node scripts/jwb-post-promotion-fixture.mjs",
+    "jwb:fixture": "node scripts/jwb-semantic-fixture.mjs",
+    "jwb:fixture:test": "node scripts/jwb-semantic-verify.mjs",
+    "jwb:rdf:dump": "node scripts/jwb-rdf-dump.mjs",
+    "jwb:rdf:test": "node scripts/jwb-rdf-test.mjs",
+    "jwb:qualify": "node scripts/jwb-j2c2-qualification.mjs",
+    "jwb:fuseki:qualify": "node scripts/jwb-j2d-qualification.mjs --backend=fuseki-tdb2",
+    "jwb:oxigraph:qualify": "node scripts/jwb-j2e-qualification.mjs --backend=oxigraph",
+    "jwb:oxigraph:update-observe": "node scripts/jwb-oxigraph-update-observation.mjs",
+    "jwb:release:qualify": "node scripts/jwb-release-qualify.mjs",
+    "jwb:db:migrate": "node packages/jwb-database/src/jwb-migrate-cli.js up",
+    "jwb:db:status": "node packages/jwb-database/src/jwb-migrate-cli.js status",
+    "jwb:db:test": "node scripts/test-jwb-postgres.mjs",
+    "runtime-contract:test": "node --test packages/runtime-contract/src/*.test.js",
+    "compose:check": "node --test scripts/jwb-product-compose.test.mjs",
+    "security:check": "node scripts/standalone-security-check.mjs",
+    "check": "npm test && npm run compose:check && npm run runtime-contract:test && npm run security:check"
+  }
+}

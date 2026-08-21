@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-08-21T00:00:00+09:00",
+  "sourceBranch": "codex/bootstrap-official-wikibase",
+  "sourceExtractionManifest": "artifacts/jwb-release/extraction-manifest.json",
+  "sourceExtractionManifestSha256": "21621bbd670d7f4701d7f8ebcdd953a36aa2bd7ade4fcca8ee580a4d7432cb4a",
+  "j2gClassification": "J2G_RELEASE_CHECKPOINT_READY",
+  "j2gRunId": "j2g-20260821043219-afd32a94",
+  "j2fClassification": "J2F_STANDALONE_RC_READY",
+  "j2fRunId": "j2f-20260821043219-afd32a94",
+  "m1Resources": [
+    "wfp-jwb-m1-mariadb-1",
+    "wfp-jwb-m1-wikibase-1",
+    "wfp-jwb-m1-job-runner-1"
+  ],
+  "notes": "The source worktree was intentionally dirty with accumulated uncommitted Platform and Custom Wikibase work. No source change was staged, committed, stashed, reset, or discarded during prefix repair."
+}

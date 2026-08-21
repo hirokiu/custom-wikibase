@@ -1,0 +1,14 @@
+name: wfp-jwb-rdf-oxigraph
+services:
+  rdf-backend:
+    image: oxigraph/oxigraph:0.5.7@sha256:fa3a660c0f5ec776472c0828309dec8a5410b7267e2dcac59ab7d7f29e10da28
+    command: ["serve", "--location", "/data", "--bind", "0.0.0.0:7878"]
+    ports: ["127.0.0.1:${JWB_RDF_HOST_PORT:-17878}:7878"]
+    volumes: ["data:/data"]
+    restart: unless-stopped
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"
+volumes:
+  data:
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"

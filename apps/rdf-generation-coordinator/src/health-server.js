@@ -1,0 +1,5 @@
+import http from'node:http';
+/** @param {any} options */
+export function createCoordinatorHealthServer({runtime,metrics,port,host='127.0.0.1'}){if(!['127.0.0.1','0.0.0.0'].includes(host))throw new Error('invalid coordinator bind host');const server=http.createServer(async(req,res)=>{if(req.url==='/livez')return json(res,200,{status:'alive'});if(req.url==='/readyz'){const ready=await runtime.ready();return json(res,ready?200:503,{status:ready?'ready':'not_ready'});}if(req.url==='/metrics'){res.writeHead(200,{'content-type':'text/plain; version=0.0.4'});return res.end(metrics.render());}return json(res,404,{code:'NOT_FOUND'});});return{start:()=>new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,host,()=>resolve());}),close:()=>new Promise((resolve,reject)=>server.close(error=>error?reject(error):resolve()))};}
+/** @param {import('node:http').ServerResponse} res @param {number} status @param {any} value */
+function json(res,status,value){res.writeHead(status,{'content-type':'application/json','cache-control':'no-store'});res.end(JSON.stringify(value));}

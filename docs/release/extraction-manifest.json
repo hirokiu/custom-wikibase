@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": 2,
+  "release": {
+    "name": "Custom Wikibase",
+    "version": "0.1.0-rc.1",
+    "repository": "https://github.com/hirokiu/custom-wikibase"
+  },
+  "sourcePrefix": "components/japan-wikibase",
+  "generatedAt": "2026-08-21T06:17:08.271Z",
+  "total": 291,
+  "unclassified": 0,
+  "needsReview": 0,
+  "counts": {
+    "TRACK_RELEASE_METADATA": 11,
+    "TRACK_PRODUCT": 138,
+    "TRACK_TEST": 49,
+    "DO_NOT_TRACK_GENERATED": 12,
+    "TRACK_CONTRACT": 26,
+    "TRACK_DOCS": 18,
+    "TRACK_HISTORY": 37
+  },
+  "policies": {
+    "platformRuntimeDependencyCount": 0,
+    "parentOwnershipManifestRequired": false,
+    "generatedArtifactsTrackedOnlyWhenExplicitReleaseMetadata": true
+  },
+  "entries": [
+    {
+      "currentPath": "components/japan-wikibase/.dockerignore",
+      "standaloneFuturePath": ".dockerignore",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/.gitignore",
+      "standaloneFuturePath": ".gitignore",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/package.json",
+      "standaloneFuturePath": "apps/query-router/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/config.js",
+      "standaloneFuturePath": "apps/query-router/src/config.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/config.test.js",
+      "standaloneFuturePath": "apps/query-router/src/config.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/generation-resolver.js",
+      "standaloneFuturePath": "apps/query-router/src/generation-resolver.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/generation-resolver.test.js",
+      "standaloneFuturePath": "apps/query-router/src/generation-resolver.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/main.js",
+      "standaloneFuturePath": "apps/query-router/src/main.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/metrics.js",
+      "standaloneFuturePath": "apps/query-router/src/metrics.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/query-policy.js",
+      "standaloneFuturePath": "apps/query-router/src/query-policy.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/router.js",
+      "standaloneFuturePath": "apps/query-router/src/router.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/router.test.js",
+      "standaloneFuturePath": "apps/query-router/src/router.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/query-router/src/server.js",
+      "standaloneFuturePath": "apps/query-router/src/server.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/package.json",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/config.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/config.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/config.test.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/config.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/health-server.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/health-server.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/logger.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/logger.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/main.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/main.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/metrics.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/metrics.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-generation-coordinator/src/metrics.test.js",
+      "standaloneFuturePath": "apps/rdf-generation-coordinator/src/metrics.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-snapshot-producer/package.json",
+      "standaloneFuturePath": "apps/rdf-snapshot-producer/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-snapshot-producer/src/main.js",
+      "standaloneFuturePath": "apps/rdf-snapshot-producer/src/main.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-source-reader/package.json",
+      "standaloneFuturePath": "apps/rdf-source-reader/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-source-reader/src/config.js",
+      "standaloneFuturePath": "apps/rdf-source-reader/src/config.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-source-reader/src/config.test.js",
+      "standaloneFuturePath": "apps/rdf-source-reader/src/config.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-source-reader/src/main.js",
+      "standaloneFuturePath": "apps/rdf-source-reader/src/main.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/package.json",
+      "standaloneFuturePath": "apps/rdf-sync-worker/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/config.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/config.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/config.test.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/config.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/health-server.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/health-server.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/logger.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/logger.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/main.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/main.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/metrics.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/metrics.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/runtime.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/runtime.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/apps/rdf-sync-worker/src/runtime.test.js",
+      "standaloneFuturePath": "apps/rdf-sync-worker/src/runtime.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2c2/qualification.json",
+      "standaloneFuturePath": "artifacts/jwb-j2c2/qualification.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2c2/summary.md",
+      "standaloneFuturePath": "artifacts/jwb-j2c2/summary.md",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2d/qualification.json",
+      "standaloneFuturePath": "artifacts/jwb-j2d/qualification.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2d/summary.md",
+      "standaloneFuturePath": "artifacts/jwb-j2d/summary.md",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2e/qualification.json",
+      "standaloneFuturePath": "artifacts/jwb-j2e/qualification.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-j2e/summary.md",
+      "standaloneFuturePath": "artifacts/jwb-j2e/summary.md",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/audit.json",
+      "standaloneFuturePath": "artifacts/jwb-release/audit.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/backend-support.json",
+      "standaloneFuturePath": "artifacts/jwb-release/backend-support.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/checkpoint-simulation.json",
+      "standaloneFuturePath": "artifacts/jwb-release/checkpoint-simulation.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/extraction-manifest.json",
+      "standaloneFuturePath": "artifacts/jwb-release/extraction-manifest.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/image-inventory.json",
+      "standaloneFuturePath": "artifacts/jwb-release/image-inventory.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/j2g-summary.json",
+      "standaloneFuturePath": "artifacts/jwb-release/j2g-summary.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/j2g-summary.md",
+      "standaloneFuturePath": "artifacts/jwb-release/j2g-summary.md",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/sbom.spdx.json",
+      "standaloneFuturePath": "artifacts/jwb-release/sbom.spdx.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/secret-review.json",
+      "standaloneFuturePath": "artifacts/jwb-release/secret-review.json",
+      "classification": "DO_NOT_TRACK_GENERATED",
+      "tracked": false,
+      "commitGroup": "00-generated",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/jwb-release/summary.md",
+      "standaloneFuturePath": "artifacts/jwb-release/summary.md",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/artifacts/standalone-release/sbom.spdx.json",
+      "standaloneFuturePath": "artifacts/standalone-release/sbom.spdx.json",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0019-japan-wikibase-core.md",
+      "standaloneFuturePath": "docs/adr/0019-japan-wikibase-core.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0020-pluggable-rdf-backend.md",
+      "standaloneFuturePath": "docs/adr/0020-pluggable-rdf-backend.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0021-wikidata-publication-boundary.md",
+      "standaloneFuturePath": "docs/adr/0021-wikidata-publication-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0022-rdf-backend-conformance-boundary.md",
+      "standaloneFuturePath": "docs/adr/0022-rdf-backend-conformance-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0023-wikibase-rdf-incremental-partitioning.md",
+      "standaloneFuturePath": "docs/adr/0023-wikibase-rdf-incremental-partitioning.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0024-rdf-sync-correctness-protocol.md",
+      "standaloneFuturePath": "docs/adr/0024-rdf-sync-correctness-protocol.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0025-rdf-sync-worker-runtime-boundary.md",
+      "standaloneFuturePath": "docs/adr/0025-rdf-sync-worker-runtime-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0026-rdf-generation-lifecycle.md",
+      "standaloneFuturePath": "docs/adr/0026-rdf-generation-lifecycle.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0027-logical-query-router-cutover.md",
+      "standaloneFuturePath": "docs/adr/0027-logical-query-router-cutover.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0028-rebuild-recovery-and-retention.md",
+      "standaloneFuturePath": "docs/adr/0028-rebuild-recovery-and-retention.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0029-generation-scoped-sync-gap.md",
+      "standaloneFuturePath": "docs/adr/0029-generation-scoped-sync-gap.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0030-generation-scoped-rdf-dataset.md",
+      "standaloneFuturePath": "docs/adr/0030-generation-scoped-rdf-dataset.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0031-canonical-rdf-normalization-and-undelete.md",
+      "standaloneFuturePath": "docs/adr/0031-canonical-rdf-normalization-and-undelete.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0032-durable-generation-coordinator.md",
+      "standaloneFuturePath": "docs/adr/0032-durable-generation-coordinator.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0033-kubernetes-rdf-generation-runtime.md",
+      "standaloneFuturePath": "docs/adr/0033-kubernetes-rdf-generation-runtime.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0034-rdf-generation-retirement-safety.md",
+      "standaloneFuturePath": "docs/adr/0034-rdf-generation-retirement-safety.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0035-japan-wikibase-product-boundary.md",
+      "standaloneFuturePath": "docs/adr/0035-japan-wikibase-product-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0036-japan-wikibase-postgresql-boundary.md",
+      "standaloneFuturePath": "docs/adr/0036-japan-wikibase-postgresql-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/0037-standalone-compose-fixed-generation-slots.md",
+      "standaloneFuturePath": "docs/adr/0037-standalone-compose-fixed-generation-slots.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/adr/README.md",
+      "standaloneFuturePath": "docs/adr/README.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/architecture/japan-wikibase-boundary.md",
+      "standaloneFuturePath": "docs/architecture/japan-wikibase-boundary.md",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/design/jwb-m4-sync-state.sql",
+      "standaloneFuturePath": "docs/design/jwb-m4-sync-state.sql",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/architecture.md",
+      "standaloneFuturePath": "docs/japan-wikibase/architecture.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/backends.md",
+      "standaloneFuturePath": "docs/japan-wikibase/backends.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/commit-plan.md",
+      "standaloneFuturePath": "docs/japan-wikibase/commit-plan.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/development.md",
+      "standaloneFuturePath": "docs/japan-wikibase/development.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/known-limitations.md",
+      "standaloneFuturePath": "docs/japan-wikibase/known-limitations.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/licensing.md",
+      "standaloneFuturePath": "docs/japan-wikibase/licensing.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/qualification.md",
+      "standaloneFuturePath": "docs/japan-wikibase/qualification.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/README.md",
+      "standaloneFuturePath": "docs/japan-wikibase/README.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/release-notes-0.1.0-rc.1.md",
+      "standaloneFuturePath": "docs/japan-wikibase/release-notes-0.1.0-rc.1.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/repository-split-preparation.md",
+      "standaloneFuturePath": "docs/japan-wikibase/repository-split-preparation.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/runtime-contract.md",
+      "standaloneFuturePath": "docs/japan-wikibase/runtime-contract.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/security.md",
+      "standaloneFuturePath": "docs/japan-wikibase/security.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/japan-wikibase/third-party-notices.md",
+      "standaloneFuturePath": "docs/japan-wikibase/third-party-notices.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/LICENSING.md",
+      "standaloneFuturePath": "docs/LICENSING.md",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-core.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-core.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-j2c1a2.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-j2c1a2.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-j2c1b.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-j2c1b.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m1.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m1.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10b.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10b.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10c.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10c.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10e-control-plane-closure.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10e-control-plane-closure.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10e-final.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10e-final.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m10e.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m10e.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m2.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m2.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m3.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m3.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m4.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m4.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m5.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m5.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m6.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m6.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m7.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m7.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m8.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m8.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m9.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m9.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m9a.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m9a.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m9b.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m9b.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m9c.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m9c.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-m9d.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-m9d.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/operations/japan-wikibase-virtuoso.md",
+      "standaloneFuturePath": "docs/operations/japan-wikibase-virtuoso.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/release/extraction-manifest.json",
+      "standaloneFuturePath": "docs/release/extraction-manifest.json",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/release/ownership.json",
+      "standaloneFuturePath": "docs/release/ownership.json",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/release/prefix-boundary-prestate.json",
+      "standaloneFuturePath": "docs/release/prefix-boundary-prestate.json",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/docs/release/prefix-boundary-result.json",
+      "standaloneFuturePath": "docs/release/prefix-boundary-result.json",
+      "classification": "TRACK_DOCS",
+      "tracked": true,
+      "commitGroup": "07-release-documentation",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/apache.conf",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/apache.conf",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/backend-support.json",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/backend-support.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.backend-fuseki-tdb2.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.backend-fuseki-tdb2.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.backend-oxigraph.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.backend-oxigraph.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.backend-virtuoso.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.backend-virtuoso.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.product.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.product.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.query.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.query.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/compose.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/compose.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/composer.lock",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/composer.lock",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/Dockerfile",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/Dockerfile",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/Dockerfile.snapshot",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/Dockerfile.snapshot",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/entrypoint.sh",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/entrypoint.sh",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/image-inventory.json",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/image-inventory.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/job-runner.sh",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/job-runner.sh",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/Dockerfile.runtime",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/Dockerfile.runtime",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/m10-runtime.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/m10-runtime.yaml",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/m10-system.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/m10-system.yaml",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/m10b-source.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/m10b-source.yaml",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/m10b-sync.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/m10b-sync.yaml",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/kubernetes/README.md",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/kubernetes/README.md",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/LocalSettings.php",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/LocalSettings.php",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/rdf/compose.rdf-fuseki.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/rdf/compose.rdf-fuseki.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/rdf/compose.rdf-oxigraph.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/rdf/compose.rdf-oxigraph.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/rdf/compose.rdf-virtuoso.yaml",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/rdf/compose.rdf-virtuoso.yaml",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/rdf/fuseki/Dockerfile",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/rdf/fuseki/Dockerfile",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/infrastructure/japan-wikibase/release.json",
+      "standaloneFuturePath": "infrastructure/japan-wikibase/release.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "04-standalone-runtime",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/LICENSE",
+      "standaloneFuturePath": "LICENSE",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/package-lock.json",
+      "standaloneFuturePath": "package-lock.json",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/package.json",
+      "standaloneFuturePath": "package.json",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/005_rdf_sync_runtime.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/005_rdf_sync_runtime.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/006_rdf_generation_lifecycle.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/006_rdf_generation_lifecycle.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/007_query_serving_pointer.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/007_query_serving_pointer.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/008_generation_scoped_sync.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/008_generation_scoped_sync.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/009_rdf_normalization_manifest.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/009_rdf_normalization_manifest.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/010_generation_coordinator.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/010_generation_coordinator.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/011_retirement_safety_contract.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/011_retirement_safety_contract.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/012_retirement_delete_evidence.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/012_retirement_delete_evidence.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/migrations/013_generation_control_plane_contract.sql",
+      "standaloneFuturePath": "packages/jwb-database/migrations/013_generation_control_plane_contract.sql",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/package.json",
+      "standaloneFuturePath": "packages/jwb-database/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-bootstrap-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-bootstrap-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-lifecycle-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-lifecycle-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-migrate-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-migrate-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-migrations.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-migrations.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-migrations.test.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-migrations.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-promote-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-promote-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-qualification-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-qualification-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/jwb-rebuild-cli.js",
+      "standaloneFuturePath": "packages/jwb-database/src/jwb-rebuild-cli.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/jwb-database/src/migration-runner.js",
+      "standaloneFuturePath": "packages/jwb-database/src/migration-runner.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "02-jwb-database",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-domain/package.json",
+      "standaloneFuturePath": "packages/rdf-domain/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-domain/src/query-serving.js",
+      "standaloneFuturePath": "packages/rdf-domain/src/query-serving.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-domain/src/rdf-backend.js",
+      "standaloneFuturePath": "packages/rdf-domain/src/rdf-backend.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-domain/src/rdf-backend.test.js",
+      "standaloneFuturePath": "packages/rdf-domain/src/rdf-backend.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/package.json",
+      "standaloneFuturePath": "packages/rdf-sync/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/canonical-projection-golden.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/canonical-projection-golden.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/canonical-rdf-normalizer.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/canonical-rdf-normalizer.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/canonical-rdf-normalizer.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/canonical-rdf-normalizer.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/dataset-partition-m3.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/dataset-partition-m3.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/dataset-partition.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/dataset-partition.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/dataset-partition.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/dataset-partition.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/generation-descriptor.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/generation-descriptor.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/generation-descriptor.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/generation-descriptor.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/generation.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/generation.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/generation.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/generation.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/protocol.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/protocol.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/protocol.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/protocol.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/rdf-canonicalization.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/rdf-canonicalization.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/rdf-canonicalization.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/rdf-canonicalization.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/semantic-fixture-manifest.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/semantic-fixture-manifest.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/semantic-fixture-manifest.test.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/semantic-fixture-manifest.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/src/state.js",
+      "standaloneFuturePath": "packages/rdf-sync/src/state.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/rdf-sync/test-fixtures/m3-baseline.nt",
+      "standaloneFuturePath": "packages/rdf-sync/test-fixtures/m3-baseline.nt",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/runtime-contract/jwb-runtime-v1.schema.json",
+      "standaloneFuturePath": "packages/runtime-contract/jwb-runtime-v1.schema.json",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/runtime-contract/package.json",
+      "standaloneFuturePath": "packages/runtime-contract/package.json",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/runtime-contract/src/validate.js",
+      "standaloneFuturePath": "packages/runtime-contract/src/validate.js",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/packages/runtime-contract/src/validate.test.js",
+      "standaloneFuturePath": "packages/runtime-contract/src/validate.test.js",
+      "classification": "TRACK_CONTRACT",
+      "tracked": true,
+      "commitGroup": "01-architecture-runtime-contract",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/README.md",
+      "standaloneFuturePath": "README.md",
+      "classification": "TRACK_RELEASE_METADATA",
+      "tracked": true,
+      "commitGroup": "08-license-attribution-release-metadata",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-entrypoint.test.mjs",
+      "standaloneFuturePath": "scripts/jwb-entrypoint.test.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-j2c2-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-j2c2-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-j2d-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-j2d-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-j2e-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-j2e-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-lib.mjs",
+      "standaloneFuturePath": "scripts/jwb-lib.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-lib.test.mjs",
+      "standaloneFuturePath": "scripts/jwb-lib.test.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-lifecycle-visibility.mjs",
+      "standaloneFuturePath": "scripts/jwb-lifecycle-visibility.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10-integrated.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10-integrated.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10-retirement.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10-retirement.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10b-post-promotion.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10b-post-promotion.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10b-virtuoso-b.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10b-virtuoso-b.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10b-virtuoso.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10b-virtuoso.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10b.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10b.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m10e-final.mjs",
+      "standaloneFuturePath": "scripts/jwb-m10e-final.mjs",
+      "classification": "TRACK_HISTORY",
+      "tracked": true,
+      "commitGroup": "09-historical-evidence",
+      "ownership": "LEGACY_TEST"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m3-capture.mjs",
+      "standaloneFuturePath": "scripts/jwb-m3-capture.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m3-graphs.mjs",
+      "standaloneFuturePath": "scripts/jwb-m3-graphs.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m3-lib.mjs",
+      "standaloneFuturePath": "scripts/jwb-m3-lib.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m3-lib.test.mjs",
+      "standaloneFuturePath": "scripts/jwb-m3-lib.test.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m3-refresh-events.mjs",
+      "standaloneFuturePath": "scripts/jwb-m3-refresh-events.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m4-lifecycle.mjs",
+      "standaloneFuturePath": "scripts/jwb-m4-lifecycle.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m5-backend-worker.mjs",
+      "standaloneFuturePath": "scripts/jwb-m5-backend-worker.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m5-soak.mjs",
+      "standaloneFuturePath": "scripts/jwb-m5-soak.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m7-physical-cutover.mjs",
+      "standaloneFuturePath": "scripts/jwb-m7-physical-cutover.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m8-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-m8-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m9a-dataset-contract.mjs",
+      "standaloneFuturePath": "scripts/jwb-m9a-dataset-contract.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m9b-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-m9b-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m9c-inventory.mjs",
+      "standaloneFuturePath": "scripts/jwb-m9c-inventory.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m9c-lifecycle.mjs",
+      "standaloneFuturePath": "scripts/jwb-m9c-lifecycle.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-m9d-qualification.mjs",
+      "standaloneFuturePath": "scripts/jwb-m9d-qualification.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-oxigraph-update-observation.mjs",
+      "standaloneFuturePath": "scripts/jwb-oxigraph-update-observation.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-post-promotion-fixture.mjs",
+      "standaloneFuturePath": "scripts/jwb-post-promotion-fixture.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-product-compose.test.mjs",
+      "standaloneFuturePath": "scripts/jwb-product-compose.test.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-product-lib.mjs",
+      "standaloneFuturePath": "scripts/jwb-product-lib.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-product-lib.test.mjs",
+      "standaloneFuturePath": "scripts/jwb-product-lib.test.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-product.mjs",
+      "standaloneFuturePath": "scripts/jwb-product.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-rdf-dump.mjs",
+      "standaloneFuturePath": "scripts/jwb-rdf-dump.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-rdf-lib.mjs",
+      "standaloneFuturePath": "scripts/jwb-rdf-lib.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-rdf-test.mjs",
+      "standaloneFuturePath": "scripts/jwb-rdf-test.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-release-checkpoint.mjs",
+      "standaloneFuturePath": "scripts/jwb-release-checkpoint.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-release-inventory.mjs",
+      "standaloneFuturePath": "scripts/jwb-release-inventory.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-release-qualify.mjs",
+      "standaloneFuturePath": "scripts/jwb-release-qualify.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-semantic-fixture.mjs",
+      "standaloneFuturePath": "scripts/jwb-semantic-fixture.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb-semantic-verify.mjs",
+      "standaloneFuturePath": "scripts/jwb-semantic-verify.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/jwb.mjs",
+      "standaloneFuturePath": "scripts/jwb.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/standalone-security-check.mjs",
+      "standaloneFuturePath": "scripts/standalone-security-check.mjs",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "05-generation-lifecycle-tooling",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/scripts/test-jwb-postgres.mjs",
+      "standaloneFuturePath": "scripts/test-jwb-postgres.mjs",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-backends/package.json",
+      "standaloneFuturePath": "services/rdf-backends/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-backends/src/profiles.js",
+      "standaloneFuturePath": "services/rdf-backends/src/profiles.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-backends/src/sparql-http-backend.js",
+      "standaloneFuturePath": "services/rdf-backends/src/sparql-http-backend.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-backends/src/sparql-http-backend.test.js",
+      "standaloneFuturePath": "services/rdf-backends/src/sparql-http-backend.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/package.json",
+      "standaloneFuturePath": "services/rdf-sync/package.json",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/control-plane-errors.js",
+      "standaloneFuturePath": "services/rdf-sync/src/control-plane-errors.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/control-plane-errors.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/control-plane-errors.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/coordinator-schema-readiness.js",
+      "standaloneFuturePath": "services/rdf-sync/src/coordinator-schema-readiness.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/coordinator-schema-readiness.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/coordinator-schema-readiness.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/entity-partitioner.js",
+      "standaloneFuturePath": "services/rdf-sync/src/entity-partitioner.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/entity-rdf-fetcher.js",
+      "standaloneFuturePath": "services/rdf-sync/src/entity-rdf-fetcher.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-coordinator-runtime.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-coordinator-runtime.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-coordinator-runtime.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-coordinator-runtime.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-dataset-loader.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-dataset-loader.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-dataset-loader.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-dataset-loader.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-rebuild-coordinator.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-rebuild-coordinator.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-rebuild-coordinator.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-rebuild-coordinator.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-retirement-coordinator.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-retirement-coordinator.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/generation-retirement-coordinator.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/generation-retirement-coordinator.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/kubernetes-generation-driver.js",
+      "standaloneFuturePath": "services/rdf-sync/src/kubernetes-generation-driver.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/kubernetes-generation-driver.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/kubernetes-generation-driver.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/local-compose-generation-driver.js",
+      "standaloneFuturePath": "services/rdf-sync/src/local-compose-generation-driver.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/local-compose-generation-driver.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/local-compose-generation-driver.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/mediawiki-change-source.js",
+      "standaloneFuturePath": "services/rdf-sync/src/mediawiki-change-source.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/mediawiki-lifecycle-resolver.js",
+      "standaloneFuturePath": "services/rdf-sync/src/mediawiki-lifecycle-resolver.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-generation-coordinator-repository.integration.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-generation-coordinator-repository.integration.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-generation-coordinator-repository.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-generation-coordinator-repository.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-generation-sync-repository.integration.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-generation-sync-repository.integration.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-generation-sync-repository.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-generation-sync-repository.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-serving-pointer-repository.integration.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-serving-pointer-repository.integration.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-serving-pointer-repository.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-serving-pointer-repository.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-sync-repository.integration.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-sync-repository.integration.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/postgres-sync-repository.js",
+      "standaloneFuturePath": "services/rdf-sync/src/postgres-sync-repository.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/serving-reconciler.js",
+      "standaloneFuturePath": "services/rdf-sync/src/serving-reconciler.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/serving-reconciler.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/serving-reconciler.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-bootstrap.integration.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-bootstrap.integration.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-bootstrap.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-bootstrap.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-compose-generation-backend.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-compose-generation-backend.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-compose-generation-backend.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-compose-generation-backend.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-promotion-coordinator.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-promotion-coordinator.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-promotion-coordinator.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-promotion-coordinator.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-rebuild-coordinator.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-rebuild-coordinator.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-rebuild-coordinator.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-rebuild-coordinator.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-runtime-provider.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-runtime-provider.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-runtime-provider.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-runtime-provider.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-snapshot-manifest.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-snapshot-manifest.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/standalone-snapshot-manifest.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/standalone-snapshot-manifest.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/sync-components.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/sync-components.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/sync-engine.js",
+      "standaloneFuturePath": "services/rdf-sync/src/sync-engine.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/sync-engine.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/sync-engine.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/trusted-mediawiki-url.js",
+      "standaloneFuturePath": "services/rdf-sync/src/trusted-mediawiki-url.js",
+      "classification": "TRACK_PRODUCT",
+      "tracked": true,
+      "commitGroup": "03-rdf-sync-query-subsystem",
+      "ownership": "CUSTOM_WIKIBASE"
+    },
+    {
+      "currentPath": "components/japan-wikibase/services/rdf-sync/src/trusted-mediawiki-url.test.js",
+      "standaloneFuturePath": "services/rdf-sync/src/trusted-mediawiki-url.test.js",
+      "classification": "TRACK_TEST",
+      "tracked": true,
+      "commitGroup": "06-qualification-test-infrastructure",
+      "ownership": "CUSTOM_WIKIBASE"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+const FIELDS=new Set(['event','operationId','generationId','oldGenerationId','newGenerationId','pointerVersion','lifecycleState','journalPhase','result','errorCode','durationMs']);
+export class CoordinatorLogger{log(event,fields={}){const value={event};for(const[key,item]of Object.entries(fields))if(FIELDS.has(key)&&item!==undefined)value[key]=item;process.stdout.write(`${JSON.stringify(value)}\n`);}}

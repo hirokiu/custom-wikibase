@@ -1,0 +1,83 @@
+name: wfp-jwb-m1
+
+services:
+  mariadb:
+    image: mariadb:10.11.14@sha256:dbe56e20372fc6d6b8e0e396866ba89c4c7f128c38c4f59aaa54d957db95790c
+    environment:
+      MARIADB_DATABASE: ${JWB_DB_NAME:?required}
+      MARIADB_USER: ${JWB_DB_USER:?required}
+      MARIADB_PASSWORD: ${JWB_DB_PASSWORD:?required}
+      MARIADB_ROOT_PASSWORD: ${JWB_DB_ROOT_PASSWORD:?required}
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+    networks: [database]
+
+  wikibase:
+    build:
+      context: .
+      args:
+        WIKIBASE_REF: c79eb4efab9ad27267a6df9034e1b99ad695d1c7
+    image: wfp/japan-wikibase:m1
+    environment: &wikibase_environment
+      JWB_DB_HOST: mariadb
+      JWB_DB_NAME: ${JWB_DB_NAME:?required}
+      JWB_DB_USER: ${JWB_DB_USER:?required}
+      JWB_DB_PASSWORD: ${JWB_DB_PASSWORD:?required}
+      JWB_ADMIN_USER: ${JWB_ADMIN_USER:?required}
+      JWB_ADMIN_PASSWORD: ${JWB_ADMIN_PASSWORD:?required}
+      JWB_SECRET_KEY: ${JWB_SECRET_KEY:?required}
+      JWB_UPGRADE_KEY: ${JWB_UPGRADE_KEY:?required}
+      JWB_PUBLIC_URL: http://127.0.0.1:8180
+      JWB_SITE_NAME: Japan Wikibase Development
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8180:80"
+    volumes:
+      - uploads:/var/www/html/images
+      - runtime-state:/var/lib/jwb
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent 'http://127.0.0.1/api.php?action=query&meta=siteinfo&format=json' | grep --quiet '\"generator\"'"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 30s
+    restart: unless-stopped
+    networks: [database, web]
+
+  job-runner:
+    image: wfp/japan-wikibase:m1
+    command: ["jwb-job-runner"]
+    environment: *wikibase_environment
+    depends_on:
+      wikibase:
+        condition: service_healthy
+    volumes:
+      - uploads:/var/www/html/images
+      - runtime-state:/var/lib/jwb
+    restart: unless-stopped
+    networks: [database]
+
+volumes:
+  database:
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"
+  uploads:
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"
+  runtime-state:
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"
+
+networks:
+  database:
+    internal: true
+  web:

@@ -1,0 +1,3 @@
+import assert from'node:assert/strict';import test from'node:test';import{composeFiles,parseBackend}from'./jwb-product-lib.mjs';
+for(const backend of['none','virtuoso','fuseki-tdb2','oxigraph'])test(`accepts ${backend} and derives trusted files`,()=>{assert.equal(parseBackend([`--backend=${backend}`]),backend);assert.ok(composeFiles(backend).every(file=>/^compose\.(?:product|query|backend-(?:virtuoso|fuseki-tdb2|oxigraph))\.yaml$/u.test(file)));});
+test('invalid selection fails before any Docker boundary',()=>{for(const args of[[],['--backend=custom'],['--backend=none','--file=evil']])assert.throws(()=>parseBackend(args),/BACKEND/u);});

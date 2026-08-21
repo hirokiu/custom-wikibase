@@ -1,0 +1,115 @@
+services:
+  jwb-postgresql:
+    image: postgres:16.9-bookworm@sha256:253815cf7579ffa05e1673d92e78d37273e61be0e4414e9a1449337d7925be94
+    environment: { POSTGRES_DB: japan_wikibase_query, POSTGRES_USER: jwb_query, POSTGRES_PASSWORD: "${JWB_QUERY_DB_PASSWORD:?required}" }
+    volumes: [query-postgres:/var/lib/postgresql/data]
+    healthcheck: { test: [CMD, pg_isready, -U, jwb_query, -d, japan_wikibase_query], interval: 3s, timeout: 3s, retries: 40 }
+    networks: [query-control]
+  jwb-migrate:
+    build: { context: ../.., dockerfile: infrastructure/japan-wikibase/kubernetes/Dockerfile.runtime }
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, packages/jwb-database/src/jwb-migrate-cli.js, up]
+    environment: &query-env
+      JWB_DATABASE_URL: "postgresql://jwb_query:${JWB_QUERY_DB_PASSWORD:?required}@jwb-postgresql:5432/japan_wikibase_query"
+      JWB_QUERY_BACKEND: "${JWB_QUERY_BACKEND:?required}"
+    depends_on: { jwb-postgresql: { condition: service_healthy } }
+    networks: [query-control]
+  jwb-bootstrap:
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, packages/jwb-database/src/jwb-bootstrap-cli.js]
+    environment: *query-env
+    depends_on: { jwb-migrate: { condition: service_completed_successfully } }
+    networks: [query-control]
+  rdf-source-reader:
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, apps/rdf-source-reader/src/main.js]
+    environment:
+      JWB_SOURCE_READER_RUNTIME: standalone-compose
+      JWB_SOURCE_READER_URL: http://wikibase
+      JWB_SOURCE_READER_IDENTITY: jwb-standalone
+      JWB_SOURCE_READER_DATABASE_URL: "postgresql://jwb_query:${JWB_QUERY_DB_PASSWORD:?required}@jwb-postgresql:5432/japan_wikibase_query"
+    depends_on: { jwb-bootstrap: { condition: service_completed_successfully }, wikibase: { condition: service_healthy } }
+    networks: [core-private, query-control]
+  rdf-sync-worker:
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, apps/rdf-sync-worker/src/main.js]
+    environment:
+      JWB_SYNC_RUNTIME: standalone-compose
+      JWB_SYNC_BACKEND: "${JWB_QUERY_BACKEND:?required}"
+      JWB_SYNC_SOURCE_URL: http://wikibase
+      JWB_SYNC_SOURCE_IDENTITY: jwb-standalone
+      JWB_SYNC_GENERATION_ID: gen-a
+      JWB_SYNC_DATABASE_URL: "postgresql://jwb_query:${JWB_QUERY_DB_PASSWORD:?required}@jwb-postgresql:5432/japan_wikibase_query"
+      JWB_RDF_ADMIN_PASSWORD: "${JWB_RDF_ADMIN_PASSWORD:?required}"
+    depends_on: { jwb-bootstrap: { condition: service_completed_successfully }, backend-a: { condition: service_started } }
+    networks: [core-private, query-control, backend-private]
+  rdf-sync-worker-b:
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, apps/rdf-sync-worker/src/main.js]
+    environment:
+      JWB_SYNC_RUNTIME: standalone-compose
+      JWB_SYNC_BACKEND: "${JWB_QUERY_BACKEND:?required}"
+      JWB_SYNC_SOURCE_URL: http://wikibase
+      JWB_SYNC_SOURCE_IDENTITY: jwb-standalone
+      JWB_SYNC_GENERATION_ID: gen-b
+      JWB_SYNC_DATABASE_URL: "postgresql://jwb_query:${JWB_QUERY_DB_PASSWORD:?required}@jwb-postgresql:5432/japan_wikibase_query"
+      JWB_SYNC_HEALTH_PORT: "9192"
+      JWB_RDF_ADMIN_PASSWORD: "${JWB_RDF_ADMIN_PASSWORD:?required}"
+    depends_on: { jwb-bootstrap: { condition: service_completed_successfully }, backend-b: { condition: service_started } }
+    networks: [core-private, query-control, backend-private]
+  query-router:
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, apps/query-router/src/main.js]
+    environment:
+      JWB_ROUTER_RUNTIME: standalone-compose
+      JWB_ROUTER_BACKEND: "${JWB_QUERY_BACKEND:?required}"
+      JWB_ROUTER_QUERY_SERVICE_ID: jwb-standalone-query
+      JWB_ROUTER_DATABASE_URL: "postgresql://jwb_query:${JWB_QUERY_DB_PASSWORD:?required}@jwb-postgresql:5432/japan_wikibase_query"
+      JWB_ROUTER_PORT: "19200"
+      JWB_INSTANCE_ID: "${JWB_INSTANCE_ID:?required}"
+    depends_on: { jwb-bootstrap: { condition: service_completed_successfully }, backend-a: { condition: service_started } }
+    ports: ["127.0.0.1:8290:19200"]
+    networks: [query-control, backend-private, product-public]
+  rdf-snapshot-producer:
+    profiles: [snapshot]
+    build: { context: ../.., dockerfile: infrastructure/japan-wikibase/Dockerfile.snapshot }
+    image: japan-wikibase/snapshot-producer:0.1.0-rc.1
+    command: [node, apps/rdf-snapshot-producer/src/main.js]
+    environment:
+      <<: *query-env
+      JWB_DB_HOST: mariadb
+      JWB_DB_NAME: "${JWB_DB_NAME:?required}"
+      JWB_DB_USER: "${JWB_DB_USER:?required}"
+      JWB_DB_PASSWORD: "${JWB_DB_PASSWORD:?required}"
+      JWB_ADMIN_USER: "${JWB_ADMIN_USER:?required}"
+      JWB_ADMIN_PASSWORD: "${JWB_ADMIN_PASSWORD:?required}"
+      JWB_SECRET_KEY: "${JWB_SECRET_KEY:?required}"
+      JWB_UPGRADE_KEY: "${JWB_UPGRADE_KEY:?required}"
+      JWB_INSTANCE_ID: "${JWB_INSTANCE_ID:?required}"
+      JWB_PUBLIC_URL: http://127.0.0.1:8280
+      JWB_SITE_NAME: Japan Wikibase
+      JWB_SNAPSHOT_ID: "${JWB_SNAPSHOT_ID:-00000000-0000-4000-8000-000000000010}"
+      JWB_SNAPSHOT_CURSOR_TIMESTAMP: "${JWB_SNAPSHOT_CURSOR_TIMESTAMP:-1970-01-01T00:00:00Z}"
+      JWB_SNAPSHOT_CURSOR_RCID: "${JWB_SNAPSHOT_CURSOR_RCID:-0}"
+      JWB_SNAPSHOT_RACE_TEST: "${JWB_SNAPSHOT_RACE_TEST:-false}"
+    depends_on: { mariadb: { condition: service_healthy } }
+    volumes: [runtime-state:/var/lib/jwb, snapshot-artifacts:/artifacts]
+    networks: [core-private]
+  jwb-rebuild-coordinator:
+    profiles: [snapshot]
+    image: japan-wikibase/runtime:0.1.0-rc.1
+    command: [node, packages/jwb-database/src/jwb-rebuild-cli.js]
+    environment:
+      <<: *query-env
+      JWB_REBUILD_ACTION: "${JWB_REBUILD_ACTION:-inspect}"
+      JWB_SNAPSHOT_ID: "${JWB_SNAPSHOT_ID:-00000000-0000-4000-8000-000000000010}"
+      JWB_RDF_ADMIN_PASSWORD: "${JWB_RDF_ADMIN_PASSWORD:?required}"
+    depends_on: { jwb-postgresql: { condition: service_healthy }, backend-a: { condition: service_started }, backend-b: { condition: service_started } }
+    volumes: [snapshot-artifacts:/artifacts:ro]
+    networks: [query-control, backend-private]
+volumes:
+  query-postgres: { labels: { japan-wikibase.local/owned: "true" } }
+  snapshot-artifacts: { labels: { japan-wikibase.local/owned: "true" } }
+networks:
+  query-control: { internal: true }
+  backend-private: { internal: true }

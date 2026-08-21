@@ -1,0 +1,13 @@
+{
+  "name": "@custom-wikibase/rdf-source-reader",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "type": "module",
+  "license": "GPL-2.0-or-later",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "8.16.3"
+  }
+}

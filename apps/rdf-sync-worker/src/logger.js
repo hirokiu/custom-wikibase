@@ -1,0 +1,2 @@
+const KEYS=new Set(['correlationId','entityId','revision','rcid','eventType','backendType','result','errorCode','durationMs']);
+export class SyncLogger{constructor({output=process.stdout,clock=()=>new Date()}={}){this.output=output;this.clock=clock;}log(event,fields={}){const safe=Object.fromEntries(Object.entries(fields).filter(([key,value])=>KEYS.has(key)&&['string','number'].includes(typeof value)));this.output.write(`${JSON.stringify({timestamp:this.clock().toISOString(),event,...safe})}\n`);}}

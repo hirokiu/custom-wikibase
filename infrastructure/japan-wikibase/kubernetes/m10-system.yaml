@@ -1,0 +1,149 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jwb-system
+  labels:
+    wikibase-federation.lodac.nii.ac.jp/environment: local
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jwb-query-local
+  labels:
+    wikibase-federation.lodac.nii.ac.jp/environment: local
+    wikibase-federation.lodac.nii.ac.jp/query-runtime: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jwb-instance-local-01
+  labels:
+    wikibase-federation.lodac.nii.ac.jp/environment: local
+    wikibase-federation.lodac.nii.ac.jp/instance-id: jwb-local-01
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: generation-coordinator
+  namespace: jwb-system
+automountServiceAccountToken: true
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: query-router
+  namespace: jwb-system
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rdf-sync-worker
+  namespace: jwb-system
+automountServiceAccountToken: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: generation-driver
+  namespace: jwb-query-local
+rules:
+  - apiGroups: [""]
+    resources: ["services", "persistentvolumeclaims"]
+    verbs: ["get", "list", "create", "delete"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+  - apiGroups: ["apps"]
+    resources: ["statefulsets"]
+    verbs: ["get", "list", "create", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: generation-coordinator
+  namespace: jwb-query-local
+subjects:
+  - kind: ServiceAccount
+    name: generation-coordinator
+    namespace: jwb-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: generation-driver
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: jwb-query-local
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: generation-backend
+  namespace: jwb-query-local
+spec:
+  podSelector:
+    matchLabels:
+      wikibase-federation.lodac.nii.ac.jp/managed: "true"
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: jwb-system
+      ports:
+        - protocol: TCP
+          port: 8890
+        - protocol: TCP
+          port: 7878
+        - protocol: TCP
+          port: 3030
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: system-explicit-egress
+  namespace: jwb-system
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: jwb-system
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: jwb-query-local
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: jwb-instance-local-01
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    - to:
+        - ipBlock: { cidr: 10.43.0.1/32 }
+      ports:
+        - { protocol: TCP, port: 443 }
+    - to:
+        - ipBlock: { cidr: 10.42.0.0/16 }
+      ports:
+        - { protocol: TCP, port: 443 }
+        - { protocol: TCP, port: 6443 }
+    - to:
+        - ipBlock: { cidr: 172.26.0.0/16 }
+      ports:
+        - { protocol: TCP, port: 6443 }

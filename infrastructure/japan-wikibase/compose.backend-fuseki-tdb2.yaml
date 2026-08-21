@@ -1,0 +1,12 @@
+services:
+  backend-a: &backend
+    build: { context: rdf/fuseki }
+    image: japan-wikibase/fuseki:6.1.0
+    volumes: [fuseki-a:/fuseki/databases]
+    networks: [backend-private]
+  backend-b:
+    <<: *backend
+    volumes: [fuseki-b:/fuseki/databases]
+volumes:
+  fuseki-a: { labels: { japan-wikibase.local/owned: "true" } }
+  fuseki-b: { labels: { japan-wikibase.local/owned: "true" } }

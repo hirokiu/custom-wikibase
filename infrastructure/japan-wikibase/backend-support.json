@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "release": "0.1.0-rc.1",
+  "profiles": [
+    { "backend": "none", "classification": "SUPPORTED", "role": "core-only", "qualifiedBy": "J2B_CORE_PRODUCT_QUALIFIED", "queryEnabled": false },
+    { "backend": "virtuoso", "classification": "SUPPORTED_DEFAULT", "role": "default", "qualifiedBy": "J2C_VIRTUOSO_PRODUCT_QUALIFIED", "queryEnabled": true },
+    { "backend": "fuseki-tdb2", "classification": "SUPPORTED_REFERENCE", "role": "reference", "qualifiedBy": "J2D_FUSEKI_PRODUCT_QUALIFIED", "queryEnabled": true },
+    { "backend": "oxigraph", "classification": "SUPPORTED_LIGHTWEIGHT", "role": "lightweight", "qualifiedBy": "J2E_OXIGRAPH_PRODUCT_QUALIFIED", "queryEnabled": true }
+  ],
+  "externalCompatibility": [
+    { "backend": "blazegraph-wdqs", "classification": "COMPATIBILITY_EXTERNAL", "standaloneQuerySubsystem": false }
+  ]
+}

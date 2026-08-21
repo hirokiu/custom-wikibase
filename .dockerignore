@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+artifacts
+docs
+*.md
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.kubeconfig
+infrastructure/japan-wikibase/.runtime

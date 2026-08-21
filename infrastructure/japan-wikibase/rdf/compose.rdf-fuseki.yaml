@@ -1,0 +1,15 @@
+name: wfp-jwb-rdf-fuseki
+services:
+  rdf-backend:
+    build:
+      context: fuseki
+    image: wfp/jwb-rdf-fuseki:6.1.0
+    ports: ["127.0.0.1:${JWB_RDF_HOST_PORT:-13030}:3030"]
+    volumes: ["data:/fuseki/databases"]
+    restart: unless-stopped
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"
+volumes:
+  data:
+    labels:
+      wikibase-federation.lodac.nii.ac.jp/disposable-local: "true"

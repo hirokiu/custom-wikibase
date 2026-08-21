@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://japan-wikibase.invalid/contracts/jwb-runtime-v1.schema.json",
+  "title": "Japan Wikibase read-only runtime contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "distribution", "instance", "endpoints", "health", "queryService", "capabilities"],
+  "properties": {
+    "contractVersion": { "const": "jwb-runtime-v1" },
+    "distribution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "version"],
+      "properties": {
+        "type": { "const": "japan-wikibase" },
+        "version": { "type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$" }
+      }
+    },
+    "instance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id"],
+      "properties": { "id": { "type": "string", "format": "uuid" } }
+    },
+    "endpoints": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mediawiki", "actionApi"],
+      "properties": {
+        "mediawiki": { "type": "string", "format": "uri", "pattern": "^https?://[^/@]+(?:/.*)?$" },
+        "actionApi": { "type": "string", "format": "uri", "pattern": "^https?://[^/@]+(?:/.*)?$" }
+      }
+    },
+    "health": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state"],
+      "properties": { "state": { "enum": ["healthy", "degraded", "unhealthy", "unknown"] } }
+    },
+    "queryService": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["enabled"],
+          "properties": { "enabled": { "const": false } }
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["enabled", "backendType", "logicalEndpoint", "syncState", "freshness", "servingGeneration"],
+          "properties": {
+            "enabled": { "const": true },
+            "backendType": { "enum": ["virtuoso", "fuseki-tdb2", "oxigraph"] },
+            "logicalEndpoint": { "type": "string", "format": "uri", "pattern": "^https?://[^/@]+(?:/.*)?$" },
+            "syncState": { "enum": ["BOOTSTRAPPING", "CATCHING_UP", "CURRENT", "STALE", "GAP_DETECTED", "ERROR"] },
+            "freshness": {
+              "type": "object", "additionalProperties": false,
+              "required": ["cursorTimestamp", "lagSeconds"],
+              "properties": {
+                "cursorTimestamp": { "type": "string", "format": "date-time" },
+                "lagSeconds": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "servingGeneration": { "type": "string", "pattern": "^gen-[a-z0-9][a-z0-9-]{0,58}$" }
+          }
+        }
+      ]
+    },
+    "capabilities": {
+      "type": "object", "additionalProperties": false,
+      "required": ["queryOptional", "instanceStopPreservesData"],
+      "properties": {
+        "queryOptional": { "const": true },
+        "instanceStopPreservesData": { "type": "boolean" }
+      }
+    }
+  }
+}

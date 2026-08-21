@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rdf-source-reader
+  namespace: jwb-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { "app.kubernetes.io/name": rdf-source-reader }
+  template:
+    metadata:
+      labels: { "app.kubernetes.io/name": rdf-source-reader }
+    spec:
+      serviceAccountName: query-router
+      automountServiceAccountToken: false
+      containers:
+        - name: source-reader
+          image: wfp/jwb-runtime:m10
+          imagePullPolicy: Never
+          command: ["node", "apps/rdf-source-reader/src/main.js"]
+          env:
+            - { name: JWB_SOURCE_READER_RUNTIME, value: kubernetes }
+            - { name: JWB_SOURCE_READER_URL, value: "http://japan-wikibase.jwb-instance-local-01.svc.cluster.local" }
+            - { name: JWB_SOURCE_READER_IDENTITY, value: jwb-m10b }
+            - { name: JWB_SOURCE_READER_POLL_MS, value: "250" }
+            - name: JWB_SOURCE_READER_DATABASE_URL
+              valueFrom: { secretKeyRef: { name: controller-postgres, key: url } }
+          resources:
+            requests: { cpu: 10m, memory: 48Mi }
+            limits: { cpu: 250m, memory: 192Mi }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rdf-sync-worker
+  namespace: jwb-instance-local-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { "app.kubernetes.io/name": rdf-sync-worker }
+  template:
+    metadata:
+      labels: { "app.kubernetes.io/name": rdf-sync-worker }
+    spec:
+      serviceAccountName: rdf-sync-worker
+      automountServiceAccountToken: false
+      containers:
+        - name: worker
+          image: wfp/jwb-runtime:m10
+          imagePullPolicy: Never
+          command: ["node", "apps/rdf-sync-worker/src/main.js"]
+          env:
+            - { name: JWB_SYNC_RUNTIME, value: kubernetes }
+            - { name: JWB_SYNC_BACKEND, value: virtuoso }
+            - { name: JWB_SYNC_SOURCE_URL, value: "http://japan-wikibase.jwb-instance-local-01.svc.cluster.local" }
+            - { name: JWB_SYNC_SOURCE_IDENTITY, value: jwb-m10b }
+            - { name: JWB_SYNC_GENERATION_ID, value: gen-a }
+            - { name: JWB_SYNC_POLL_INTERVAL_MS, value: "250" }
+            - { name: JWB_SYNC_HEALTH_PORT, value: "9191" }
+            - name: JWB_SYNC_DATABASE_URL
+              valueFrom: { secretKeyRef: { name: jwb-sync, key: databaseUrl } }
+            - name: JWB_RDF_ADMIN_PASSWORD
+              valueFrom: { secretKeyRef: { name: jwb-sync, key: virtuosoPassword } }
+          ports: [{ name: health, containerPort: 9191 }]
+          readinessProbe: { httpGet: { path: /readyz, port: health }, periodSeconds: 3 }
+          resources:
+            requests: { cpu: 25m, memory: 64Mi }
+            limits: { cpu: 500m, memory: 384Mi }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: worker-egress
+  namespace: jwb-instance-local-01
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app.kubernetes.io/name
+        operator: In
+        values: [rdf-sync-worker, rdf-sync-worker-b]
+  policyTypes: [Egress]
+  egress:
+    - to: [{ namespaceSelector: { matchLabels: { "kubernetes.io/metadata.name": jwb-system } } }]
+      ports: [{ protocol: TCP, port: 5432 }]
+    - to: [{ namespaceSelector: { matchLabels: { "kubernetes.io/metadata.name": jwb-query-local } } }]
+      ports: [{ protocol: TCP, port: 8890 }, { protocol: TCP, port: 7878 }, { protocol: TCP, port: 3030 }]
+    - to: [{ podSelector: { matchLabels: { "app.kubernetes.io/name": japan-wikibase } } }]
+      ports: [{ protocol: TCP, port: 80 }]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: generation-worker-ingress
+  namespace: jwb-query-local
+spec:
+  podSelector:
+    matchLabels: { "wikibase-federation.lodac.nii.ac.jp/managed": "true" }
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{ namespaceSelector: { matchLabels: { "kubernetes.io/metadata.name": jwb-instance-local-01 } } }]
+      ports: [{ protocol: TCP, port: 8890 }, { protocol: TCP, port: 7878 }, { protocol: TCP, port: 3030 }]

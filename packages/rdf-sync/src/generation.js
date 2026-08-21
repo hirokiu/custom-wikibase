@@ -1,0 +1,6 @@
+export const RDF_GENERATION_STATES=Object.freeze(['CREATING','LOADING','CATCHING_UP','VALIDATING','READY','SERVING','RETIRING','RETIRED','FAILED']);
+const TRANSITIONS=Object.freeze({CREATING:['LOADING','FAILED'],LOADING:['CATCHING_UP','VALIDATING','FAILED'],CATCHING_UP:['VALIDATING','FAILED'],VALIDATING:['READY','FAILED'],READY:['SERVING','FAILED'],SERVING:['RETIRING'],RETIRING:['RETIRED','SERVING','FAILED'],RETIRED:[],FAILED:[]});
+export function validateGenerationId(value){if(typeof value!=='string'||!/^gen-[a-z0-9][a-z0-9-]{0,58}$/u.test(value))throw new Error('invalid RDF generation ID');return value;}
+export function validateGenerationState(value){if(!RDF_GENERATION_STATES.includes(value))throw new Error('invalid RDF generation state');return value;}
+export function assertGenerationTransition(from,to){validateGenerationState(from);validateGenerationState(to);if(!TRANSITIONS[from].includes(to))throw new Error(`illegal RDF generation transition ${from}->${to}`);return true;}
+export function generationGraphIri(generationId,partition){validateGenerationId(generationId);if(!/^(?:entity:[QP][1-9][0-9]*|global-schema)$/u.test(partition))throw new Error('invalid generation partition');return `urn:jwb:generation:${generationId}:${partition}`;}

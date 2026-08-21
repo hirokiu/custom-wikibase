@@ -1,0 +1,4 @@
+import test from'node:test';import assert from'node:assert/strict';import{validateSemanticFixtureManifest}from'./semantic-fixture-manifest.js';
+const manifest=()=>({version:1,fixtureType:'jwb-semantic-fixture-v1',subjectItem:'Q2',targetItem:'Q3',properties:{string:'P2',externalId:'P3',item:'P4',quantity:'P5',time:'P6',qualifier:'P7',reference:'P8'},expected:{string:'JWB string',externalId:'JWB-001',quantity:'+42',time:'+2026-08-20T00:00:00Z',qualifier:'qualified',reference:'https://example.invalid/jwb'}});
+test('accepts only the bounded secret-free semantic fixture manifest',()=>assert.equal(validateSemanticFixtureManifest(manifest()).subjectItem,'Q2'));
+test('rejects credentials, missing categories and invalid IDs',()=>{assert.throws(()=>validateSemanticFixtureManifest({...manifest(),password:'secret'}),/INVALID/u);const value=manifest();delete value.properties.time;assert.throws(()=>validateSemanticFixtureManifest(value),/INVALID/u);});

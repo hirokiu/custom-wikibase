@@ -1,0 +1,7 @@
+{
+  "name": "@custom-wikibase/rdf-snapshot-producer",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "type": "module",
+  "license": "GPL-2.0-or-later"
+}

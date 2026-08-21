@@ -1,0 +1,13 @@
+import assert from'node:assert/strict';
+import test from'node:test';
+import{validateJwbRuntimeV1}from'./validate.js';
+
+const base=()=>({contractVersion:'jwb-runtime-v1',distribution:{type:'japan-wikibase',version:'0.1.0'},instance:{id:'00000000-0000-4000-8000-000000000001'},endpoints:{mediawiki:'http://127.0.0.1:8080/wiki/',actionApi:'http://127.0.0.1:8080/w/api.php'},health:{state:'healthy'},queryService:{enabled:false},capabilities:{queryOptional:true,instanceStopPreservesData:true}});
+test('accepts the exact core-only representation',()=>assert.equal(validateJwbRuntimeV1(base()).queryService.enabled,false));
+for(const backendType of['virtuoso','fuseki-tdb2','oxigraph'])test(`accepts ${backendType}`,()=>{const value=base();value.queryService={enabled:true,backendType,logicalEndpoint:'http://127.0.0.1:8081/sparql',syncState:'CURRENT',freshness:{cursorTimestamp:'2026-08-20T00:00:00.000Z',sourceHeadTimestamp:'2026-08-20T00:00:00.000Z',lagSeconds:0,syncLagSeconds:0,sourceIdleSeconds:600},servingGeneration:'gen-current'};assert.equal(validateJwbRuntimeV1(value).queryService.backendType,backendType);});
+test('rejects an invalid backend',()=>{const value=base();value.queryService={enabled:true,backendType:'blazegraph',logicalEndpoint:'http://127.0.0.1/sparql',syncState:'CURRENT',freshness:{cursorTimestamp:'2026-08-20T00:00:00Z',lagSeconds:0},servingGeneration:'gen-current'};assert.throws(()=>validateJwbRuntimeV1(value),/backendType/u);});
+test('rejects a missing contract version',()=>{const value=base();delete value.contractVersion;assert.throws(()=>validateJwbRuntimeV1(value),/missing-field/u);});
+test('rejects invalid endpoints and credentials',()=>{const value=base();value.endpoints.actionApi='postgresql://user:secret@db/jwb';assert.throws(()=>validateJwbRuntimeV1(value),/actionApi/u);});
+test('rejects negative freshness',()=>{const value=base();value.queryService={enabled:true,backendType:'virtuoso',logicalEndpoint:'https://query.invalid/sparql',syncState:'CURRENT',freshness:{cursorTimestamp:'2026-08-20T00:00:00Z',lagSeconds:-1},servingGeneration:'gen-current'};assert.throws(()=>validateJwbRuntimeV1(value),/freshness/u);});
+test('rejects an invalid sync state',()=>{const value=base();value.queryService={enabled:true,backendType:'virtuoso',logicalEndpoint:'https://query.invalid/sparql',syncState:'SERVING',freshness:{cursorTimestamp:'2026-08-20T00:00:00Z',lagSeconds:0},servingGeneration:'gen-current'};assert.throws(()=>validateJwbRuntimeV1(value),/syncState/u);});
+test('rejects internal fields',()=>{const value=base();value.queryService.internalUpdateEndpoint='http://backend:8890/sparql-auth';assert.throws(()=>validateJwbRuntimeV1(value),/unexpected/u);});

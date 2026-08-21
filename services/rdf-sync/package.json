@@ -1,0 +1,10 @@
+{
+  "name": "@custom-wikibase/rdf-sync-service",
+  "version": "0.1.0-rc.1",
+  "private": true,
+  "type": "module",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "@kubernetes/client-node": "1.4.0"
+  }
+}

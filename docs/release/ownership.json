@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "product": "Custom Wikibase",
+  "repository": "https://github.com/hirokiu/custom-wikibase",
+  "runtimeOwner": "CUSTOM_WIKIBASE",
+  "platformRuntimeDependencies": [],
+  "notes": "Standalone derivative only; the parent repository-ownership.json is not copied or required."
+}

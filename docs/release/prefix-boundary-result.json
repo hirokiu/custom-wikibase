@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "classification": "CUSTOM_WIKIBASE_PREFIX_BOUNDARY_READY",
+  "prefix": "/Users/hiroki_u/Documents/git/wikibase-federation-platform/components/japan-wikibase",
+  "version": "0.1.0-rc.1",
+  "workspaces": 11,
+  "platformRuntimeDependencies": 0,
+  "migrations": [
+    "005",
+    "006",
+    "007",
+    "008",
+    "009",
+    "010",
+    "011",
+    "012",
+    "013"
+  ],
+  "runtimeContract": "jwb-runtime-v1",
+  "composeProfiles": [
+    "none",
+    "virtuoso",
+    "fuseki-tdb2",
+    "oxigraph"
+  ],
+  "coreSmoke": {
+    "result": "PASS",
+    "instanceIdentityStable": true,
+    "entityPersistence": true,
+    "uploadPersistence": true,
+    "stopStart": true,
+    "cleanup": true
+  },
+  "backends": {
+    "virtuoso": {
+      "runId": "j2c2-20260821060210-3fbaa443",
+      "classification": "J2C_VIRTUOSO_PRODUCT_QUALIFIED",
+      "missing": 0,
+      "extra": 0
+    },
+    "fusekiTdb2": {
+      "runId": "j2d-20260821060454-ded82b4d",
+      "classification": "J2D_FUSEKI_PRODUCT_QUALIFIED",
+      "missing": 0,
+      "extra": 0
+    },
+    "oxigraph": {
+      "runId": "j2e-20260821061041-f9942c47",
+      "classification": "J2E_OXIGRAPH_PRODUCT_QUALIFIED",
+      "missing": 0,
+      "extra": 0
+    }
+  },
+  "sbom": {
+    "spdxVersion": "SPDX-2.3",
+    "packages": 94,
+    "relationships": 129
+  },
+  "mixedSharedFiles": {
+    "root package.json": "parent-only; standalone package.json owned by prefix",
+    "root package-lock.json": "parent-only; standalone package-lock.json owned by prefix",
+    "docs/adr/README.md": "parent-only; standalone ADR index owned by prefix",
+    "root .dockerignore": "parent-only; standalone .dockerignore owned by prefix",
+    "repository-ownership.json": "parent extraction metadata only; standalone runtime dependency is zero"
+  }
+}

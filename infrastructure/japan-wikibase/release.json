@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "distribution": "japan-wikibase",
+  "version": "0.1.0-rc.1",
+  "runtimeContract": "jwb-runtime-v1",
+  "rdfNormalization": "jwb-rdf-normalization-v1",
+  "rdfPartition": "jwb-partition-v1",
+  "canonicalUrlPolicy": "immutable-after-create",
+  "automaticPhysicalGenerationDeletion": false,
+  "rollbackPolicy": "hot-retained"
+}
