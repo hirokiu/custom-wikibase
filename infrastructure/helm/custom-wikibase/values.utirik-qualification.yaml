@@ -3,8 +3,8 @@ profile: none
 images:
   core:
     repository: japan-wikibase/core
-    tag: 0.1.0-rc.1
-    digest: sha256:287d2ec1b3fb00788378c849f68f5a04d8a101c8f1962554e96ea557090a6f01
+    tag: u1a-dbd16ac-amd64
+    digest: sha256:fcdf50b720fb42984103fac094ae575db8f8947989ea1633f0ddeb435f168524
     pullPolicy: Never
 
 canonicalPublicUrl: https://custom-qualification-01.wb.utirik.lodac.nii.ac.jp
