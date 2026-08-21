@@ -89,7 +89,7 @@ const config = loadConfig(),
   }),
   health = createSyncHealthServer({
     port: config.port,
-    host: config.runtimeType === "kubernetes" ? "0.0.0.0" : "127.0.0.1",
+    host: config.runtimeType === "local-compose" ? "127.0.0.1" : "0.0.0.0",
     state: runtime,
     metrics,
   });

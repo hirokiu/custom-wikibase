@@ -1,0 +1,63 @@
+profile: none
+
+images:
+  core:
+    repository: japan-wikibase/core
+    tag: 0.1.0-rc.1
+    pullPolicy: IfNotPresent
+  runtime:
+    repository: japan-wikibase/runtime
+    tag: 0.1.0-rc.1
+    pullPolicy: IfNotPresent
+  snapshotProducer:
+    repository: japan-wikibase/snapshot-producer
+    tag: 0.1.0-rc.1
+    pullPolicy: IfNotPresent
+  mariadb: mariadb:10.11.14@sha256:dbe56e20372fc6d6b8e0e396866ba89c4c7f128c38c4f59aaa54d957db95790c
+  postgresql: postgres:16.9-bookworm@sha256:253815cf7579ffa05e1673d92e78d37273e61be0e4414e9a1449337d7925be94
+  virtuoso: openlink/virtuoso-opensource-7:7.2.17@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a
+
+existingSecret: custom-wikibase-secrets
+publicUrl: http://127.0.0.1:8280
+siteName: Japan Wikibase
+timezone: Asia/Tokyo
+
+service:
+  wikibase:
+    type: ClusterIP
+    port: 80
+  queryRouter:
+    type: ClusterIP
+    port: 19200
+
+storage:
+  className: ""
+  mariadb: 2Gi
+  uploads: 1Gi
+  runtimeState: 256Mi
+  postgresql: 1Gi
+  virtuoso: 2Gi
+  snapshots: 1Gi
+
+resources:
+  core: {}
+  jobRunner: {}
+  mariadb: {}
+  runtime: {}
+  postgresql: {}
+  virtuoso: {}
+
+networkPolicy:
+  enabled: true
+
+# Bounded one-shot jobs for qualification/rebuild workflows.
+qualification:
+  snapshot:
+    enabled: false
+    id: 00000000-0000-4000-8000-000000000010
+    cursorTimestamp: "1970-01-01T00:00:00Z"
+    cursorRcid: 0
+    raceTest: false
+  coordinator:
+    enabled: false
+    action: inspect

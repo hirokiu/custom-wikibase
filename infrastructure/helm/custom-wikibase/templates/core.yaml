@@ -1,0 +1,169 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  selector: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "mariadb") | nindent 4 }}
+  ports: [{name: mysql, port: 3306, targetPort: mysql}]
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  serviceName: mariadb
+  replicas: 1
+  selector:
+    matchLabels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "mariadb") | nindent 6 }}
+  template:
+    metadata:
+      labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "mariadb") | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: mariadb
+          image: {{ .Values.images.mariadb | quote }}
+          imagePullPolicy: IfNotPresent
+          args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+          ports: [{name: mysql, containerPort: 3306}]
+          env:
+            - {name: MARIADB_DATABASE, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbName}}}
+            - {name: MARIADB_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbUser}}}
+            - {name: MARIADB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbPassword}}}
+            - {name: MARIADB_ROOT_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbRootPassword}}}
+          readinessProbe: {exec: {command: [healthcheck.sh, --connect, --innodb_initialized]}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 30}
+          livenessProbe: {exec: {command: [healthcheck.sh, --connect]}, periodSeconds: 10, timeoutSeconds: 5, failureThreshold: 6}
+          resources: {{- toYaml .Values.resources.mariadb | nindent 12 }}
+          volumeMounts: [{name: data, mountPath: /var/lib/mysql}]
+  volumeClaimTemplates:
+    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: authoritative}}
+      spec:
+        accessModes: [ReadWriteOnce]
+        {{- include "custom-wikibase.storageClass" . | nindent 8 }}
+        resources: {requests: {storage: {{ .Values.storage.mariadb }}}}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uploads
+  labels: {custom-wikibase.org/storage-classification: authoritative}
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- include "custom-wikibase.storageClass" . | nindent 2 }}
+  resources: {requests: {storage: {{ .Values.storage.uploads }}}}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: runtime-state
+  labels: {custom-wikibase.org/storage-classification: authoritative}
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- include "custom-wikibase.storageClass" . | nindent 2 }}
+  resources: {requests: {storage: {{ .Values.storage.runtimeState }}}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wikibase
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.wikibase.type }}
+  selector: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "wikibase") | nindent 4 }}
+  ports: [{name: http, port: {{ .Values.service.wikibase.port }}, targetPort: http}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikibase
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "wikibase") | nindent 6 }}
+  template:
+    metadata:
+      labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "wikibase") | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-mariadb
+          image: {{ .Values.images.mariadb | quote }}
+          command: [sh, -ec]
+          args: ['for i in $(seq 1 120); do mariadb-admin ping -h mariadb --silent && exit 0; sleep 2; done; exit 1']
+      containers:
+        - name: wikibase
+          image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
+          imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          ports: [{name: http, containerPort: 80}]
+          env: &wikibaseEnv
+            - {name: JWB_DB_HOST, value: mariadb}
+            - {name: JWB_DB_NAME, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbName}}}
+            - {name: JWB_DB_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbUser}}}
+            - {name: JWB_DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbPassword}}}
+            - {name: JWB_ADMIN_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminUser}}}
+            - {name: JWB_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminPassword}}}
+            - {name: JWB_SECRET_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: secretKey}}}
+            - {name: JWB_UPGRADE_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: upgradeKey}}}
+            - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
+            - {name: JWB_PUBLIC_URL, value: {{ .Values.publicUrl | quote }}}
+            - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
+            - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile | quote }}}
+            - {name: TZ, value: {{ .Values.timezone | quote }}}
+          readinessProbe: {httpGet: {path: '/api.php?action=query&meta=siteinfo&format=json', port: http}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 60}
+          livenessProbe: {httpGet: {path: '/api.php?action=query&format=json', port: http}, periodSeconds: 15, timeoutSeconds: 5, failureThreshold: 8}
+          startupProbe: {httpGet: {path: '/api.php?action=query&meta=siteinfo&format=json', port: http}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
+          resources: {{- toYaml .Values.resources.core | nindent 12 }}
+          volumeMounts: [{name: uploads, mountPath: /var/www/html/images}, {name: runtime-state, mountPath: /var/lib/jwb}]
+      volumes: [{name: uploads, persistentVolumeClaim: {claimName: uploads}}, {name: runtime-state, persistentVolumeClaim: {claimName: runtime-state}}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-runner
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "job-runner") | nindent 6 }}
+  template:
+    metadata:
+      labels: {{- include "custom-wikibase.selector" (dict "Release" .Release "component" "job-runner") | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-install
+          image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
+          imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          command: [sh, -ec]
+          args: ['for i in $(seq 1 180); do test -f /var/lib/jwb/installed && exit 0; sleep 2; done; exit 1']
+          volumeMounts: [{name: runtime-state, mountPath: /var/lib/jwb}]
+      containers:
+        - name: job-runner
+          image: {{ include "custom-wikibase.image" .Values.images.core | quote }}
+          imagePullPolicy: {{ .Values.images.core.pullPolicy }}
+          args: [jwb-job-runner]
+          env:
+            - {name: JWB_DB_HOST, value: mariadb}
+            - {name: JWB_DB_NAME, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbName}}}
+            - {name: JWB_DB_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbUser}}}
+            - {name: JWB_DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbPassword}}}
+            - {name: JWB_ADMIN_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminUser}}}
+            - {name: JWB_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminPassword}}}
+            - {name: JWB_SECRET_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: secretKey}}}
+            - {name: JWB_UPGRADE_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: upgradeKey}}}
+            - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
+            - {name: JWB_PUBLIC_URL, value: {{ .Values.publicUrl | quote }}}
+            - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
+            - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile | quote }}}
+            - {name: TZ, value: {{ .Values.timezone | quote }}}
+          readinessProbe: {exec: {command: [sh, -ec, 'test -f /var/lib/jwb/installed && grep -aq runJobs /proc/1/cmdline']}, periodSeconds: 5, timeoutSeconds: 3, failureThreshold: 30}
+          livenessProbe: {exec: {command: [sh, -ec, 'grep -aq runJobs /proc/1/cmdline']}, periodSeconds: 15, timeoutSeconds: 3, failureThreshold: 6}
+          resources: {{- toYaml .Values.resources.jobRunner | nindent 12 }}
+          volumeMounts: [{name: uploads, mountPath: /var/www/html/images}, {name: runtime-state, mountPath: /var/lib/jwb}]
+      volumes: [{name: uploads, persistentVolumeClaim: {claimName: uploads}}, {name: runtime-state, persistentVolumeClaim: {claimName: runtime-state}}]

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "images", "existingSecret", "publicUrl", "siteName", "timezone", "service", "storage", "resources", "networkPolicy", "qualification"],
+  "properties": {
+    "profile": { "type": "string", "enum": ["none", "virtuoso"] },
+    "existingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
+    "publicUrl": { "type": "string", "pattern": "^https?://[^[:space:]]+$" },
+    "siteName": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "timezone": { "type": "string", "enum": ["Asia/Tokyo", "UTC"] },
+    "images": {
+      "type": "object", "additionalProperties": false,
+      "required": ["core", "runtime", "snapshotProducer", "mariadb", "postgresql", "virtuoso"],
+      "properties": {
+        "core": { "$ref": "#/definitions/applicationImage" },
+        "runtime": { "$ref": "#/definitions/applicationImage" },
+        "snapshotProducer": { "$ref": "#/definitions/applicationImage" },
+        "mariadb": { "$ref": "#/definitions/imageReference" },
+        "postgresql": { "$ref": "#/definitions/imageReference" },
+        "virtuoso": { "$ref": "#/definitions/imageReference" }
+      }
+    },
+    "service": {
+      "type": "object", "additionalProperties": false, "required": ["wikibase", "queryRouter"],
+      "properties": {
+        "wikibase": { "$ref": "#/definitions/service" },
+        "queryRouter": { "$ref": "#/definitions/service" }
+      }
+    },
+    "storage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["className", "mariadb", "uploads", "runtimeState", "postgresql", "virtuoso", "snapshots"],
+      "properties": {
+        "className": { "type": "string", "maxLength": 63 },
+        "mariadb": { "$ref": "#/definitions/quantity" }, "uploads": { "$ref": "#/definitions/quantity" },
+        "runtimeState": { "$ref": "#/definitions/quantity" }, "postgresql": { "$ref": "#/definitions/quantity" },
+        "virtuoso": { "$ref": "#/definitions/quantity" }, "snapshots": { "$ref": "#/definitions/quantity" }
+      }
+    },
+    "resources": {
+      "type": "object", "additionalProperties": false,
+      "required": ["core", "jobRunner", "mariadb", "runtime", "postgresql", "virtuoso"],
+      "properties": { "core": {"type":"object"}, "jobRunner": {"type":"object"}, "mariadb": {"type":"object"}, "runtime": {"type":"object"}, "postgresql": {"type":"object"}, "virtuoso": {"type":"object"} }
+    },
+    "networkPolicy": { "type": "object", "additionalProperties": false, "required": ["enabled"], "properties": { "enabled": {"type":"boolean"} } },
+    "qualification": {
+      "type": "object", "additionalProperties": false, "required": ["snapshot", "coordinator"],
+      "properties": {
+        "snapshot": { "type": "object", "additionalProperties": false, "required": ["enabled", "id", "cursorTimestamp", "cursorRcid", "raceTest"], "properties": {
+          "enabled": {"type":"boolean"}, "id": {"type":"string","format":"uuid"}, "cursorTimestamp": {"type":"string","format":"date-time"}, "cursorRcid": {"type":"integer","minimum":0}, "raceTest": {"type":"boolean"}
+        } },
+        "coordinator": { "type": "object", "additionalProperties": false, "required": ["enabled", "action"], "properties": {
+          "enabled": {"type":"boolean"}, "action": {"enum":["inspect","load","observe","phase","validate","validate-serving"]}
+        } }
+      }
+    }
+  },
+  "definitions": {
+    "imageReference": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._/:@-]+$" },
+    "applicationImage": { "type": "object", "additionalProperties": false, "required": ["repository", "tag", "pullPolicy"], "properties": { "repository": {"type":"string","minLength":1}, "tag": {"type":"string","minLength":1}, "pullPolicy": {"enum":["Always","IfNotPresent","Never"]} } },
+    "quantity": { "type": "string", "pattern": "^[1-9][0-9]*(Mi|Gi)$" },
+    "service": { "type": "object", "additionalProperties": false, "required": ["type", "port"], "properties": { "type": {"enum":["ClusterIP","NodePort","LoadBalancer"]}, "port": {"type":"integer","minimum":1,"maximum":65535} } }
+  }
+}

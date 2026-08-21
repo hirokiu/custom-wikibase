@@ -1,0 +1,223 @@
+{{- if eq .Values.profile "virtuoso" }}
+apiVersion: v1
+kind: Service
+metadata: {name: jwb-postgresql}
+spec:
+  clusterIP: None
+  selector: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: postgresql}
+  ports: [{name: postgresql, port: 5432, targetPort: postgresql}]
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: jwb-postgresql}
+spec:
+  serviceName: jwb-postgresql
+  replicas: 1
+  selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: postgresql}}
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: postgresql}}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: postgresql
+          image: {{ .Values.images.postgresql | quote }}
+          imagePullPolicy: IfNotPresent
+          ports: [{name: postgresql, containerPort: 5432}]
+          env:
+            - {name: POSTGRES_DB, value: japan_wikibase_query}
+            - {name: POSTGRES_USER, value: jwb_query}
+            - {name: POSTGRES_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+          readinessProbe: {exec: {command: [pg_isready, -U, jwb_query, -d, japan_wikibase_query]}, periodSeconds: 3, timeoutSeconds: 3, failureThreshold: 40}
+          livenessProbe: {exec: {command: [pg_isready, -U, jwb_query, -d, japan_wikibase_query]}, periodSeconds: 10, timeoutSeconds: 3, failureThreshold: 6}
+          resources: {{- toYaml .Values.resources.postgresql | nindent 12 }}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+  volumeClaimTemplates:
+    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: query-control}}
+      spec:
+        accessModes: [ReadWriteOnce]
+        {{- include "custom-wikibase.storageClass" . | nindent 8 }}
+        resources: {requests: {storage: {{ .Values.storage.postgresql }}}}
+---
+{{- range $slot := list "a" "b" }}
+apiVersion: v1
+kind: Service
+metadata: {name: backend-{{ $slot }}}
+spec:
+  clusterIP: None
+  selector: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}
+  ports: [{name: sparql, port: 8890, targetPort: sparql}]
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: backend-{{ $slot }}}
+spec:
+  serviceName: backend-{{ $slot }}
+  replicas: 1
+  selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}}
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: virtuoso
+          image: {{ $.Values.images.virtuoso | quote }}
+          imagePullPolicy: IfNotPresent
+          ports: [{name: sparql, containerPort: 8890}]
+          env: [{name: DBA_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: rdfAdminPassword}}}]
+          startupProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
+          readinessProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 20}
+          livenessProbe: {tcpSocket: {port: sparql}, periodSeconds: 15, timeoutSeconds: 3, failureThreshold: 8}
+          resources: {{- toYaml $.Values.resources.virtuoso | nindent 12 }}
+          volumeMounts: [{name: data, mountPath: /database}]
+  volumeClaimTemplates:
+    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: derived-rebuildable}}
+      spec:
+        accessModes: [ReadWriteOnce]
+        {{- include "custom-wikibase.storageClass" $ | nindent 8 }}
+        resources: {requests: {storage: {{ $.Values.storage.virtuoso }}}}
+---
+{{- end }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jwb-migrate-{{ .Release.Revision }}
+  labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: migration}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: migration}}
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-postgresql
+          image: {{ .Values.images.postgresql | quote }}
+          command: [sh, -ec]
+          args: ['for i in $(seq 1 120); do pg_isready -h jwb-postgresql -U jwb_query -d japan_wikibase_query && exit 0; sleep 2; done; exit 1']
+      containers:
+        - name: migrate
+          image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
+          imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-migrate-cli.js up']
+          env:
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jwb-bootstrap-{{ .Release.Revision }}
+  labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: bootstrap}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: bootstrap}}
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-migrations
+          image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
+          imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; for i in $(seq 1 120); do node packages/jwb-database/src/jwb-migrate-cli.js status > /tmp/status.json && ! grep -q pending /tmp/status.json && exit 0; sleep 2; done; exit 1']
+          env: [{name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}]
+      containers:
+        - name: bootstrap
+          image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
+          imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-bootstrap-cli.js']
+          env:
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: query-router}
+spec:
+  type: {{ .Values.service.queryRouter.type }}
+  selector: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: query-router}
+  ports: [{name: http, port: {{ .Values.service.queryRouter.port }}, targetPort: http}]
+---
+{{- range $component := list "rdf-source-reader" "rdf-sync-worker-a" "rdf-sync-worker-b" "query-router" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: {{ $component }}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $component }}}}
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $component }}}}
+    spec:
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-bootstrap
+          image: {{ include "custom-wikibase.image" $.Values.images.runtime | quote }}
+          imagePullPolicy: {{ $.Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['export JWB_ROUTER_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; for i in $(seq 1 120); do node packages/jwb-database/src/jwb-qualification-cli.js inspect >/tmp/inspect.json 2>/dev/null && exit 0; sleep 2; done; exit 1']
+          env:
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_ROUTER_BACKEND, value: virtuoso}
+      containers:
+        - name: {{ $component }}
+          image: {{ include "custom-wikibase.image" $.Values.images.runtime | quote }}
+          imagePullPolicy: {{ $.Values.images.runtime.pullPolicy }}
+          {{- if eq $component "rdf-source-reader" }}
+          command: [node, apps/rdf-source-reader/src/main.js]
+          env:
+            - {name: JWB_SOURCE_READER_RUNTIME, value: standalone-compose}
+            - {name: JWB_SOURCE_READER_URL, value: 'http://wikibase'}
+            - {name: JWB_SOURCE_READER_IDENTITY, value: jwb-standalone}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_SOURCE_READER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
+          readinessProbe: {exec: {command: [sh, -ec, 'grep -aq rdf-source-reader /proc/1/cmdline']}, periodSeconds: 5}
+          livenessProbe: {exec: {command: [sh, -ec, 'grep -aq rdf-source-reader /proc/1/cmdline']}, periodSeconds: 15}
+          {{- else if hasPrefix "rdf-sync-worker" $component }}
+          command: [node, apps/rdf-sync-worker/src/main.js]
+          ports: [{name: health, containerPort: {{ if eq $component "rdf-sync-worker-b" }}9192{{ else }}9191{{ end }}}]
+          env:
+            - {name: JWB_SYNC_RUNTIME, value: standalone-compose}
+            - {name: JWB_SYNC_BACKEND, value: virtuoso}
+            - {name: JWB_SYNC_SOURCE_URL, value: 'http://wikibase'}
+            - {name: JWB_SYNC_SOURCE_IDENTITY, value: jwb-standalone}
+            - {name: JWB_SYNC_GENERATION_ID, value: {{ if eq $component "rdf-sync-worker-b" }}gen-b{{ else }}gen-a{{ end }}}
+            - {name: JWB_SYNC_HEALTH_PORT, value: {{ if eq $component "rdf-sync-worker-b" }}'9192'{{ else }}'9191'{{ end }}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_SYNC_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
+            - {name: JWB_RDF_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: rdfAdminPassword}}}
+          readinessProbe: {httpGet: {path: /readyz, port: health}, periodSeconds: 5, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: health}, periodSeconds: 15, failureThreshold: 8}
+          {{- else }}
+          command: [node, apps/query-router/src/main.js]
+          ports: [{name: http, containerPort: 19200}]
+          env:
+            - {name: JWB_ROUTER_RUNTIME, value: standalone-compose}
+            - {name: JWB_ROUTER_BACKEND, value: virtuoso}
+            - {name: JWB_ROUTER_QUERY_SERVICE_ID, value: jwb-standalone-query}
+            - {name: JWB_ROUTER_PORT, value: '19200'}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_ROUTER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
+            - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: instanceId}}}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, periodSeconds: 5, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 15, failureThreshold: 8}
+          {{- end }}
+          resources: {{- toYaml $.Values.resources.runtime | nindent 12 }}
+---
+{{- end }}
+{{- if or .Values.qualification.snapshot.enabled .Values.qualification.coordinator.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: snapshot-artifacts, labels: {custom-wikibase.org/storage-classification: bounded-temporary}}
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- include "custom-wikibase.storageClass" . | nindent 2 }}
+  resources: {requests: {storage: {{ .Values.storage.snapshots }}}}
+{{- end }}
+{{- end }}

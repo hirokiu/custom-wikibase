@@ -1,0 +1,7 @@
+apiVersion: v2
+name: custom-wikibase
+description: "Standalone Custom Wikibase (K1A: Core and Virtuoso profiles)"
+type: application
+version: 0.1.0-rc.1
+appVersion: 0.1.0-rc.1
+kubeVersion: ">=1.30.0-0"

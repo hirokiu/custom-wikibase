@@ -1,0 +1,80 @@
+{{- if and (eq .Values.profile "virtuoso") .Values.qualification.snapshot.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata: {name: rdf-snapshot-{{ .Release.Revision }}}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: rdf-snapshot}}
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: snapshot
+          image: {{ include "custom-wikibase.image" .Values.images.snapshotProducer | quote }}
+          imagePullPolicy: {{ .Values.images.snapshotProducer.pullPolicy }}
+          env:
+            - {name: JWB_DB_HOST, value: mariadb}
+            - {name: JWB_DB_NAME, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbName}}}
+            - {name: JWB_DB_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbUser}}}
+            - {name: JWB_DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: dbPassword}}}
+            - {name: JWB_ADMIN_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminUser}}}
+            - {name: JWB_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminPassword}}}
+            - {name: JWB_SECRET_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: secretKey}}}
+            - {name: JWB_UPGRADE_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: upgradeKey}}}
+            - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
+            - {name: JWB_PUBLIC_URL, value: {{ .Values.publicUrl | quote }}}
+            - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
+            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+            - {name: JWB_SNAPSHOT_ID, value: {{ .Values.qualification.snapshot.id | quote }}}
+            - {name: JWB_SNAPSHOT_CURSOR_TIMESTAMP, value: {{ .Values.qualification.snapshot.cursorTimestamp | quote }}}
+            - {name: JWB_SNAPSHOT_CURSOR_RCID, value: {{ .Values.qualification.snapshot.cursorRcid | quote }}}
+            - {name: JWB_SNAPSHOT_RACE_TEST, value: {{ .Values.qualification.snapshot.raceTest | quote }}}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
+          volumeMounts: [{name: runtime-state, mountPath: /var/lib/jwb}, {name: artifacts, mountPath: /artifacts}]
+      volumes: [{name: runtime-state, persistentVolumeClaim: {claimName: runtime-state}}, {name: artifacts, persistentVolumeClaim: {claimName: snapshot-artifacts}}]
+---
+{{- end }}
+{{- if and (eq .Values.profile "virtuoso") .Values.qualification.coordinator.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata: {name: rdf-coordinator-{{ .Values.qualification.coordinator.action }}-{{ .Release.Revision }}}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: rdf-coordinator}}
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      initContainers:
+        - name: wait-postgresql
+          image: {{ .Values.images.postgresql | quote }}
+          command: [sh, -ec]
+          args: ['for i in $(seq 1 120); do pg_isready -h jwb-postgresql -U jwb_query -d japan_wikibase_query && exit 0; sleep 2; done; exit 1']
+        {{- if .Values.qualification.snapshot.enabled }}
+        - name: wait-snapshot
+          image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
+          imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['for i in $(seq 1 300); do test -s "/artifacts/${JWB_SNAPSHOT_ID}.manifest.json" && test -s "/artifacts/${JWB_SNAPSHOT_ID}.nt" && exit 0; sleep 2; done; exit 1']
+          env: [{name: JWB_SNAPSHOT_ID, value: {{ .Values.qualification.snapshot.id | quote }}}]
+          volumeMounts: [{name: artifacts, mountPath: /artifacts, readOnly: true}]
+        {{- end }}
+      containers:
+        - name: coordinator
+          image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
+          imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          command: [sh, -ec]
+          args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-rebuild-cli.js']
+          env:
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+            - {name: JWB_REBUILD_ACTION, value: {{ .Values.qualification.coordinator.action | quote }}}
+            - {name: JWB_SNAPSHOT_ID, value: {{ .Values.qualification.snapshot.id | quote }}}
+            - {name: JWB_RDF_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: rdfAdminPassword}}}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
+          volumeMounts: [{name: artifacts, mountPath: /artifacts, readOnly: true}]
+      volumes: [{name: artifacts, persistentVolumeClaim: {claimName: snapshot-artifacts}}]
+{{- end }}
