@@ -2,11 +2,13 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
-  "required": ["profile", "images", "existingSecret", "publicUrl", "siteName", "timezone", "service", "storage", "resources", "networkPolicy", "qualification"],
+  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "publicQueryUrl", "siteName", "timezone", "service", "storage", "resources", "networkPolicy", "qualification"],
   "properties": {
     "profile": { "type": "string", "enum": ["none", "virtuoso", "fuseki-tdb2", "oxigraph"] },
     "existingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
-    "publicUrl": { "type": "string", "pattern": "^https?://[^[:space:]]+$" },
+    "canonicalPublicUrl": { "type": "string", "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?$" },
+    "trustedInternalSourceUrl": { "type": "string", "pattern": "^http://wikibase(?:\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?\\.svc\\.cluster\\.local)?(?::[0-9]+)?$" },
+    "publicQueryUrl": { "type": "string", "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?/sparql$" },
     "siteName": { "type": "string", "minLength": 1, "maxLength": 80 },
     "timezone": { "type": "string", "enum": ["Asia/Tokyo", "UTC"] },
     "images": {

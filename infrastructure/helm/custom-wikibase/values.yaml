@@ -20,7 +20,9 @@ images:
   oxigraph: oxigraph/oxigraph:0.5.7@sha256:fa3a660c0f5ec776472c0828309dec8a5410b7267e2dcac59ab7d7f29e10da28
 
 existingSecret: custom-wikibase-secrets
-publicUrl: http://127.0.0.1:8280
+canonicalPublicUrl: http://127.0.0.1:8280
+trustedInternalSourceUrl: http://wikibase
+publicQueryUrl: http://127.0.0.1:8290/sparql
 siteName: Japan Wikibase
 timezone: Asia/Tokyo
 

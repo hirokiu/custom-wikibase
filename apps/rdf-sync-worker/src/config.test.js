@@ -44,7 +44,7 @@ test("accepts only fixed qualification crash points", () => {
     /allowlisted/u,
   );
 });
-test('standalone worker accepts only fixed product DNS',()=>{const standalone={...valid,JWB_SYNC_RUNTIME:'standalone-compose',JWB_SYNC_SOURCE_URL:'http://wikibase',JWB_SYNC_DATABASE_URL:'postgresql://sync:secret@jwb-postgresql:5432/japan_wikibase_query'};assert.equal(loadConfig(standalone).runtimeType,'standalone-compose');assert.throws(()=>loadConfig({...standalone,JWB_SYNC_SOURCE_URL:'http://foreign'}),/local/u);});
+test('standalone worker separates canonical public and trusted internal URLs',()=>{const standalone={...valid,JWB_SYNC_RUNTIME:'standalone-compose',JWB_SYNC_SOURCE_URL:'http://wikibase.cw-a.svc.cluster.local',JWB_CANONICAL_PUBLIC_URL:'https://cw-a.wb.example.org',JWB_SYNC_DATABASE_URL:'postgresql://sync:secret@jwb-postgresql:5432/japan_wikibase_query'},config=loadConfig(standalone);assert.equal(config.sourceUrl,'http://wikibase.cw-a.svc.cluster.local');assert.equal(config.canonicalPublicUrl,'https://cw-a.wb.example.org');assert.throws(()=>loadConfig({...standalone,JWB_SYNC_SOURCE_URL:'http://foreign'}),/local/u);assert.throws(()=>loadConfig({...standalone,JWB_CANONICAL_PUBLIC_URL:'https://user:secret@cw-a.wb.example.org'}),/HTTP origin/u);});
 test("accepts only the fixed Kubernetes data-plane endpoints", () => {
   const kubernetes = {
     ...valid,

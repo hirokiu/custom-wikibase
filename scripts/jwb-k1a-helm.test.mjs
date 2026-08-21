@@ -90,3 +90,14 @@ test("K1A snapshot and coordinator remain bounded opt-in Jobs", () => {
   assert.match(jobs, /qualification\.coordinator\.enabled/u);
   assert.doesNotMatch(jobs, /gen-c|kubectl|docker\.sock/u);
 });
+
+test("K2 URL boundary separates canonical identity, internal fetch, and public query discovery", () => {
+  const values = read("values.yaml"), core = read("templates/core.yaml"), query = read("templates/query-virtuoso.yaml");
+  for (const key of ["canonicalPublicUrl", "trustedInternalSourceUrl", "publicQueryUrl"]) assert.match(values, new RegExp(`^${key}:`, "mu"));
+  assert.match(core, /JWB_CANONICAL_PUBLIC_URL, value: \{\{ \.Values\.canonicalPublicUrl/u);
+  assert.match(query, /JWB_SOURCE_READER_URL, value: \{\{ \$\.Values\.trustedInternalSourceUrl/u);
+  assert.match(query, /JWB_SYNC_SOURCE_URL, value: \{\{ \$\.Values\.trustedInternalSourceUrl/u);
+  assert.match(query, /JWB_CANONICAL_PUBLIC_URL, value: \{\{ \$\.Values\.canonicalPublicUrl/u);
+  assert.match(query, /JWB_PUBLIC_QUERY_URL, value: \{\{ \$\.Values\.publicQueryUrl/u);
+  assert.doesNotMatch(values, /^publicUrl:/mu);
+});

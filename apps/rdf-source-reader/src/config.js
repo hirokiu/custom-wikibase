@@ -7,7 +7,9 @@ export function loadSourceReaderConfig(env = process.env) {
   );
   if (
     sourceUrl.protocol !== "http:" ||
-    sourceUrl.hostname !== (runtimeType === "kubernetes" ? "japan-wikibase.jwb-instance-local-01.svc.cluster.local" : runtimeType === "standalone-compose" ? "wikibase" : "127.0.0.1") ||
+    !(runtimeType === "standalone-compose"
+      ? /^wikibase(?:\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?\.svc\.cluster\.local)?$/u.test(sourceUrl.hostname)
+      : sourceUrl.hostname === (runtimeType === "kubernetes" ? "japan-wikibase.jwb-instance-local-01.svc.cluster.local" : "127.0.0.1")) ||
     sourceUrl.username ||
     sourceUrl.password
   )

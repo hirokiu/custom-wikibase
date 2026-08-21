@@ -38,3 +38,16 @@ qualification Jobs part of Helm's success boundary.
 Backend services are headless/internal only. Query Router is the sole logical
 SPARQL service intended for exposure; backend query, update, graph-store, and
 administration endpoints are not public product boundaries.
+
+The URL boundary is explicit:
+
+- `canonicalPublicUrl` is the public MediaWiki origin and canonical RDF IRI
+  base, for example `https://g01.wb.example.org`;
+- `trustedInternalSourceUrl` is the private HTTP Wikibase service used only by
+  Source Reader and workers, for example
+  `http://wikibase.<namespace>.svc.cluster.local`;
+- `publicQueryUrl` is the public logical Query Router URL ending in `/sparql`.
+
+Changing `canonicalPublicUrl` after RDF has been generated requires an explicit
+rebuild. Runtime discovery exposes the two public endpoints and never exposes
+the trusted internal source URL.

@@ -9,6 +9,9 @@ export function loadRouterConfig(env = process.env) {
   const database=env.JWB_ROUTER_DATABASE_URL??'',local=/^postgres(?:ql)?:\/\/[^@/]+:[^@/]+@127\.0\.0\.1:\d+\/[a-z0-9_]+$/u,standalone=/^postgres(?:ql)?:\/\/[^@/]+:[^@/]+@jwb-postgresql:5432\/japan_wikibase_query$/u,kubernetes=/^postgres(?:ql)?:\/\/[^@/]+:[^@/]+@controller-postgres\.jwb-system\.svc\.cluster\.local:5432\/jwb$/u;
   if (!['compose','standalone-compose','kubernetes'].includes(runtimeType)||(runtimeType==='compose'?!local.test(database):runtimeType==='standalone-compose'?!standalone.test(database):!kubernetes.test(database))) throw new Error('local PostgreSQL URL is required');
   const port = bounded(env.JWB_ROUTER_PORT, 1024, 65535, 19200);
-  return Object.freeze({ runtimeType,backendType: generationBackends['gen-a'] === generationBackends['gen-b'] ? generationBackends['gen-a'] : null, generationBackends, queryServiceId, databaseUrl: database, port });
+  const canonicalPublicUrl=publicUrl(env.JWB_CANONICAL_PUBLIC_URL??(runtimeType==='standalone-compose'?'http://127.0.0.1:8280':'http://127.0.0.1:8180'),'canonical public',false);
+  const publicQueryUrl=publicUrl(env.JWB_PUBLIC_QUERY_URL??'http://127.0.0.1:8290/sparql','public query',true);
+  return Object.freeze({ runtimeType,backendType: generationBackends['gen-a'] === generationBackends['gen-b'] ? generationBackends['gen-a'] : null, generationBackends, queryServiceId, databaseUrl: database, port,canonicalPublicUrl,publicQueryUrl });
 }
 function bounded(value, min, max, fallback) { const number = value === undefined ? fallback : Number(value); if (!Number.isInteger(number) || number < min || number > max) throw new Error('invalid router port'); return number; }
+function publicUrl(value,name,query){const url=new URL(value);if(!['http:','https:'].includes(url.protocol)||url.username||url.password||url.search||url.hash||url.pathname!==(query?'/sparql':'/'))throw new Error(`${name} URL is invalid`);return url.toString().replace(/\/$/u,'');}

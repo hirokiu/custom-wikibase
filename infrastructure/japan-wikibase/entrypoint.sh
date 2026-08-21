@@ -9,6 +9,8 @@ for name in "${required[@]}"; do
   test -n "${!name:-}" || { echo "missing required runtime setting: ${name}" >&2; exit 1; }
 done
 [[ "${JWB_INSTANCE_ID}" =~ ^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$ ]] || { echo 'invalid instance identity' >&2; exit 1; }
+readonly canonical_public_url="${JWB_CANONICAL_PUBLIC_URL:-${JWB_PUBLIC_URL:-http://127.0.0.1:8180}}"
+[[ "${canonical_public_url}" =~ ^https?://[A-Za-z0-9.-]+(:[0-9]+)?$ ]] || { echo 'invalid canonical public URL' >&2; exit 1; }
 
 install -d -m 0770 -o www-data -g www-data /var/lib/jwb /var/www/html/images
 chown www-data:www-data /var/www/html/images
@@ -33,7 +35,7 @@ if test ! -f "${marker}"; then
       --dbserver "${JWB_DB_HOST}" \
       --dbuser "${JWB_DB_USER}" \
       --dbpass "${JWB_DB_PASSWORD}" \
-      --server "${JWB_PUBLIC_URL:-http://127.0.0.1:8180}" \
+      --server "${canonical_public_url}" \
       --scriptpath '' \
       --lang ja \
       --pass "${JWB_ADMIN_PASSWORD}" \
@@ -51,7 +53,7 @@ fi
 install -m 0644 -o root -g root /opt/jwb/LocalSettings.php /var/www/html/LocalSettings.php
 if test "${JWB_QUERY_BACKEND:-none}" = none; then
   cat > /var/lib/jwb/runtime-contract.json <<EOF
-{"contractVersion":"jwb-runtime-v1","distribution":{"type":"japan-wikibase","version":"0.1.0-rc.1"},"instance":{"id":"${JWB_INSTANCE_ID}"},"endpoints":{"mediawiki":"http://127.0.0.1:8280/wiki/","actionApi":"http://127.0.0.1:8280/api.php"},"health":{"state":"healthy"},"queryService":{"enabled":false},"capabilities":{"queryOptional":true,"instanceStopPreservesData":true}}
+{"contractVersion":"jwb-runtime-v1","distribution":{"type":"japan-wikibase","version":"0.1.0-rc.1"},"instance":{"id":"${JWB_INSTANCE_ID}"},"endpoints":{"mediawiki":"${canonical_public_url}/wiki/","actionApi":"${canonical_public_url}/api.php"},"health":{"state":"healthy"},"queryService":{"enabled":false},"capabilities":{"queryOptional":true,"instanceStopPreservesData":true}}
 EOF
   chmod 0644 /var/lib/jwb/runtime-contract.json
   cat > /etc/apache2/conf-enabled/jwb-runtime-discovery.conf <<'EOF'

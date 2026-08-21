@@ -5,7 +5,7 @@ $wgMetaNamespace = 'Japan_Wikibase';
 $wgScriptPath = '';
 $wgArticlePath = '/wiki/$1';
 $wgUsePathInfo = true;
-$wgServer = getenv( 'JWB_PUBLIC_URL' ) ?: 'http://127.0.0.1:8180';
+$wgServer = getenv( 'JWB_CANONICAL_PUBLIC_URL' ) ?: ( getenv( 'JWB_PUBLIC_URL' ) ?: 'http://127.0.0.1:8180' );
 $wgResourceBasePath = $wgScriptPath;
 
 $wgDBtype = 'mysql';

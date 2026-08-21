@@ -24,7 +24,8 @@ spec:
             - {name: JWB_SECRET_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: secretKey}}}
             - {name: JWB_UPGRADE_KEY, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: upgradeKey}}}
             - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: instanceId}}}
-            - {name: JWB_PUBLIC_URL, value: {{ .Values.publicUrl | quote }}}
+            - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
+            - {name: JWB_PUBLIC_URL, value: {{ .Values.canonicalPublicUrl | quote }}}
             - {name: JWB_SITE_NAME, value: {{ .Values.siteName | quote }}}
             - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile }}}
             - {name: JWB_SNAPSHOT_ID, value: {{ .Values.qualification.snapshot.id | quote }}}

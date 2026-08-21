@@ -17,6 +17,10 @@ export function loadConfig(env = process.env) {
     "source",
     runtimeType,
   );
+  const canonicalPublicUrl = publicUrl(
+    env.JWB_CANONICAL_PUBLIC_URL ?? (runtimeType === "standalone-compose" ? "http://127.0.0.1:8280" : "http://127.0.0.1:8180"),
+    "canonical public",
+  );
   const sourceIdentity = env.JWB_SYNC_SOURCE_IDENTITY ?? "jwb-local";
   if (!/^[a-z0-9][a-z0-9.-]{0,127}$/u.test(sourceIdentity))
     throw new Error("invalid source identity");
@@ -46,6 +50,7 @@ export function loadConfig(env = process.env) {
     backendType,
     runtimeType,
     sourceUrl: sourceUrl.toString().replace(/\/$/u, ""),
+    canonicalPublicUrl: canonicalPublicUrl.toString().replace(/\/$/u, ""),
     sourceIdentity,
     generationId,
     normalizationModel: "jwb-rdf-normalization-v1",
@@ -62,15 +67,21 @@ function trustedUrl(value, name, runtimeType) {
   const url = new URL(value);
   const expectedHost = runtimeType === "kubernetes"
     ? "japan-wikibase.jwb-instance-local-01.svc.cluster.local"
-    : runtimeType === "standalone-compose" ? "wikibase"
+    : runtimeType === "standalone-compose" ? null
     : "127.0.0.1";
   if (
     url.protocol !== "http:" ||
-    url.hostname !== expectedHost ||
+    (expectedHost === null ? !/^wikibase(?:\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?\.svc\.cluster\.local)?$/u.test(url.hostname) : url.hostname !== expectedHost) ||
     url.username ||
     url.password
   )
     throw new Error(`${name} URL must be local HTTP`);
+  return url;
+}
+function publicUrl(value, name) {
+  const url = new URL(value);
+  if (!["http:", "https:"].includes(url.protocol) || url.username || url.password || url.pathname !== "/" || url.search || url.hash)
+    throw new Error(`${name} URL must be an HTTP origin`);
   return url;
 }
 function bounded(value, min, max, fallback) {

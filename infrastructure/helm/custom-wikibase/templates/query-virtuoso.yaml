@@ -183,7 +183,7 @@ spec:
           command: [node, apps/rdf-source-reader/src/main.js]
           env:
             - {name: JWB_SOURCE_READER_RUNTIME, value: standalone-compose}
-            - {name: JWB_SOURCE_READER_URL, value: 'http://wikibase'}
+            - {name: JWB_SOURCE_READER_URL, value: {{ $.Values.trustedInternalSourceUrl | quote }}}
             - {name: JWB_SOURCE_READER_IDENTITY, value: jwb-standalone}
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
             - {name: JWB_SOURCE_READER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
@@ -195,7 +195,8 @@ spec:
           env:
             - {name: JWB_SYNC_RUNTIME, value: standalone-compose}
             - {name: JWB_SYNC_BACKEND, value: {{ $.Values.profile }}}
-            - {name: JWB_SYNC_SOURCE_URL, value: 'http://wikibase'}
+            - {name: JWB_SYNC_SOURCE_URL, value: {{ $.Values.trustedInternalSourceUrl | quote }}}
+            - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ $.Values.canonicalPublicUrl | quote }}}
             - {name: JWB_SYNC_SOURCE_IDENTITY, value: jwb-standalone}
             - {name: JWB_SYNC_GENERATION_ID, value: {{ if eq $component "rdf-sync-worker-b" }}gen-b{{ else }}gen-a{{ end }}}
             - {name: JWB_SYNC_HEALTH_PORT, value: {{ if eq $component "rdf-sync-worker-b" }}'9192'{{ else }}'9191'{{ end }}}
@@ -212,6 +213,8 @@ spec:
             - {name: JWB_ROUTER_BACKEND, value: {{ $.Values.profile }}}
             - {name: JWB_ROUTER_QUERY_SERVICE_ID, value: jwb-standalone-query}
             - {name: JWB_ROUTER_PORT, value: '19200'}
+            - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ $.Values.canonicalPublicUrl | quote }}}
+            - {name: JWB_PUBLIC_QUERY_URL, value: {{ $.Values.publicQueryUrl | quote }}}
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
             - {name: JWB_ROUTER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
             - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: instanceId}}}

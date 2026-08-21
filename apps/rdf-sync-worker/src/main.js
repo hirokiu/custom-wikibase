@@ -59,7 +59,7 @@ const config = loadConfig(),
   engine = new RdfSyncEngine({
     source,
     repository,
-    fetcher: new LocalRevisionAwareEntityFetcher({ baseUrl: config.sourceUrl }),
+    fetcher: new LocalRevisionAwareEntityFetcher({ baseUrl: config.sourceUrl, canonicalPublicUrl: config.canonicalPublicUrl }),
     partitioner: new WikibaseEntityPartitioner(),
     backend,
     resolver: new MediaWikiLifecycleResolver({ baseUrl: config.sourceUrl }),
