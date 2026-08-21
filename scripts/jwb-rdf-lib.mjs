@@ -2,9 +2,9 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { JWB_BASE_URL } from './jwb-lib.mjs';
 
-export const RDF_MANIFEST_FILE = '/private/tmp/wfp-jwb-m2-dataset.json';
-export const RDF_SNAPSHOT_FILE = '/private/tmp/wfp-jwb-m2-snapshot.nt';
-export const RDF_METRICS_FILE = '/private/tmp/wfp-jwb-m2-snapshot-metrics.json';
+export const RDF_MANIFEST_FILE = '/tmp/wfp-jwb-m2-dataset.json';
+export const RDF_SNAPSHOT_FILE = '/tmp/wfp-jwb-m2-snapshot.nt';
+export const RDF_METRICS_FILE = '/tmp/wfp-jwb-m2-snapshot-metrics.json';
 export const RDF_ENTITY_BASE = `${JWB_BASE_URL}/entity/`;
 export const RDF_PROP_BASE = `${JWB_BASE_URL}/prop/`;
 

@@ -46,6 +46,7 @@
     "jwb:oxigraph:qualify": "node scripts/jwb-j2e-qualification.mjs --backend=oxigraph",
     "jwb:oxigraph:update-observe": "node scripts/jwb-oxigraph-update-observation.mjs",
     "jwb:release:qualify": "node scripts/jwb-release-qualify.mjs",
+    "linux-amd64:qualify": "node scripts/linux-amd64-qualification.mjs",
     "jwb:db:migrate": "node packages/jwb-database/src/jwb-migrate-cli.js up",
     "jwb:db:status": "node packages/jwb-database/src/jwb-migrate-cli.js status",
     "jwb:db:test": "node scripts/test-jwb-postgres.mjs",

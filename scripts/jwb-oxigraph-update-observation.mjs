@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import{execFileSync}from'node:child_process';import{readFileSync}from'node:fs';import{validateSemanticFixtureManifest}from'../packages/rdf-sync/src/semantic-fixture-manifest.js';
-const state=JSON.parse(readFileSync('/private/tmp/japan-wikibase-runtime.json','utf8')),profile=JSON.parse(readFileSync('/private/tmp/japan-wikibase-profile.json','utf8')),fixture=validateSemanticFixtureManifest(JSON.parse(readFileSync('/private/tmp/japan-wikibase-semantic-fixture.json','utf8')));
+const state=JSON.parse(readFileSync('/tmp/japan-wikibase-runtime.json','utf8')),profile=JSON.parse(readFileSync('/tmp/japan-wikibase-profile.json','utf8')),fixture=validateSemanticFixtureManifest(JSON.parse(readFileSync('/tmp/japan-wikibase-semantic-fixture.json','utf8')));
 if(process.argv.length!==2||state.project!=='japan-wikibase'||profile.backend!=='oxigraph')throw new Error('J2E_FIXED_OXIGRAPH_OBSERVATION_REQUIRED');
 const edits=20,before=memory(),session=await login(),started=Date.now();let revision=0,value='';
 for(let index=1;index<=edits;index++){value=`j2e-bounded-update-${index}-${Date.now()}`;const result=await api({action:'wbeditentity',id:fixture.subjectItem,token:session.token,data:JSON.stringify({descriptions:{en:{language:'en',value}}}),summary:'J2-E bounded Oxigraph update observation'},session.cookie,true);revision=Number(result.data.entity?.lastrevid);if(!revision)throw new Error('J2E_BOUNDED_EDIT_FAILED');}

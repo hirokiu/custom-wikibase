@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { validateSemanticFixtureManifest } from '../packages/rdf-sync/src/semantic-fixture-manifest.js';
 
-const manifest = validateSemanticFixtureManifest(JSON.parse(readFileSync('/private/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
+const manifest = validateSemanticFixtureManifest(JSON.parse(readFileSync('/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
 const apiBase = 'http://127.0.0.1:8280';
 const sparqlEndpoint = 'http://127.0.0.1:8290/sparql';
 const entity = `http://127.0.0.1:8280/entity/${manifest.subjectItem}`;

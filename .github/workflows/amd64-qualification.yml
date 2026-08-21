@@ -1,0 +1,27 @@
+name: Linux AMD64 qualification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.2
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run linux-amd64:qualify
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-wikibase-linux-amd64
+          path: artifacts/linux-amd64/
+          if-no-files-found: error
+          retention-days: 14

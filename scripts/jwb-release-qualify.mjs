@@ -4,6 +4,7 @@ import { chmodSync, copyFileSync, existsSync, mkdirSync, readFileSync, writeFile
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { JWB_BACKENDS, JWB_PRODUCT_PROJECT } from './jwb-product-lib.mjs';
+import { assertDockerTarget, selectedDockerTarget } from './jwb-docker-target.mjs';
 
 const root = resolve(new URL('..', import.meta.url).pathname);
 const productRoot = resolve(root, 'infrastructure/japan-wikibase');
@@ -40,6 +41,7 @@ try {
   if (!report.checks.tracking.planComplete) report.blockers.push('RELEASE_BLOCKER_UNTRACKED_PRODUCT_FILES');
   report.classification = report.blockers.length ? 'J2F_STANDALONE_RC_BLOCKED' : 'J2F_STANDALONE_RC_READY';
 } catch (error) {
+  captureFailure(error);
   report.error = sanitize(String(error?.message ?? error));
   report.classification = 'J2F_STANDALONE_RC_INCOMPLETE';
   process.exitCode = 1;
@@ -60,12 +62,13 @@ try {
 }
 
 function preflight() {
+  const target = selectedDockerTarget();
   const context = docker(['context', 'show']);
-  const info = docker(['info', '--format', '{{.OperatingSystem}}|{{.Architecture}}']);
-  assert(context === 'desktop-linux' && /^Docker Desktop.*\|aarch64$/u.test(info), `UNSAFE_DOCKER_TARGET:${context}:${info}`);
+  const [operatingSystem, architecture] = docker(['info', '--format', '{{.OperatingSystem}}|{{.Architecture}}']).split('|');
+  assertDockerTarget(target, context, operatingSystem, architecture);
   assert(!resourcesPresent(), 'FRESH_PRODUCT_STATE_REQUIRED');
   assert(!stateFiles().some((file) => file.exists), 'FRESH_STATE_FILES_REQUIRED');
-  report.hostArchitecture = 'linux/arm64';
+  report.hostArchitecture = target.hostArchitecture;
 }
 
 function staticChecks() {
@@ -140,11 +143,12 @@ async function queryCount() {
 }
 
 function nativeArchitectureEvidence() {
+  const expectedArchitecture = selectedDockerTarget().architecture;
   const rows = resourceRows(JWB_PRODUCT_PROJECT).filter((row) => row.state === 'running');
   return rows.map((row) => {
     const inspect = JSON.parse(docker(['inspect', row.id], false))[0];
     const image = JSON.parse(docker(['image', 'inspect', inspect.Config.Image], false))[0];
-    assert(image.Architecture === 'arm64', `NON_NATIVE_IMAGE:${row.name}:${image.Architecture}`);
+    assert(image.Architecture === expectedArchitecture, `NON_NATIVE_IMAGE:${row.name}:${image.Architecture}`);
     return { service: inspect.Config.Labels['com.docker.compose.service'], image: inspect.Config.Image, architecture: image.Architecture };
   }).sort((a, b) => a.service.localeCompare(b.service));
 }
@@ -154,7 +158,7 @@ function crossBoundaryAudit() {
   const forbidden = ['services/controller', 'services/registry', 'services/provisioner', 'infrastructure/helm', 'infrastructure/local'];
   const violations = [];
   for (const path of roots) {
-    const files = lines(execFileSync('rg', ['--files', path], { cwd: root, encoding: 'utf8' }));
+    const files = lines(execFileSync('git', ['ls-files', path], { cwd: root, encoding: 'utf8' }));
     for (const file of files.filter((name) => /\.(?:js|mjs)$/u.test(name))) {
       const content = readFileSync(resolve(root, file), 'utf8');
       for (const target of forbidden) if (content.includes(target)) violations.push({ file, target });
@@ -184,7 +188,7 @@ function destroy() {
 function resourcesPresent() { const value = cleanupEvidence(); return value.product.length > 0 || value.networks.length > 0 || value.volumes.length > 0; }
 function cleanupEvidence() { return { product: resourceRows(JWB_PRODUCT_PROJECT), networks: lines(docker(['network', 'ls', '--filter', `label=com.docker.compose.project=${JWB_PRODUCT_PROJECT}`, '--format', '{{.Name}}'])), volumes: lines(docker(['volume', 'ls', '--filter', `label=com.docker.compose.project=${JWB_PRODUCT_PROJECT}`, '--format', '{{.Name}}'])), files: stateFiles() }; }
 function assertClean(value) { assert(!value.product.length && !value.networks.length && !value.volumes.length && !value.files.some((file) => file.exists), 'PRODUCT_CLEANUP_FAILED'); }
-function stateFiles() { return ['/private/tmp/japan-wikibase-profile.json', '/private/tmp/japan-wikibase-runtime.json', '/private/tmp/japan-wikibase-semantic-fixture.json', '/private/tmp/jwb-j2c1a-difference.json'].map((path) => ({ path, exists: existsSync(path) })); }
+function stateFiles() { return ['/tmp/japan-wikibase-profile.json', '/tmp/japan-wikibase-runtime.json', '/tmp/japan-wikibase-semantic-fixture.json', '/tmp/jwb-j2c1a-difference.json'].map((path) => ({ path, exists: existsSync(path) })); }
 function resourceRows(project) { return lines(docker(['ps', '--all', '--filter', `label=com.docker.compose.project=${project}`, '--format', '{{json .}}'], false)).map((line) => JSON.parse(line)).map((row) => ({ id: row.ID, name: row.Names, state: row.State, image: row.Image })); }
 function npm(command, args, options = {}) { return execFileSync(command, args, { cwd: root, env: process.env, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], ...options }).trim(); }
 function npmJson(script) { return parseJson(npm('npm', ['run', script])); }
@@ -194,12 +198,15 @@ function jsonFile(path) { return JSON.parse(readFileSync(path, 'utf8')); }
 function lines(value) { return value.trim() ? value.trim().split('\n') : []; }
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function sanitize(value) { return value.replace(/postgres(?:ql)?:\/\/[^\s]+/gu, '[REDACTED_DATABASE_URL]').replace(/[A-Za-z0-9_-]{40,}/gu, '[REDACTED]'); }
+function captureFailure(error) {
+  try { execFileSync(process.execPath, ['scripts/capture-linux-amd64-failure.mjs'], { cwd: root, env: { ...process.env, JWB_FAILURE_STARTED_AT: report.startedAt, JWB_FAILURE_MESSAGE: sanitize(String(error?.message ?? error)) }, stdio: 'ignore' }); } catch {}
+}
 function writeArtifacts() {
   mkdirSync(artifactDir, { recursive: true });
   writeFileSync(resolve(artifactDir, 'qualification.json'), `${JSON.stringify(report, null, 2)}\n`);
   copyFileSync(resolve(productRoot, 'image-inventory.json'), resolve(artifactDir, 'image-inventory.json'));
   copyFileSync(resolve(productRoot, 'backend-support.json'), resolve(artifactDir, 'backend-support.json'));
   const profiles = Object.entries(report.profiles).map(([name, value]) => `| ${name} | ${value.status ?? 'NOT RUN'} | ${value.queryEnabled ?? '-'} | ${value.finalEquality ? `${value.finalEquality.missing}/${value.finalEquality.extra}` : '-'} |`).join('\n');
-  writeFileSync(resolve(artifactDir, 'summary.md'), `# Japan Wikibase ${release.version} release qualification\n\n- Run ID: ${report.runId}\n- Classification: **${report.classification}**\n- Host: ${report.hostArchitecture}\n- Duration: ${report.durationSeconds} seconds\n- Blockers: ${report.blockers.join(', ') || 'none'}\n\n| Profile | Result | Query | Final equality |\n|---|---|---|---|\n${profiles}\n\nThis is sanitized local Apple Silicon evidence. It is not a production-readiness claim.\n`);
+  writeFileSync(resolve(artifactDir, 'summary.md'), `# Japan Wikibase ${release.version} release qualification\n\n- Run ID: ${report.runId}\n- Classification: **${report.classification}**\n- Host: ${report.hostArchitecture}\n- Duration: ${report.durationSeconds} seconds\n- Blockers: ${report.blockers.join(', ') || 'none'}\n\n| Profile | Result | Query | Final equality |\n|---|---|---|---|\n${profiles}\n\nThis is sanitized local qualification evidence. It is not a production-readiness claim.\n`);
   for (const file of ['qualification.json', 'summary.md', 'image-inventory.json', 'backend-support.json']) chmodSync(resolve(artifactDir, file), 0o644);
 }

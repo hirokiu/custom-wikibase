@@ -100,14 +100,14 @@ async function realEdits(localState, fixture) {
 }
 
 function dump(label) {
-  const path = `/private/tmp/wfp-jwb-m8-${sourceType}-${candidateType}-${label}.nt`;
+  const path = `/tmp/wfp-jwb-m8-${sourceType}-${candidateType}-${label}.nt`;
   const env = { ...process.env, DOCKER_CONTEXT: JWB_DOCKER_CONTEXT, ...stateEnvironment(state) };
   const body = execFileSync('docker', ['compose', '--project-name', JWB_PROJECT, '--file', new URL('../infrastructure/japan-wikibase/compose.yaml', import.meta.url).pathname, 'exec', '--no-TTY', 'wikibase', 'php', 'extensions/Wikibase/repo/maintenance/dumpRdf.php', '--format', 'n-triples'], { encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] });
   writeFileSync(path, body, { mode: 0o600 }); chmodSync(path, 0o600);
   return { path, triples: canonicalizeNTriples(body).trim().split('\n').filter(Boolean).length, body };
 }
 async function equality(value, canonical, suffix) {
-  const exportPath = `/private/tmp/wfp-jwb-m8-${value.key}-${suffix}-export.nt`;
+  const exportPath = `/tmp/wfp-jwb-m8-${value.key}-${suffix}-export.nt`;
   await value.backend.exportDataset({ destination: exportPath, mediaType: 'application/n-triples' });
   const exported = readFileSync(exportPath, 'utf8');
   const canonicalNormalized = equalityProjection(canonical.body);

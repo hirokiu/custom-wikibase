@@ -5,7 +5,7 @@ import { validateSemanticFixtureManifest } from '../packages/rdf-sync/src/semant
 
 const action = process.argv[2];
 if (!['promote', 'rollback'].includes(action) || process.argv.length !== 3) throw new Error('J2C1B_FIXED_VISIBILITY_ACTION_REQUIRED');
-const fixture = validateSemanticFixtureManifest(JSON.parse(readFileSync('/private/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
+const fixture = validateSemanticFixtureManifest(JSON.parse(readFileSync('/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
 const query = `ASK { <http://127.0.0.1:8280/entity/${fixture.subjectItem}> ?p ?o . <http://127.0.0.1:8280/entity/${fixture.targetItem}> ?tp ?to . <http://127.0.0.1:8280/entity/${fixture.properties.string}> ?sp ?so . }`;
 const initial = await sample();
 if (!initial.ok) throw new Error('J2C1B_INITIAL_SAMPLE_FAILED');

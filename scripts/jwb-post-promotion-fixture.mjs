@@ -2,8 +2,8 @@
 import { readFileSync } from 'node:fs';
 import { validateSemanticFixtureManifest } from '../packages/rdf-sync/src/semantic-fixture-manifest.js';
 
-const state = JSON.parse(readFileSync('/private/tmp/japan-wikibase-runtime.json', 'utf8'));
-const fixture = validateSemanticFixtureManifest(JSON.parse(readFileSync('/private/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
+const state = JSON.parse(readFileSync('/tmp/japan-wikibase-runtime.json', 'utf8'));
+const fixture = validateSemanticFixtureManifest(JSON.parse(readFileSync('/tmp/japan-wikibase-semantic-fixture.json', 'utf8')));
 if (process.argv.length !== 2 || state.project !== 'japan-wikibase') throw new Error('J2C1B_INVALID_RUNTIME');
 const session = await login();
 const initialTarget = await api({ action: 'wbgetentities', ids: fixture.targetItem });

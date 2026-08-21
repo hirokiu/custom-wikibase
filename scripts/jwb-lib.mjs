@@ -2,7 +2,7 @@ import { randomBytes } from 'node:crypto';
 
 export const JWB_PROJECT = 'wfp-jwb-m1';
 export const JWB_DOCKER_CONTEXT = 'desktop-linux';
-export const JWB_STATE_FILE = '/private/tmp/wfp-jwb-m1-state.json';
+export const JWB_STATE_FILE = '/tmp/wfp-jwb-m1-state.json';
 export const JWB_BASE_URL = 'http://127.0.0.1:8180';
 
 export function assertJwbDockerTarget({ context, operatingSystem, architecture }) {

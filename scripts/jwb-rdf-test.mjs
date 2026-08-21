@@ -45,13 +45,13 @@ try {
   const restartMs = Math.round(performance.now() - restartStarted);
   await assertQueries(backend);
 
-  const updateFile = `/private/tmp/wfp-jwb-m2-${backendName}-update.nt`;
+  const updateFile = `/tmp/wfp-jwb-m2-${backendName}-update.nt`;
   writePrivate(updateFile, '<urn:jwb:m2:subject> <urn:jwb:m2:predicate> "incremental" .\n');
   phase('replace_named_graph');
   await backend.replaceNamedGraph({ graphIri: 'urn:jwb:m2:update', source: updateFile, mediaType: 'application/n-triples' });
   await assertAsk(backend, 'ASK { GRAPH <urn:jwb:m2:update> { <urn:jwb:m2:subject> <urn:jwb:m2:predicate> "incremental" } }', 'named graph update');
 
-  const exportFile = `/private/tmp/wfp-jwb-m2-${backendName}-export.nt`;
+  const exportFile = `/tmp/wfp-jwb-m2-${backendName}-export.nt`;
   phase('export');
   const exported = await backend.exportDataset({ destination: exportFile, mediaType: 'application/n-triples' });
   phase('rebuild');
@@ -111,6 +111,6 @@ function compose(config, args, env) { execFileSync('docker', composeArgs(config,
 function composeArgs(config, args) { return ['compose', '--project-name', config.project, '--file', config.file, ...args]; }
 function capture(command, args, env = process.env) { return execFileSync(command, args, { encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] }); }
 function assertLocalDocker() { const context = capture('docker', ['context', 'show']).trim(); const [os, architecture] = capture('docker', ['info', '--format', '{{.OperatingSystem}}\n{{.Architecture}}']).trim().split('\n'); assertJwbDockerTarget({ context, operatingSystem: os.includes('Docker Desktop') ? 'linux' : os.toLowerCase(), architecture }); }
-function persistResult(value) { writePrivate(`/private/tmp/wfp-jwb-m2-${backendName}-result.json`, `${JSON.stringify(value, null, 2)}\n`); }
+function persistResult(value) { writePrivate(`/tmp/wfp-jwb-m2-${backendName}-result.json`, `${JSON.stringify(value, null, 2)}\n`); }
 function writePrivate(path, body) { writeFileSync(path, body, { mode: 0o600 }); chmodSync(path, 0o600); }
 function phase(value) { if (process.env.JWB_M2_TRACE === '1') process.stderr.write(`m2-phase:${backendName}:${value}\n`); }
