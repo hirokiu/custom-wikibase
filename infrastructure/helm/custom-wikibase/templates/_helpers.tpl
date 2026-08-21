@@ -13,7 +13,7 @@ app.kubernetes.io/component: {{ .component }}
 {{- end }}
 {{- define "custom-wikibase.image" -}}
 {{- if .digest -}}
-{{ printf "%s:%s@%s" .repository .tag .digest }}
+{{ printf "%s@%s" .repository .digest }}
 {{- else -}}
 {{ printf "%s:%s" .repository .tag }}
 {{- end -}}
