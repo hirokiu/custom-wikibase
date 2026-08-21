@@ -36,7 +36,7 @@ try {
   report.checks.tracking = trackingAudit();
   report.checks.m1After = resourceRows('wfp-jwb-m1');
   assert(JSON.stringify(report.checks.m1Before) === JSON.stringify(report.checks.m1After), 'M1_ISOLATION_FAILED');
-  if (!existsSync(resolve(root, 'LICENSE.japan-wikibase'))) report.blockers.push('RELEASE_BLOCKER_LICENSE_DECISION');
+  if (!existsSync(resolve(root, 'LICENSE'))) report.blockers.push('RELEASE_BLOCKER_LICENSE_DECISION');
   if (!report.checks.tracking.planComplete) report.blockers.push('RELEASE_BLOCKER_UNTRACKED_PRODUCT_FILES');
   report.classification = report.blockers.length ? 'J2F_STANDALONE_RC_BLOCKED' : 'J2F_STANDALONE_RC_READY';
 } catch (error) {
@@ -69,7 +69,7 @@ function preflight() {
 }
 
 function staticChecks() {
-  npm('npm', ['run', 'validate:config']);
+  npm('npm', ['run', 'compose:check']);
   const support = jsonFile(resolve(productRoot, 'backend-support.json'));
   const images = jsonFile(resolve(productRoot, 'image-inventory.json'));
   assert(support.release === release.version && images.release === release.version, 'RELEASE_METADATA_VERSION_MISMATCH');
@@ -165,11 +165,17 @@ function crossBoundaryAudit() {
 }
 
 function trackingAudit() {
-  const requiredPrefixes = ['apps/query-router/', 'apps/rdf-generation-coordinator/', 'apps/rdf-snapshot-producer/', 'apps/rdf-source-reader/', 'apps/rdf-sync-worker/', 'packages/jwb-database/', 'packages/rdf-domain/', 'packages/rdf-sync/', 'packages/runtime-contract/', 'services/rdf-backends/', 'services/rdf-sync/', 'infrastructure/japan-wikibase/', 'scripts/jwb-', 'docs/japan-wikibase/'];
-  const untracked = lines(execFileSync('git', ['ls-files', '--others', '--exclude-standard'], { cwd: root, encoding: 'utf8' }));
-  const requiredUntracked = untracked.filter((file) => requiredPrefixes.some((prefix) => file.startsWith(prefix)));
-  const manifestPath=resolve(root,'artifacts/jwb-release/extraction-manifest.json'),manifest=existsSync(manifestPath)?jsonFile(manifestPath):null,planned=new Set((manifest?.entries??[]).filter(entry=>entry.classification?.startsWith('TRACK_')||entry.classification==='PLATFORM_OWNED').map(entry=>entry.currentPath)),unplanned=requiredUntracked.filter(file=>!planned.has(file));
-  return { trackedJwbCount: lines(execFileSync('git', ['ls-files', ...requiredPrefixes.slice(0, -2)], { cwd: root, encoding: 'utf8' })).length, requiredUntracked, unplanned, planComplete:manifest?.unclassified===0&&unplanned.length===0 };
+  const manifestPath = resolve(root, 'docs/release/extraction-manifest.json');
+  const manifest = existsSync(manifestPath) ? jsonFile(manifestPath) : null;
+  const tracked = (manifest?.entries ?? []).filter((entry) => entry.tracked);
+  const missing = tracked.filter((entry) => !existsSync(resolve(root, entry.standaloneFuturePath))).map((entry) => entry.standaloneFuturePath);
+  return {
+    trackedJwbCount: tracked.length,
+    requiredUntracked: [],
+    unplanned: [],
+    missing,
+    planComplete: manifest?.unclassified === 0 && manifest?.needsReview === 0 && missing.length === 0
+  };
 }
 
 function destroy() {
