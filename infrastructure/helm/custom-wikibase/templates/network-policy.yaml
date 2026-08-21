@@ -34,12 +34,12 @@ metadata: {name: public-http}
 spec:
   podSelector:
     matchExpressions:
-      - {key: app.kubernetes.io/component, operator: In, values: [wikibase{{ if eq .Values.profile "virtuoso" }}, query-router{{ end }}]}
+      - {key: app.kubernetes.io/component, operator: In, values: [wikibase{{ if ne .Values.profile "none" }}, query-router{{ end }}]}
   policyTypes: [Ingress]
   ingress:
     - ports:
         - {protocol: TCP, port: {{ .Values.service.wikibase.port }}}
-        {{- if eq .Values.profile "virtuoso" }}
+        {{- if ne .Values.profile "none" }}
         - {protocol: TCP, port: 19200}
         {{- end }}
 {{- end }}

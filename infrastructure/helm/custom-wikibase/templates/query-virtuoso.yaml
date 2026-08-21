@@ -1,4 +1,4 @@
-{{- if eq .Values.profile "virtuoso" }}
+{{- if ne .Values.profile "none" }}
 apiVersion: v1
 kind: Service
 metadata: {name: jwb-postgresql}
@@ -39,13 +39,14 @@ spec:
         resources: {requests: {storage: {{ .Values.storage.postgresql }}}}
 ---
 {{- range $slot := list "a" "b" }}
+{{- $backendPort := ternary 3030 (ternary 7878 8890 (eq $.Values.profile "oxigraph")) (eq $.Values.profile "fuseki-tdb2") }}
 apiVersion: v1
 kind: Service
 metadata: {name: backend-{{ $slot }}}
 spec:
   clusterIP: None
-  selector: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}
-  ports: [{name: sparql, port: 8890, targetPort: sparql}]
+  selector: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $.Values.profile }}-{{ $slot }}}
+  ports: [{name: sparql, port: {{ $backendPort }}, targetPort: sparql}]
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -53,28 +54,37 @@ metadata: {name: backend-{{ $slot }}}
 spec:
   serviceName: backend-{{ $slot }}
   replicas: 1
-  selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}}
+  selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $.Values.profile }}-{{ $slot }}}}
   template:
-    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: virtuoso-{{ $slot }}}}
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $.Values.profile }}-{{ $slot }}}}
     spec:
       automountServiceAccountToken: false
       containers:
-        - name: virtuoso
-          image: {{ $.Values.images.virtuoso | quote }}
+        - name: backend
+          image: {{ index $.Values.images (ternary "fuseki" $.Values.profile (eq $.Values.profile "fuseki-tdb2")) | quote }}
           imagePullPolicy: IfNotPresent
-          ports: [{name: sparql, containerPort: 8890}]
+          ports: [{name: sparql, containerPort: {{ $backendPort }}}]
+          {{- if eq $.Values.profile "virtuoso" }}
           env: [{name: DBA_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: rdfAdminPassword}}}]
           startupProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
           readinessProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 20}
+          {{- else if eq $.Values.profile "fuseki-tdb2" }}
+          startupProbe: {tcpSocket: {port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
+          readinessProbe: {tcpSocket: {port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 20}
+          {{- else }}
+          args: [serve, --location, /data, --bind, "0.0.0.0:7878"]
+          startupProbe: {tcpSocket: {port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
+          readinessProbe: {tcpSocket: {port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 20}
+          {{- end }}
           livenessProbe: {tcpSocket: {port: sparql}, periodSeconds: 15, timeoutSeconds: 3, failureThreshold: 8}
-          resources: {{- toYaml $.Values.resources.virtuoso | nindent 12 }}
-          volumeMounts: [{name: data, mountPath: /database}]
+          resources: {{- toYaml (index $.Values.resources (ternary "fuseki" $.Values.profile (eq $.Values.profile "fuseki-tdb2"))) | nindent 12 }}
+          volumeMounts: [{name: data, mountPath: {{ if eq $.Values.profile "virtuoso" }}/database{{ else if eq $.Values.profile "fuseki-tdb2" }}/fuseki/databases{{ else }}/data{{ end }}}]
   volumeClaimTemplates:
     - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: derived-rebuildable}}
       spec:
         accessModes: [ReadWriteOnce]
         {{- include "custom-wikibase.storageClass" $ | nindent 8 }}
-        resources: {requests: {storage: {{ $.Values.storage.virtuoso }}}}
+        resources: {requests: {storage: {{ index $.Values.storage (ternary "fuseki" $.Values.profile (eq $.Values.profile "fuseki-tdb2")) }}}}
 ---
 {{- end }}
 apiVersion: batch/v1
@@ -103,7 +113,7 @@ spec:
           args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-migrate-cli.js up']
           env:
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
-            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+            - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile }}}
           resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
 ---
 apiVersion: batch/v1
@@ -134,7 +144,7 @@ spec:
           args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-bootstrap-cli.js']
           env:
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
-            - {name: JWB_QUERY_BACKEND, value: virtuoso}
+            - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile }}}
           resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
 ---
 apiVersion: v1
@@ -164,7 +174,7 @@ spec:
           args: ['export JWB_ROUTER_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; for i in $(seq 1 120); do node packages/jwb-database/src/jwb-qualification-cli.js inspect >/tmp/inspect.json 2>/dev/null && exit 0; sleep 2; done; exit 1']
           env:
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
-            - {name: JWB_ROUTER_BACKEND, value: virtuoso}
+            - {name: JWB_ROUTER_BACKEND, value: {{ $.Values.profile }}}
       containers:
         - name: {{ $component }}
           image: {{ include "custom-wikibase.image" $.Values.images.runtime | quote }}
@@ -184,7 +194,7 @@ spec:
           ports: [{name: health, containerPort: {{ if eq $component "rdf-sync-worker-b" }}9192{{ else }}9191{{ end }}}]
           env:
             - {name: JWB_SYNC_RUNTIME, value: standalone-compose}
-            - {name: JWB_SYNC_BACKEND, value: virtuoso}
+            - {name: JWB_SYNC_BACKEND, value: {{ $.Values.profile }}}
             - {name: JWB_SYNC_SOURCE_URL, value: 'http://wikibase'}
             - {name: JWB_SYNC_SOURCE_IDENTITY, value: jwb-standalone}
             - {name: JWB_SYNC_GENERATION_ID, value: {{ if eq $component "rdf-sync-worker-b" }}gen-b{{ else }}gen-a{{ end }}}
@@ -199,7 +209,7 @@ spec:
           ports: [{name: http, containerPort: 19200}]
           env:
             - {name: JWB_ROUTER_RUNTIME, value: standalone-compose}
-            - {name: JWB_ROUTER_BACKEND, value: virtuoso}
+            - {name: JWB_ROUTER_BACKEND, value: {{ $.Values.profile }}}
             - {name: JWB_ROUTER_QUERY_SERVICE_ID, value: jwb-standalone-query}
             - {name: JWB_ROUTER_PORT, value: '19200'}
             - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}

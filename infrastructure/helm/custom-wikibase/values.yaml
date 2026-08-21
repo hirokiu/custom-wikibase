@@ -16,6 +16,8 @@ images:
   mariadb: mariadb:10.11.14@sha256:dbe56e20372fc6d6b8e0e396866ba89c4c7f128c38c4f59aaa54d957db95790c
   postgresql: postgres:16.9-bookworm@sha256:253815cf7579ffa05e1673d92e78d37273e61be0e4414e9a1449337d7925be94
   virtuoso: openlink/virtuoso-opensource-7:7.2.17@sha256:0dbe1ab4fa0cb7bbafc1f6c0c2b0a5d6f22d918dbd17672f2ddb24580aa6756a
+  fuseki: japan-wikibase/fuseki:6.1.0
+  oxigraph: oxigraph/oxigraph:0.5.7@sha256:fa3a660c0f5ec776472c0828309dec8a5410b7267e2dcac59ab7d7f29e10da28
 
 existingSecret: custom-wikibase-secrets
 publicUrl: http://127.0.0.1:8280
@@ -37,6 +39,8 @@ storage:
   runtimeState: 256Mi
   postgresql: 1Gi
   virtuoso: 2Gi
+  fuseki: 2Gi
+  oxigraph: 2Gi
   snapshots: 1Gi
 
 resources:
@@ -46,6 +50,8 @@ resources:
   runtime: {}
   postgresql: {}
   virtuoso: {}
+  fuseki: {}
+  oxigraph: {}
 
 networkPolicy:
   enabled: true

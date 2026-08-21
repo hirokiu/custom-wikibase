@@ -3,5 +3,5 @@ Custom Wikibase {{ .Chart.AppVersion }} was rendered with profile={{ .Values.pro
 The chart never creates credentials. Before install, create Secret
 {{ .Values.existingSecret }} in the release namespace with the documented keys.
 
-Only the Wikibase service{{ if eq .Values.profile "virtuoso" }} and logical Query Router service{{ end }} may be exposed.
+Only the Wikibase service{{ if ne .Values.profile "none" }} and logical Query Router service{{ end }} may be exposed.
 Database and backend administration services are ClusterIP/headless-only.

@@ -5,10 +5,10 @@ import test from "node:test";
 const chart = new URL("../infrastructure/helm/custom-wikibase/", import.meta.url);
 const read = (path) => readFileSync(new URL(path, chart), "utf8");
 
-test("K1A chart supports only the explicitly qualified profiles", () => {
+test("K1B chart supports only the explicitly qualified profiles", () => {
   const schema = JSON.parse(read("values.schema.json"));
-  assert.deepEqual(schema.properties.profile.enum, ["none", "virtuoso"]);
-  assert.doesNotMatch(read("values.yaml"), /fuseki|oxigraph/iu);
+  assert.deepEqual(schema.properties.profile.enum, ["none", "virtuoso", "fuseki-tdb2", "oxigraph"]);
+  assert.doesNotMatch(JSON.stringify(schema.properties.profile.enum), /blazegraph|qlever/iu);
 });
 
 test("K1A chart references an existing Secret and contains no Secret manifest", () => {
@@ -28,6 +28,28 @@ test("K1A Virtuoso migration sequence is finite and fail closed", () => {
   assert.match(query, /name: wait-migrations[\s\S]*jwb-migrate-cli\.js status/u);
   assert.match(query, /name: wait-bootstrap[\s\S]*jwb-qualification-cli\.js inspect/u);
   assert.doesNotMatch(query, /kubectl|docker\.sock|\/var\/run\/docker/u);
+});
+
+test("K1B keeps migration, bootstrap, source, workers, router, and snapshot backend-neutral", () => {
+  const query = read("templates/query-virtuoso.yaml");
+  const jobs = read("templates/qualification-jobs.yaml");
+  assert.match(query, /if ne \.Values\.profile "none"/u);
+  assert.match(query, /JWB_QUERY_BACKEND, value: \{\{ \.Values\.profile \}\}/u);
+  assert.match(query, /JWB_SYNC_BACKEND, value: \{\{ \$\.Values\.profile \}\}/u);
+  assert.match(query, /JWB_ROUTER_BACKEND, value: \{\{ \$\.Values\.profile \}\}/u);
+  assert.match(jobs, /JWB_QUERY_BACKEND, value: \{\{ \.Values\.profile \}\}/u);
+  assert.doesNotMatch(jobs, /dumpRdf[^\n]*(virtuoso|fuseki|oxigraph)/iu);
+});
+
+test("K1B maps fixed A/B storage and private endpoints for each backend", () => {
+  const query = read("templates/query-virtuoso.yaml");
+  assert.match(query, /range \$slot := list "a" "b"/u);
+  assert.match(query, /fuseki\/databases/u);
+  assert.match(query, /ternary 3030/u);
+  assert.match(query, /oxigraph/u);
+  assert.match(query, /\/data/u);
+  assert.match(query, /7878/u);
+  assert.doesNotMatch(query, /NodePort|LoadBalancer/u);
 });
 
 test("K1A exposes only logical product Services", () => {
