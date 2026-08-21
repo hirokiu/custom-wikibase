@@ -1,0 +1,75 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: https-redirect
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec: {redirectScheme: {scheme: https, permanent: true}}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  headers:
+    contentTypeNosniff: true
+    customResponseHeaders: {Server: ""}
+    frameDeny: true
+    permissionsPolicy: camera=(), geolocation=(), microphone=()
+    referrerPolicy: strict-origin-when-cross-origin
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: wikibase-body-limit
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  buffering:
+    maxRequestBodyBytes: {{ .Values.ingress.bodyLimitBytes }}
+    memRequestBodyBytes: {{ .Values.ingress.bodyMemoryBytes }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: wikibase-rate-limit
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  rateLimit:
+    average: {{ .Values.ingress.rateLimitAverage }}
+    burst: {{ .Values.ingress.rateLimitBurst }}
+    period: 1m
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  dnsNames: [{{ .Values.ingress.hostname | quote }}]
+  duration: 2160h
+  renewBefore: 720h
+  issuerRef: {group: cert-manager.io, kind: ClusterIssuer, name: {{ .Values.ingress.clusterIssuer }}}
+  privateKey: {algorithm: ECDSA, size: 256, rotationPolicy: Always}
+  secretName: {{ .Values.ingress.tlsSecretName }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wikibase
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: {{ printf "%s-https-redirect@kubernetescrd,%s-security-headers@kubernetescrd,%s-wikibase-body-limit@kubernetescrd,%s-wikibase-rate-limit@kubernetescrd" .Release.Namespace .Release.Namespace .Release.Namespace .Release.Namespace | quote }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+    - host: {{ .Values.ingress.hostname }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: {service: {name: wikibase, port: {name: http}}}
+  tls:
+    - hosts: [{{ .Values.ingress.hostname | quote }}]
+      secretName: {{ .Values.ingress.tlsSecretName }}
+{{- end }}

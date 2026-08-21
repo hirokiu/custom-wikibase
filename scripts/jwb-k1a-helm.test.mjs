@@ -119,3 +119,13 @@ test("U1 authoritative PVCs survive Helm uninstall and purge remains explicit", 
   assert.equal(core.match(/helm\.sh\/resource-policy: keep/gu)?.length, 3);
   assert.doesNotMatch(core, /persistentVolumeClaimRetentionPolicy:\s*[\s\S]{0,100}whenDeleted:\s*Delete/u);
 });
+
+test("U1 public Core uses bounded Traefik and cert-manager resources only", () => {
+  const ingress = read("templates/ingress.yaml"), values = read("values.utirik-qualification.yaml");
+  for (const middleware of ["https-redirect", "security-headers", "wikibase-body-limit", "wikibase-rate-limit"])
+    assert.match(ingress, new RegExp(middleware, "u"));
+  assert.match(ingress, /kind: Certificate/u);
+  assert.match(ingress, /kind: Ingress/u);
+  assert.match(values, /clusterIssuer: letsencrypt-staging/u);
+  assert.doesNotMatch(ingress, /sparql|query-router|IngressRoute|ClusterRole|NodePort/iu);
+});

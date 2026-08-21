@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
-  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "siteName", "timezone", "service", "storage", "resources", "podSecurityContext", "containerSecurityContext", "networkPolicy", "qualification"],
+  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "siteName", "timezone", "service", "storage", "resources", "podSecurityContext", "containerSecurityContext", "networkPolicy", "ingress", "qualification"],
   "properties": {
     "profile": { "type": "string", "enum": ["none", "virtuoso", "fuseki-tdb2", "oxigraph"] },
     "existingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
@@ -57,6 +57,21 @@
       "properties": { "allowPrivilegeEscalation": {"type":"boolean"} }
     },
     "networkPolicy": { "type": "object", "additionalProperties": false, "required": ["enabled"], "properties": { "enabled": {"type":"boolean"} } },
+    "ingress": {
+      "type": "object", "additionalProperties": false,
+      "required": ["enabled", "className", "hostname", "clusterIssuer", "tlsSecretName", "bodyLimitBytes", "bodyMemoryBytes", "rateLimitAverage", "rateLimitBurst"],
+      "properties": {
+        "enabled": {"type":"boolean"},
+        "className": {"enum":["traefik"]},
+        "hostname": {"type":"string","pattern":"^[a-z0-9](?:[-a-z0-9]*[a-z0-9])?(?:\\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?)+$"},
+        "clusterIssuer": {"enum":["letsencrypt-staging","letsencrypt-production"]},
+        "tlsSecretName": {"type":"string","pattern":"^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"},
+        "bodyLimitBytes": {"type":"integer","minimum":1048576,"maximum":104857600},
+        "bodyMemoryBytes": {"type":"integer","minimum":262144,"maximum":8388608},
+        "rateLimitAverage": {"type":"integer","minimum":1,"maximum":1000},
+        "rateLimitBurst": {"type":"integer","minimum":1,"maximum":1000}
+      }
+    },
     "qualification": {
       "type": "object", "additionalProperties": false, "required": ["snapshot", "coordinator"],
       "properties": {
