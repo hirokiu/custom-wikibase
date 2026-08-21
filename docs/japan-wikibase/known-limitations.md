@@ -1,15 +1,19 @@
 # Known limitations
 
-- automatic physical generation deletionは無効
-- retained rollbackは`RETIRING + ROLLBACK`で表現
-- hot rollbackによりA/Bの更新コストが重複
-- production backup/restore contractなし
-- Oxigraph `optimize`自動化なし
-- large-scale、高並行、production sizing benchmarkなし
-- Kubernetes product qualificationなし
-- Controller integrationなし
-- AMD64 runtime qualificationはpending
-- canonical hostname migrationは未対応
-- documentation licenseは未決定
+[日本語](known-limitations.ja.md)
 
-このため0.1.0-rc.1はlocal standalone release candidateであり、production-ready宣言ではありません。
+- Automatic physical RDF generation deletion is disabled.
+- Retained rollback is represented by `RETIRING + ROLLBACK`.
+- Hot rollback duplicates the update cost across the A/B generation slots.
+- There is no production backup/restore contract.
+- Oxigraph `optimize` is not automated.
+- Large-scale, high-concurrency, and production-sizing benchmarks have not been completed.
+- Kubernetes product qualification has not been completed.
+- Controller integration has not been completed.
+- AMD64 runtime qualification remains pending.
+- Canonical hostname migration is not supported.
+- Third-party NOTICE and redistribution conditions still require final human review.
+
+Original Custom Wikibase documentation is licensed under CC BY 4.0. Upstream-derived material retains its respective upstream license; see [documentation licensing](../LICENSING.md).
+
+For these reasons, `0.1.0-rc.1` is a local standalone release candidate and is not a production-readiness declaration.
