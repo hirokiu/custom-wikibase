@@ -36,7 +36,10 @@ spec:
           resources: {{- toYaml .Values.resources.postgresql | nindent 12 }}
           volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
   volumeClaimTemplates:
-    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: query-control}}
+    - metadata:
+        name: data
+        annotations: {helm.sh/resource-policy: keep}
+        labels: {custom-wikibase.org/storage-classification: query-control}
       spec:
         accessModes: [ReadWriteOnce]
         {{- include "custom-wikibase.storageClass" . | nindent 8 }}
@@ -86,7 +89,10 @@ spec:
           resources: {{- toYaml (index $.Values.resources (ternary "fuseki" $.Values.profile (eq $.Values.profile "fuseki-tdb2"))) | nindent 12 }}
           volumeMounts: [{name: data, mountPath: {{ if eq $.Values.profile "virtuoso" }}/database{{ else if eq $.Values.profile "fuseki-tdb2" }}/fuseki/databases{{ else }}/data{{ end }}}]
   volumeClaimTemplates:
-    - metadata: {name: data, labels: {custom-wikibase.org/storage-classification: derived-rebuildable}}
+    - metadata:
+        name: data
+        annotations: {helm.sh/resource-policy: keep}
+        labels: {custom-wikibase.org/storage-classification: derived-rebuildable}
       spec:
         accessModes: [ReadWriteOnce]
         {{- include "custom-wikibase.storageClass" $ | nindent 8 }}
@@ -258,7 +264,10 @@ spec:
 {{- if or .Values.qualification.snapshot.enabled .Values.qualification.coordinator.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
-metadata: {name: snapshot-artifacts, labels: {custom-wikibase.org/storage-classification: bounded-temporary}}
+metadata:
+  name: snapshot-artifacts
+  annotations: {helm.sh/resource-policy: keep}
+  labels: {custom-wikibase.org/storage-classification: bounded-temporary}
 spec:
   accessModes: [ReadWriteOnce]
   {{- include "custom-wikibase.storageClass" . | nindent 2 }}
