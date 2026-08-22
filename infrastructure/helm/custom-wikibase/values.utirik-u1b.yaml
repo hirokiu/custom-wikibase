@@ -14,8 +14,8 @@ images:
     pullPolicy: Never
   snapshotProducer:
     repository: japan-wikibase/snapshot-producer
-    tag: u1b-f49cd03-amd64
-    digest: sha256:2f7bbde3db132aef93994b5bff2fa8d33dfb717e5ca9df02b08814b913a466b3
+    tag: u1b-9464acd-amd64
+    digest: sha256:c7a281f8d143f8683ded552e978592c6af9f9c26199b52c621ca99ddef44ec58
     pullPolicy: Never
 
 canonicalPublicUrl: https://custom-qualification-01.wb.utirik.lodac.nii.ac.jp
