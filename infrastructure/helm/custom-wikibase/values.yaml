@@ -82,6 +82,7 @@ ingress:
   className: traefik
   hostname: localhost
   clusterIssuer: letsencrypt-staging
+  queryClusterIssuer: letsencrypt-staging
   tlsSecretName: custom-wikibase-tls
   queryHostname: query.localhost
   queryTlsSecretName: custom-wikibase-query-tls

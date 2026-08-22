@@ -7,6 +7,16 @@ images:
     tag: u1a-dbd16ac-amd64
     digest: sha256:fcdf50b720fb42984103fac094ae575db8f8947989ea1633f0ddeb435f168524
     pullPolicy: Never
+  runtime:
+    repository: japan-wikibase/runtime
+    tag: u1b-0bcafff-amd64
+    digest: sha256:9e45b4d74597bdb25c9257969d63c19addaa6e170033ecd35ad6dba62a74c5b3
+    pullPolicy: Never
+  snapshotProducer:
+    repository: japan-wikibase/snapshot-producer
+    tag: u1b-0bcafff-amd64
+    digest: sha256:66d91637ba4b391bb523185eb760a6e96b3ce9bc7bfd5b83399d4c7a830cd343
+    pullPolicy: Never
 
 canonicalPublicUrl: https://custom-qualification-01.wb.utirik.lodac.nii.ac.jp
 trustedInternalSourceUrl: http://wikibase.wb-custom-qualification-01.svc.cluster.local
@@ -58,7 +68,8 @@ ingress:
   enabled: true
   className: traefik
   hostname: custom-qualification-01.wb.utirik.lodac.nii.ac.jp
-  clusterIssuer: letsencrypt-staging
+  clusterIssuer: letsencrypt-production
+  queryClusterIssuer: letsencrypt-staging
   tlsSecretName: custom-qualification-01-tls
   queryHostname: query-custom-qualification-01.wb.utirik.lodac.nii.ac.jp
   queryTlsSecretName: query-custom-qualification-01-tls
