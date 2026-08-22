@@ -93,6 +93,8 @@ ingress:
 
 # Bounded one-shot jobs for qualification/rebuild workflows.
 qualification:
+  fixture:
+    enabled: false
   snapshot:
     enabled: false
     id: 00000000-0000-4000-8000-000000000010

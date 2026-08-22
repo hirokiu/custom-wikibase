@@ -27,7 +27,7 @@ spec:
     - from:
         - podSelector:
             matchExpressions:
-              - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot{{ end }}]}
+              - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot, semantic-fixture{{ end }}]}
       ports: [{protocol: TCP, port: 3306}]
 ---
 apiVersion: networking.k8s.io/v1
@@ -36,7 +36,7 @@ metadata: {name: allow-core-database-egress}
 spec:
   podSelector:
     matchExpressions:
-      - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot{{ end }}]}
+      - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot, semantic-fixture{{ end }}]}
   policyTypes: [Egress]
   egress:
     - to: [{podSelector: {matchLabels: {app.kubernetes.io/component: mariadb}}}]
@@ -53,7 +53,7 @@ spec:
     - from:
         - podSelector:
             matchExpressions:
-              - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot]}
+              - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot, semantic-fixture]}
       ports: [{protocol: TCP, port: 80}]
 ---
 apiVersion: networking.k8s.io/v1
@@ -62,7 +62,7 @@ metadata: {name: allow-query-source-egress}
 spec:
   podSelector:
     matchExpressions:
-      - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot]}
+      - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot, semantic-fixture]}
   policyTypes: [Egress]
   egress:
     - to: [{podSelector: {matchLabels: {app.kubernetes.io/component: wikibase}}}]
