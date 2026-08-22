@@ -27,7 +27,7 @@ export class PostgresGenerationDescriptorRepository {
   async getDescriptor({ sourceIdentity, generationId }) {
     if (!SOURCE.test(sourceIdentity ?? '') || !GENERATION.test(generationId ?? '')) throw new Error('ROUTER_TARGET_UNRESOLVABLE');
     const result = await this.pool.query(
-      `SELECT source_identity,generation_id,backend_type,state,normalization_model,partition_model,runtime_type,runtime_namespace
+      `SELECT source_identity,generation_id,backend_type,state,protection_state,normalization_model,partition_model,runtime_type,runtime_namespace
        FROM rdf_generation WHERE source_identity=$1 AND generation_id=$2`, [sourceIdentity, generationId]);
     if (result.rowCount !== 1) throw new Error('ROUTER_TARGET_UNRESOLVABLE');
     return result.rows[0];
@@ -37,7 +37,7 @@ export class PostgresGenerationDescriptorRepository {
 export function deriveTarget(value, { expectedSourceIdentity, runtimeType }) {
   const descriptor = normalize(value);
   const expectedStoredRuntime = runtimeType === 'standalone-compose' ? 'compose' : runtimeType;
-  if (!descriptor || descriptor.sourceIdentity !== expectedSourceIdentity || !SOURCE.test(descriptor.sourceIdentity) || !GENERATION.test(descriptor.generationId) || !BACKENDS.has(descriptor.backendType) || descriptor.runtimeType !== expectedStoredRuntime || descriptor.normalizationModel !== 'jwb-rdf-normalization-v1' || descriptor.partitionModel !== 'jwb-partition-v1' || !['READY', 'SERVING'].includes(descriptor.state)) throw new Error('ROUTER_TARGET_UNRESOLVABLE');
+  if (!descriptor || descriptor.sourceIdentity !== expectedSourceIdentity || !SOURCE.test(descriptor.sourceIdentity) || !GENERATION.test(descriptor.generationId) || !BACKENDS.has(descriptor.backendType) || descriptor.runtimeType !== expectedStoredRuntime || descriptor.normalizationModel !== 'jwb-rdf-normalization-v1' || descriptor.partitionModel !== 'jwb-partition-v1' || !routableLifecycle(descriptor)) throw new Error('ROUTER_TARGET_UNRESOLVABLE');
   if (runtimeType === 'standalone-compose') {
     if (descriptor.runtimeType !== 'compose' || !['gen-a', 'gen-b'].includes(descriptor.generationId)) throw new Error('ROUTER_TARGET_UNRESOLVABLE');
     const profile = {
@@ -60,5 +60,6 @@ export function deriveTarget(value, { expectedSourceIdentity, runtimeType }) {
   return Object.freeze({ queryUrl, healthUrl: queryUrl, allowedHostname: `${service}.${descriptor.namespace}.svc.cluster.local` });
 }
 
-function normalize(v) { return v && { sourceIdentity: v.sourceIdentity ?? v.source_identity, generationId: v.generationId ?? v.generation_id, backendType: v.backendType ?? v.backend_type, state: v.state, normalizationModel: v.normalizationModel ?? v.normalization_model, partitionModel: v.partitionModel ?? v.partition_model, runtimeType: v.runtimeType ?? v.runtime_type, namespace: v.namespace ?? v.runtime_namespace }; }
+function normalize(v) { return v && { sourceIdentity: v.sourceIdentity ?? v.source_identity, generationId: v.generationId ?? v.generation_id, backendType: v.backendType ?? v.backend_type, state: v.state, protectionState: v.protectionState ?? v.protection_state, normalizationModel: v.normalizationModel ?? v.normalization_model, partitionModel: v.partitionModel ?? v.partition_model, runtimeType: v.runtimeType ?? v.runtime_type, namespace: v.namespace ?? v.runtime_namespace }; }
+function routableLifecycle(v){return(v.state==='READY'&&v.protectionState==='NONE')||(v.state==='SERVING'&&v.protectionState==='SERVING')||(v.state==='RETIRING'&&v.protectionState==='ROLLBACK');}
 function validatePointer(v) { if (!v || !SOURCE.test(v.sourceIdentity ?? '') || !GENERATION.test(v.generationId ?? '') || !Number.isInteger(v.version) || v.version < 1) throw new Error('ROUTER_TARGET_UNRESOLVABLE'); }

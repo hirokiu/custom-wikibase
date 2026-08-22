@@ -1,6 +1,6 @@
 import assert from'node:assert/strict';import test from'node:test';import{QueryRouter}from'./router.js';import{RouterMetrics}from'./metrics.js';import{validateReadOnlySparql}from'./query-policy.js';import{TrustedGenerationResolver}from'./generation-resolver.js';
 class Pointer{constructor(){this.value={sourceIdentity:'jwb-local',generationId:'gen-a',version:1};}async get(){return{...this.value};}promote(generationId,expected){if(expected!==this.value.version)throw new Error('CONFLICT');this.value={...this.value,generationId,version:expected+1};}}
-const descriptors=new Map(['gen-a','gen-b','gen-c','gen-durable-4'].map(generationId=>[generationId,{sourceIdentity:'jwb-local',generationId,backendType:'virtuoso',runtimeType:'kubernetes',namespace:'jwb-query-local',state:'SERVING',normalizationModel:'jwb-rdf-normalization-v1',partitionModel:'jwb-partition-v1'}]));
+const descriptors=new Map(['gen-a','gen-b','gen-c','gen-durable-4'].map(generationId=>[generationId,{sourceIdentity:'jwb-local',generationId,backendType:'virtuoso',runtimeType:'kubernetes',namespace:'jwb-query-local',state:'SERVING',protectionState:'SERVING',normalizationModel:'jwb-rdf-normalization-v1',partitionModel:'jwb-partition-v1'}]));
 const repository={async getDescriptor({generationId}){return descriptors.get(generationId)??null;}};
 const resolver=()=>new TrustedGenerationResolver({generationRepository:repository,runtimeType:'kubernetes'});
 const fetchImpl=async url=>new Response(JSON.stringify({marker:url.hostname}),{status:200,headers:{'content-type':'application/sparql-results+json'}});
