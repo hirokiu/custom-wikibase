@@ -93,9 +93,10 @@
       }
     },
     "qualification": {
-      "type": "object", "additionalProperties": false, "required": ["fixture", "snapshot", "coordinator"],
+      "type": "object", "additionalProperties": false, "required": ["fixture", "raceEdit", "snapshot", "coordinator"],
       "properties": {
         "fixture": {"type":"object","additionalProperties":false,"required":["enabled"],"properties":{"enabled":{"type":"boolean"}}},
+        "raceEdit": {"type":"object","additionalProperties":false,"required":["enabled"],"properties":{"enabled":{"type":"boolean"}}},
         "snapshot": { "type": "object", "additionalProperties": false, "required": ["enabled", "id", "cursorTimestamp", "cursorRcid", "raceTest", "candidateGeneration"], "properties": {
           "enabled": {"type":"boolean"}, "id": {"type":"string","format":"uuid"}, "cursorTimestamp": {"type":"string","format":"date-time"}, "cursorRcid": {"type":"integer","minimum":0}, "raceTest": {"type":"boolean"}, "candidateGeneration":{"enum":["gen-a","gen-b"]}
         } },

@@ -26,6 +26,35 @@ spec:
       volumes: [{name: artifacts, persistentVolumeClaim: {claimName: snapshot-artifacts}}]
 ---
 {{- end }}
+{{- if and (ne .Values.profile "none") .Values.qualification.raceEdit.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata: {name: snapshot-race-edit-{{ .Release.Revision }}}
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: snapshot-race-edit}}
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: race-edit
+          image: {{ include "custom-wikibase.image" .Values.images.snapshotProducer | quote }}
+          imagePullPolicy: {{ .Values.images.snapshotProducer.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          command: [node, apps/rdf-snapshot-producer/src/snapshot-race-edit.js]
+          env:
+            - {name: JWB_FIXTURE_SOURCE_URL, value: {{ .Values.trustedInternalSourceUrl | quote }}}
+            - {name: JWB_SNAPSHOT_ID, value: {{ .Values.qualification.snapshot.id | quote }}}
+            - {name: JWB_ADMIN_USER, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminUser}}}
+            - {name: JWB_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: adminPassword}}}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
+          volumeMounts: [{name: artifacts, mountPath: /artifacts}]
+      volumes: [{name: artifacts, persistentVolumeClaim: {claimName: snapshot-artifacts}}]
+---
+{{- end }}
 {{- if and (ne .Values.profile "none") .Values.qualification.snapshot.enabled }}
 apiVersion: batch/v1
 kind: Job
