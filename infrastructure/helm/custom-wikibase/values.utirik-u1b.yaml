@@ -9,8 +9,8 @@ images:
     pullPolicy: Never
   runtime:
     repository: japan-wikibase/runtime
-    tag: u1b-c5eb307-amd64
-    digest: sha256:4a2e2b5f786c165496daab6227e75601097c5606acbc97ba493f7231050b7215
+    tag: u1b-c9b6b6a-amd64
+    digest: sha256:d054a77392abf2d519b5c0f4b2dbef3995b4d56f4d909f82fbd9feccccfee3b2
     pullPolicy: Never
   snapshotProducer:
     repository: japan-wikibase/snapshot-producer
