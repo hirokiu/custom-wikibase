@@ -103,6 +103,9 @@ spec:
           - path: /sparql
             pathType: Exact
             backend: {service: {name: query-router, port: {name: http}}}
+          - path: /runtime
+            pathType: Exact
+            backend: {service: {name: query-router, port: {name: http}}}
   tls:
     - hosts: [{{ .Values.ingress.queryHostname | quote }}]
       secretName: {{ .Values.ingress.queryTlsSecretName }}
