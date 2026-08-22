@@ -77,7 +77,7 @@ export class StandalonePromotionCoordinator {
       FROM rdf_generation g JOIN rdf_generation_sync s USING(source_identity,generation_id)
       JOIN rdf_sync_source src USING(source_identity) WHERE g.source_identity=$1 AND g.generation_id=$2`, [SOURCE, to]);
     const row = result.rows[0];
-    if (result.rowCount !== 1 || row.state !== 'READY' || row.protection_state === 'SERVING'
+    if (result.rowCount !== 1 || !candidateLifecycleEligible(row, mode)
       || row.validation_status !== 'VALID' || !/^[0-9a-f]{64}$/u.test(row.validation_checksum ?? '')
       || row.normalization_model !== MODEL || row.partition_model !== PARTITION || row.generation_manifest === null)
       throw new Error('CANDIDATE_NOT_VALIDATED');
@@ -115,9 +115,11 @@ export class StandalonePromotionCoordinator {
       const journal = promotion(locked.rows[0]);
       if (journal.phase === 'GENERATION_FINALIZED') { await client.query('COMMIT'); return journal; }
       if (journal.phase !== 'ROUTER_VERIFIED') throw new Error('PROMOTION_PHASE_CONFLICT');
+      const target = await client.query('SELECT state,protection_state FROM rdf_generation WHERE source_identity=$1 AND generation_id=$2 FOR UPDATE',[SOURCE,journal.toGenerationId]);
+      if(target.rowCount!==1||(!candidateLifecycleEligible(target.rows[0],'PROMOTE')&&!candidateLifecycleEligible(target.rows[0],'ROLLBACK')))throw new Error('PROMOTION_GENERATION_CONFLICT');
       await client.query("UPDATE rdf_generation SET protection_state='NONE',lifecycle_version=lifecycle_version+1 WHERE source_identity=$1 AND protection_state IN('SERVING','ROLLBACK')", [SOURCE]);
       const old = await client.query("UPDATE rdf_generation SET state='RETIRING',protection_state='ROLLBACK',lifecycle_version=lifecycle_version+1 WHERE source_identity=$1 AND generation_id=$2 AND state='SERVING' RETURNING generation_id", [SOURCE, journal.fromGenerationId]);
-      const serving = await client.query("UPDATE rdf_generation SET state='SERVING',protection_state='SERVING',promoted_at=now(),lifecycle_version=lifecycle_version+1 WHERE source_identity=$1 AND generation_id=$2 AND state='READY' RETURNING generation_id", [SOURCE, journal.toGenerationId]);
+      const serving = await client.query("UPDATE rdf_generation SET state='SERVING',protection_state='SERVING',promoted_at=now(),lifecycle_version=lifecycle_version+1 WHERE source_identity=$1 AND generation_id=$2 AND state IN('READY','RETIRING') RETURNING generation_id", [SOURCE, journal.toGenerationId]);
       if (old.rowCount !== 1 || serving.rowCount !== 1) throw new Error('PROMOTION_GENERATION_CONFLICT');
       const updated = await client.query("UPDATE rdf_generation_promotion SET phase='GENERATION_FINALIZED',state='COMMITTED',completed_at=now(),updated_at=now() WHERE id=$1 RETURNING *", [journal.id]);
       await client.query('COMMIT');
@@ -137,3 +139,4 @@ export class StandalonePromotionCoordinator {
 function promotion(row) { if (!row) throw new Error('PROMOTION_JOURNAL_MISSING'); return { id: row.id, fromGenerationId: row.from_generation_id, toGenerationId: row.to_generation_id, state: row.state, phase: row.phase, expectedPointerVersion: Number(row.expected_pointer_version), resultingPointerVersion: row.resulting_pointer_version === null ? null : Number(row.resulting_pointer_version), createdAt: row.created_at, completedAt: row.completed_at }; }
 function generation(row) { return { generationId: row.generation_id, state: row.state, protectionState: row.protection_state, validationStatus: row.validation_status, normalizationModel: row.normalization_model, partitionModel: row.partition_model, syncState: row.sync_state, schemaState: row.schema_state }; }
 function compare(aTime, aId, bTime, bId) { const a = Date.parse(aTime), b = Date.parse(bTime); return a === b ? Number(aId) - Number(bId) : a - b; }
+export function candidateLifecycleEligible(row,mode){return mode==='PROMOTE'?row.state==='READY'&&row.protection_state==='NONE':mode==='ROLLBACK'&&row.state==='RETIRING'&&row.protection_state==='ROLLBACK';}
