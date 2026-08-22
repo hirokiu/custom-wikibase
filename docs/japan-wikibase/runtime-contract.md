@@ -10,4 +10,8 @@ Core-only例:
 
 Query有効時は`queryService`に`backendType`、logical `logicalEndpoint`、`syncState`、freshness、`servingGeneration`が加わります。`contractVersion`、distribution version、normalization version、partition versionは別々にversioningします。
 
+`freshness`は`cursorTimestamp`、`sourceHeadTimestamp`、`lagSeconds`、`syncLagSeconds`、`sourceIdleSeconds`を持ちます。`lagSeconds`は互換フィールドであり、常に`syncLagSeconds`と同じ値です。timestampと`sourceIdleSeconds`はsource/cursorがまだ存在しない場合に`null`になり得ます。
+
+2026-08-23のSchema修復では、既に実装・公開・qualification済みだった上記フィールドをcanonical JSON Schemaへ反映しました。runtimeの意味やwire representationは変更していないため、contract versionは`jwb-runtime-v1`のままです。
+
 credential、database URL、backend update/admin URL、内部container名、任意操作権限を公開してはいけません。`servingGeneration`は観測情報であり操作権限ではありません。

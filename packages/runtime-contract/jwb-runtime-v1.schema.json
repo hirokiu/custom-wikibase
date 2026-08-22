@@ -50,10 +50,13 @@
             "syncState": { "enum": ["BOOTSTRAPPING", "CATCHING_UP", "CURRENT", "STALE", "GAP_DETECTED", "ERROR"] },
             "freshness": {
               "type": "object", "additionalProperties": false,
-              "required": ["cursorTimestamp", "lagSeconds"],
+              "required": ["cursorTimestamp", "sourceHeadTimestamp", "lagSeconds", "syncLagSeconds", "sourceIdleSeconds"],
               "properties": {
-                "cursorTimestamp": { "type": "string", "format": "date-time" },
-                "lagSeconds": { "type": "integer", "minimum": 0 }
+                "cursorTimestamp": { "type": ["string", "null"], "format": "date-time" },
+                "sourceHeadTimestamp": { "type": ["string", "null"], "format": "date-time" },
+                "lagSeconds": { "type": "integer", "minimum": 0 },
+                "syncLagSeconds": { "type": "integer", "minimum": 0 },
+                "sourceIdleSeconds": { "type": ["integer", "null"], "minimum": 0 }
               }
             },
             "servingGeneration": { "type": "string", "pattern": "^gen-[a-z0-9][a-z0-9-]{0,58}$" }
