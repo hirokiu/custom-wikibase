@@ -1,3 +1,5 @@
+{{- if and .Values.qualification.snapshot.enabled (eq .Values.qualification.snapshot.candidateGeneration "gen-a") (ne (int .Values.workers.a.replicas) 0) }}{{ fail "snapshot requires candidate worker gen-a replicas=0" }}{{- end }}
+{{- if and .Values.qualification.snapshot.enabled (eq .Values.qualification.snapshot.candidateGeneration "gen-b") (ne (int .Values.workers.b.replicas) 0) }}{{ fail "snapshot requires candidate worker gen-b replicas=0" }}{{- end }}
 {{- if ne .Values.profile "none" }}
 apiVersion: v1
 kind: Service
@@ -18,15 +20,17 @@ spec:
     metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: postgresql}}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: postgresql
           image: {{ .Values.images.postgresql | quote }}
           imagePullPolicy: IfNotPresent
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           ports: [{name: postgresql, containerPort: 5432}]
           env:
             - {name: POSTGRES_DB, value: japan_wikibase_query}
             - {name: POSTGRES_USER, value: jwb_query}
-            - {name: POSTGRES_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: POSTGRES_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.queryExistingSecret }}, key: queryDbPassword}}}
           readinessProbe: {exec: {command: [pg_isready, -U, jwb_query, -d, japan_wikibase_query]}, periodSeconds: 3, timeoutSeconds: 3, failureThreshold: 40}
           livenessProbe: {exec: {command: [pg_isready, -U, jwb_query, -d, japan_wikibase_query]}, periodSeconds: 10, timeoutSeconds: 3, failureThreshold: 6}
           resources: {{- toYaml .Values.resources.postgresql | nindent 12 }}
@@ -59,13 +63,15 @@ spec:
     metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $.Values.profile }}-{{ $slot }}}}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml $.Values.podSecurityContext | nindent 8 }}
       containers:
         - name: backend
           image: {{ index $.Values.images (ternary "fuseki" $.Values.profile (eq $.Values.profile "fuseki-tdb2")) | quote }}
           imagePullPolicy: IfNotPresent
+          securityContext: {{- toYaml $.Values.containerSecurityContext | nindent 12 }}
           ports: [{name: sparql, containerPort: {{ $backendPort }}}]
           {{- if eq $.Values.profile "virtuoso" }}
-          env: [{name: DBA_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: rdfAdminPassword}}}]
+          env: [{name: DBA_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: rdfAdminPassword}}}]
           startupProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 120}
           readinessProbe: {httpGet: {path: /sparql, port: sparql}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 20}
           {{- else if eq $.Values.profile "fuseki-tdb2" }}
@@ -100,20 +106,27 @@ spec:
     spec:
       restartPolicy: Never
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: wait-postgresql
           image: {{ .Values.images.postgresql | quote }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          resources: {{- toYaml .Values.resources.postgresql | nindent 12 }}
           command: [sh, -ec]
           args: ['for i in $(seq 1 120); do pg_isready -h jwb-postgresql -U jwb_query -d japan_wikibase_query && exit 0; sleep 2; done; exit 1']
       containers:
         - name: migrate
           image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
           imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           command: [sh, -ec]
           args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-migrate-cli.js up']
           env:
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile }}}
+            - {name: JWB_INSTANCE_ID, value: {{ .Values.identities.instanceId | quote }}}
+            - {name: JWB_SOURCE_IDENTITY, value: {{ .Values.identities.sourceIdentity | quote }}}
+            - {name: JWB_QUERY_SERVICE_ID, value: {{ .Values.identities.queryServiceId | quote }}}
           resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
 ---
 apiVersion: batch/v1
@@ -129,22 +142,33 @@ spec:
     spec:
       restartPolicy: Never
       automountServiceAccountToken: false
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: wait-migrations
           image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
           imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
           command: [sh, -ec]
           args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; for i in $(seq 1 120); do node packages/jwb-database/src/jwb-migrate-cli.js status > /tmp/status.json && ! grep -q pending /tmp/status.json && exit 0; sleep 2; done; exit 1']
-          env: [{name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}]
+          env:
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.queryExistingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_INSTANCE_ID, value: {{ .Values.identities.instanceId | quote }}}
+            - {name: JWB_SOURCE_IDENTITY, value: {{ .Values.identities.sourceIdentity | quote }}}
+            - {name: JWB_QUERY_SERVICE_ID, value: {{ .Values.identities.queryServiceId | quote }}}
       containers:
         - name: bootstrap
           image: {{ include "custom-wikibase.image" .Values.images.runtime | quote }}
           imagePullPolicy: {{ .Values.images.runtime.pullPolicy }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           command: [sh, -ec]
           args: ['export JWB_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; exec node packages/jwb-database/src/jwb-bootstrap-cli.js']
           env:
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ .Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_QUERY_BACKEND, value: {{ .Values.profile }}}
+            - {name: JWB_INSTANCE_ID, value: {{ .Values.identities.instanceId | quote }}}
+            - {name: JWB_SOURCE_IDENTITY, value: {{ .Values.identities.sourceIdentity | quote }}}
+            - {name: JWB_QUERY_SERVICE_ID, value: {{ .Values.identities.queryServiceId | quote }}}
           resources: {{- toYaml .Values.resources.runtime | nindent 12 }}
 ---
 apiVersion: v1
@@ -160,32 +184,39 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: {name: {{ $component }}}
 spec:
-  replicas: 1
+  replicas: {{ if eq $component "rdf-sync-worker-a" }}{{ $.Values.workers.a.replicas }}{{ else if eq $component "rdf-sync-worker-b" }}{{ $.Values.workers.b.replicas }}{{ else }}1{{ end }}
   selector: {matchLabels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $component }}}}
   template:
     metadata: {labels: {app.kubernetes.io/name: custom-wikibase, app.kubernetes.io/instance: {{ $.Release.Name }}, app.kubernetes.io/component: {{ $component }}}}
     spec:
       automountServiceAccountToken: false
+      securityContext: {{- toYaml $.Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: wait-bootstrap
           image: {{ include "custom-wikibase.image" $.Values.images.runtime | quote }}
           imagePullPolicy: {{ $.Values.images.runtime.pullPolicy }}
+          securityContext: {{- toYaml $.Values.containerSecurityContext | nindent 12 }}
+          resources: {{- toYaml $.Values.resources.runtime | nindent 12 }}
           command: [sh, -ec]
           args: ['export JWB_ROUTER_DATABASE_URL="postgresql://jwb_query:${DB_PASSWORD}@jwb-postgresql:5432/japan_wikibase_query"; for i in $(seq 1 120); do node packages/jwb-database/src/jwb-qualification-cli.js inspect >/tmp/inspect.json 2>/dev/null && exit 0; sleep 2; done; exit 1']
           env:
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_ROUTER_BACKEND, value: {{ $.Values.profile }}}
+            - {name: JWB_INSTANCE_ID, value: {{ $.Values.identities.instanceId | quote }}}
+            - {name: JWB_SOURCE_IDENTITY, value: {{ $.Values.identities.sourceIdentity | quote }}}
+            - {name: JWB_QUERY_SERVICE_ID, value: {{ $.Values.identities.queryServiceId | quote }}}
       containers:
         - name: {{ $component }}
           image: {{ include "custom-wikibase.image" $.Values.images.runtime | quote }}
           imagePullPolicy: {{ $.Values.images.runtime.pullPolicy }}
+          securityContext: {{- toYaml $.Values.containerSecurityContext | nindent 12 }}
           {{- if eq $component "rdf-source-reader" }}
           command: [node, apps/rdf-source-reader/src/main.js]
           env:
             - {name: JWB_SOURCE_READER_RUNTIME, value: standalone-compose}
             - {name: JWB_SOURCE_READER_URL, value: {{ $.Values.trustedInternalSourceUrl | quote }}}
-            - {name: JWB_SOURCE_READER_IDENTITY, value: jwb-standalone}
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: JWB_SOURCE_READER_IDENTITY, value: {{ $.Values.identities.sourceIdentity | quote }}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_SOURCE_READER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
           readinessProbe: {exec: {command: [sh, -ec, 'grep -aq rdf-source-reader /proc/1/cmdline']}, periodSeconds: 5}
           livenessProbe: {exec: {command: [sh, -ec, 'grep -aq rdf-source-reader /proc/1/cmdline']}, periodSeconds: 15}
@@ -197,12 +228,12 @@ spec:
             - {name: JWB_SYNC_BACKEND, value: {{ $.Values.profile }}}
             - {name: JWB_SYNC_SOURCE_URL, value: {{ $.Values.trustedInternalSourceUrl | quote }}}
             - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ $.Values.canonicalPublicUrl | quote }}}
-            - {name: JWB_SYNC_SOURCE_IDENTITY, value: jwb-standalone}
+            - {name: JWB_SYNC_SOURCE_IDENTITY, value: {{ $.Values.identities.sourceIdentity | quote }}}
             - {name: JWB_SYNC_GENERATION_ID, value: {{ if eq $component "rdf-sync-worker-b" }}gen-b{{ else }}gen-a{{ end }}}
             - {name: JWB_SYNC_HEALTH_PORT, value: {{ if eq $component "rdf-sync-worker-b" }}'9192'{{ else }}'9191'{{ end }}}
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_SYNC_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
-            - {name: JWB_RDF_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: rdfAdminPassword}}}
+            - {name: JWB_RDF_ADMIN_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: rdfAdminPassword}}}
           readinessProbe: {httpGet: {path: /readyz, port: health}, periodSeconds: 5, failureThreshold: 30}
           livenessProbe: {httpGet: {path: /livez, port: health}, periodSeconds: 15, failureThreshold: 8}
           {{- else }}
@@ -211,11 +242,11 @@ spec:
           env:
             - {name: JWB_ROUTER_RUNTIME, value: standalone-compose}
             - {name: JWB_ROUTER_BACKEND, value: {{ $.Values.profile }}}
-            - {name: JWB_ROUTER_QUERY_SERVICE_ID, value: jwb-standalone-query}
+            - {name: JWB_ROUTER_QUERY_SERVICE_ID, value: {{ $.Values.identities.queryServiceId | quote }}}
             - {name: JWB_ROUTER_PORT, value: '19200'}
             - {name: JWB_CANONICAL_PUBLIC_URL, value: {{ $.Values.canonicalPublicUrl | quote }}}
             - {name: JWB_PUBLIC_QUERY_URL, value: {{ $.Values.publicQueryUrl | quote }}}
-            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: queryDbPassword}}}
+            - {name: DB_PASSWORD, valueFrom: {secretKeyRef: {name: {{ $.Values.queryExistingSecret }}, key: queryDbPassword}}}
             - {name: JWB_ROUTER_DATABASE_URL, value: 'postgresql://jwb_query:$(DB_PASSWORD)@jwb-postgresql:5432/japan_wikibase_query'}
             - {name: JWB_INSTANCE_ID, valueFrom: {secretKeyRef: {name: {{ $.Values.existingSecret }}, key: instanceId}}}
           readinessProbe: {httpGet: {path: /readyz, port: http}, periodSeconds: 5, failureThreshold: 30}

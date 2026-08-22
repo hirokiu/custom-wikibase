@@ -72,4 +72,39 @@ spec:
   tls:
     - hosts: [{{ .Values.ingress.hostname | quote }}]
       secretName: {{ .Values.ingress.tlsSecretName }}
+{{- if ne .Values.profile "none" }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-query
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+spec:
+  dnsNames: [{{ .Values.ingress.queryHostname | quote }}]
+  duration: 2160h
+  renewBefore: 720h
+  issuerRef: {group: cert-manager.io, kind: ClusterIssuer, name: {{ .Values.ingress.clusterIssuer }}}
+  privateKey: {algorithm: ECDSA, size: 256, rotationPolicy: Always}
+  secretName: {{ .Values.ingress.queryTlsSecretName }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: query
+  labels: {{- include "custom-wikibase.labels" . | nindent 4 }}
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: {{ printf "%s-https-redirect@kubernetescrd,%s-security-headers@kubernetescrd,%s-wikibase-body-limit@kubernetescrd,%s-wikibase-rate-limit@kubernetescrd" .Release.Namespace .Release.Namespace .Release.Namespace .Release.Namespace | quote }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+    - host: {{ .Values.ingress.queryHostname }}
+      http:
+        paths:
+          - path: /sparql
+            pathType: Exact
+            backend: {service: {name: query-router, port: {name: http}}}
+  tls:
+    - hosts: [{{ .Values.ingress.queryHostname | quote }}]
+      secretName: {{ .Values.ingress.queryTlsSecretName }}
+{{- end }}
 {{- end }}

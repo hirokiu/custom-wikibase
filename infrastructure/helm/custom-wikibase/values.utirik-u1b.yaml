@@ -1,4 +1,5 @@
-profile: none
+profile: virtuoso
+queryExistingSecret: custom-wikibase-query-secrets
 
 images:
   core:
@@ -9,7 +10,7 @@ images:
 
 canonicalPublicUrl: https://custom-qualification-01.wb.utirik.lodac.nii.ac.jp
 trustedInternalSourceUrl: http://wikibase.wb-custom-qualification-01.svc.cluster.local
-publicQueryUrl: null
+publicQueryUrl: https://query-custom-qualification-01.wb.utirik.lodac.nii.ac.jp/sparql
 siteName: Custom Wikibase Qualification 01
 timezone: Asia/Tokyo
 
@@ -48,15 +49,11 @@ resources:
     limits: {cpu: "2", memory: 2Gi}
 
 podSecurityContext:
-  seccompProfile:
-    type: RuntimeDefault
-
+  seccompProfile: {type: RuntimeDefault}
 containerSecurityContext:
   allowPrivilegeEscalation: false
-
 networkPolicy:
   enabled: true
-
 ingress:
   enabled: true
   className: traefik

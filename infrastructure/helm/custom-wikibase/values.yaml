@@ -20,11 +20,19 @@ images:
   oxigraph: oxigraph/oxigraph:0.5.7@sha256:fa3a660c0f5ec776472c0828309dec8a5410b7267e2dcac59ab7d7f29e10da28
 
 existingSecret: custom-wikibase-secrets
+queryExistingSecret: custom-wikibase-query-secrets
 canonicalPublicUrl: http://127.0.0.1:8280
 trustedInternalSourceUrl: http://wikibase
 publicQueryUrl: http://127.0.0.1:8290/sparql
 siteName: Japan Wikibase
 timezone: Asia/Tokyo
+
+# Legacy defaults preserve the standalone Compose contract. Kubernetes instances
+# must override all three with values derived from their stable instance UUID.
+identities:
+  instanceId: 00000000-0000-4000-8000-000000000001
+  sourceIdentity: jwb-standalone
+  queryServiceId: jwb-standalone-query
 
 service:
   wikibase:
@@ -33,6 +41,10 @@ service:
   queryRouter:
     type: ClusterIP
     port: 19200
+
+workers:
+  a: {replicas: 1}
+  b: {replicas: 1}
 
 storage:
   className: ""
@@ -71,6 +83,8 @@ ingress:
   hostname: localhost
   clusterIssuer: letsencrypt-staging
   tlsSecretName: custom-wikibase-tls
+  queryHostname: query.localhost
+  queryTlsSecretName: custom-wikibase-query-tls
   bodyLimitBytes: 10485760
   bodyMemoryBytes: 2097152
   rateLimitAverage: 120
@@ -84,6 +98,7 @@ qualification:
     cursorTimestamp: "1970-01-01T00:00:00Z"
     cursorRcid: 0
     raceTest: false
+    candidateGeneration: gen-b
   coordinator:
     enabled: false
     action: inspect

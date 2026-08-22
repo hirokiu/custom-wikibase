@@ -2,15 +2,25 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
-  "required": ["profile", "images", "existingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "siteName", "timezone", "service", "storage", "resources", "podSecurityContext", "containerSecurityContext", "networkPolicy", "ingress", "qualification"],
+  "required": ["profile", "images", "existingSecret", "queryExistingSecret", "canonicalPublicUrl", "trustedInternalSourceUrl", "siteName", "timezone", "identities", "service", "workers", "storage", "resources", "podSecurityContext", "containerSecurityContext", "networkPolicy", "ingress", "qualification"],
   "properties": {
     "profile": { "type": "string", "enum": ["none", "virtuoso", "fuseki-tdb2", "oxigraph"] },
     "existingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
+    "queryExistingSecret": { "type": "string", "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" },
     "canonicalPublicUrl": { "type": "string", "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?$" },
     "trustedInternalSourceUrl": { "type": "string", "pattern": "^http://wikibase(?:\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?\\.svc\\.cluster\\.local)?(?::[0-9]+)?$" },
     "publicQueryUrl": { "type": ["string", "null"], "pattern": "^https?://[a-zA-Z0-9.-]+(?::[0-9]+)?/sparql$" },
     "siteName": { "type": "string", "minLength": 1, "maxLength": 80 },
     "timezone": { "type": "string", "enum": ["Asia/Tokyo", "UTC"] },
+    "identities": {
+      "type": "object", "additionalProperties": false,
+      "required": ["instanceId", "sourceIdentity", "queryServiceId"],
+      "properties": {
+        "instanceId": {"type":"string","format":"uuid"},
+        "sourceIdentity": {"type":"string","pattern":"^(jwb-standalone|custom-wikibase\\.[0-9a-f-]{36})$"},
+        "queryServiceId": {"type":"string","pattern":"^(jwb-standalone-query|custom-wikibase-query-[0-9a-f-]{36})$"}
+      }
+    },
     "images": {
       "type": "object", "additionalProperties": false,
       "required": ["core", "runtime", "snapshotProducer", "mariadb", "postgresql", "virtuoso", "fuseki", "oxigraph"],
@@ -30,6 +40,13 @@
       "properties": {
         "wikibase": { "$ref": "#/definitions/service" },
         "queryRouter": { "$ref": "#/definitions/service" }
+      }
+    },
+    "workers": {
+      "type":"object", "additionalProperties":false, "required":["a","b"],
+      "properties": {
+        "a":{"$ref":"#/definitions/worker"},
+        "b":{"$ref":"#/definitions/worker"}
       }
     },
     "storage": {
@@ -59,13 +76,15 @@
     "networkPolicy": { "type": "object", "additionalProperties": false, "required": ["enabled"], "properties": { "enabled": {"type":"boolean"} } },
     "ingress": {
       "type": "object", "additionalProperties": false,
-      "required": ["enabled", "className", "hostname", "clusterIssuer", "tlsSecretName", "bodyLimitBytes", "bodyMemoryBytes", "rateLimitAverage", "rateLimitBurst"],
+      "required": ["enabled", "className", "hostname", "clusterIssuer", "tlsSecretName", "queryHostname", "queryTlsSecretName", "bodyLimitBytes", "bodyMemoryBytes", "rateLimitAverage", "rateLimitBurst"],
       "properties": {
         "enabled": {"type":"boolean"},
         "className": {"enum":["traefik"]},
         "hostname": {"type":"string","pattern":"^[a-z0-9](?:[-a-z0-9]*[a-z0-9])?(?:\\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?)+$"},
         "clusterIssuer": {"enum":["letsencrypt-staging","letsencrypt-production"]},
         "tlsSecretName": {"type":"string","pattern":"^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"},
+        "queryHostname": {"type":"string","pattern":"^[a-z0-9](?:[-a-z0-9]*[a-z0-9])?(?:\\.[a-z0-9](?:[-a-z0-9]*[a-z0-9])?)+$"},
+        "queryTlsSecretName": {"type":"string","pattern":"^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"},
         "bodyLimitBytes": {"type":"integer","minimum":1048576,"maximum":104857600},
         "bodyMemoryBytes": {"type":"integer","minimum":262144,"maximum":8388608},
         "rateLimitAverage": {"type":"integer","minimum":1,"maximum":1000},
@@ -75,8 +94,8 @@
     "qualification": {
       "type": "object", "additionalProperties": false, "required": ["snapshot", "coordinator"],
       "properties": {
-        "snapshot": { "type": "object", "additionalProperties": false, "required": ["enabled", "id", "cursorTimestamp", "cursorRcid", "raceTest"], "properties": {
-          "enabled": {"type":"boolean"}, "id": {"type":"string","format":"uuid"}, "cursorTimestamp": {"type":"string","format":"date-time"}, "cursorRcid": {"type":"integer","minimum":0}, "raceTest": {"type":"boolean"}
+        "snapshot": { "type": "object", "additionalProperties": false, "required": ["enabled", "id", "cursorTimestamp", "cursorRcid", "raceTest", "candidateGeneration"], "properties": {
+          "enabled": {"type":"boolean"}, "id": {"type":"string","format":"uuid"}, "cursorTimestamp": {"type":"string","format":"date-time"}, "cursorRcid": {"type":"integer","minimum":0}, "raceTest": {"type":"boolean"}, "candidateGeneration":{"enum":["gen-a","gen-b"]}
         } },
         "coordinator": { "type": "object", "additionalProperties": false, "required": ["enabled", "action"], "properties": {
           "enabled": {"type":"boolean"}, "action": {"enum":["inspect","load","observe","phase","validate","validate-serving"]}
@@ -88,6 +107,7 @@
     "imageReference": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._/:@-]+$" },
     "applicationImage": { "type": "object", "additionalProperties": false, "required": ["repository", "tag", "pullPolicy"], "properties": { "repository": {"type":"string","pattern":"^[a-z0-9][a-z0-9._/-]+$"}, "tag": {"type":"string","pattern":"^[A-Za-z0-9_][A-Za-z0-9._-]{0,127}$"}, "digest": {"type":"string","pattern":"^sha256:[a-f0-9]{64}$"}, "pullPolicy": {"enum":["Always","IfNotPresent","Never"]} } },
     "quantity": { "type": "string", "pattern": "^[1-9][0-9]*(Mi|Gi)$" },
-    "service": { "type": "object", "additionalProperties": false, "required": ["type", "port"], "properties": { "type": {"enum":["ClusterIP","NodePort","LoadBalancer"]}, "port": {"type":"integer","minimum":1,"maximum":65535} } }
+    "service": { "type": "object", "additionalProperties": false, "required": ["type", "port"], "properties": { "type": {"enum":["ClusterIP","NodePort","LoadBalancer"]}, "port": {"type":"integer","minimum":1,"maximum":65535} } },
+    "worker": {"type":"object","additionalProperties":false,"required":["replicas"],"properties":{"replicas":{"type":"integer","minimum":0,"maximum":1}}}
   }
 }

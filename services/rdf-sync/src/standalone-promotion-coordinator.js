@@ -1,7 +1,13 @@
 import { randomUUID } from 'node:crypto';
+import { legacyOrInstanceIdentities } from './instance-identities.js';
 
-const SOURCE = 'jwb-standalone';
-const QUERY = 'jwb-standalone-query';
+const identities = legacyOrInstanceIdentities({
+  instanceId: process.env.JWB_INSTANCE_ID,
+  sourceIdentity: process.env.JWB_SOURCE_IDENTITY,
+  queryServiceId: process.env.JWB_QUERY_SERVICE_ID,
+});
+const SOURCE = identities.sourceIdentity;
+const QUERY = identities.queryServiceId;
 const SLOTS = new Set(['gen-a', 'gen-b']);
 const MODEL = 'jwb-rdf-normalization-v1';
 const PARTITION = 'jwb-partition-v1';

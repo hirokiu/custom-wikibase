@@ -127,6 +127,17 @@ test("U1 public Core uses bounded Traefik and cert-manager resources only", () =
   assert.match(ingress, /kind: Certificate/u);
   assert.match(ingress, /kind: Ingress/u);
   assert.match(values, /clusterIssuer: letsencrypt-staging/u);
-  assert.doesNotMatch(ingress, /sparql|query-router|IngressRoute|ClusterRole|NodePort/iu);
+  assert.match(ingress, /if ne \.Values\.profile "none"[\s\S]*path: \/sparql[\s\S]*name: query-router/u);
+  assert.doesNotMatch(ingress, /IngressRoute|ClusterRole|NodePort/iu);
   assert.match(policy, /acme\.cert-manager\.io\/http01-solver: "true"[\s\S]*port: 8089/u);
+});
+
+test("U1-B uses instance-scoped identities and exposes only the logical query router", () => {
+  const values = read("values.utirik-u1b.yaml"), query = read("templates/query-virtuoso.yaml");
+  assert.match(values, /profile: virtuoso/u);
+  assert.match(values, /sourceIdentity: custom-wikibase\.a622a3e7-ff84-46bf-bf41-88410024e183/u);
+  assert.match(values, /queryServiceId: custom-wikibase-query-a622a3e7-ff84-46bf-bf41-88410024e183/u);
+  assert.match(values, /publicQueryUrl: https:\/\/query-custom-qualification-01\.wb\.utirik\.lodac\.nii\.ac\.jp\/sparql/u);
+  assert.doesNotMatch(query, /value: jwb-standalone(?:-query)?[}\s]/u);
+  assert.match(query, /snapshot requires candidate worker gen-b replicas=0/u);
 });

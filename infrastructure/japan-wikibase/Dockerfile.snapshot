@@ -1,5 +1,6 @@
+ARG CORE_IMAGE=japan-wikibase/core:0.1.0-rc.1
 FROM node:20.19.2-bookworm-slim@sha256:7cd3fbc830c75c92256fe1122002add9a1c025831af8770cd0bf8e45688ef661 AS node
-FROM japan-wikibase/core:0.1.0-rc.1
+FROM ${CORE_IMAGE}
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY apps/rdf-snapshot-producer /opt/jwb-snapshot/apps/rdf-snapshot-producer
 COPY packages/rdf-sync /opt/jwb-snapshot/packages/rdf-sync

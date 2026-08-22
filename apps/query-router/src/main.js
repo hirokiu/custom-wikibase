@@ -17,7 +17,7 @@ const metrics = new RouterMetrics();
 const router = new QueryRouter({ pointerRepository, generationResolver, metrics });
 const instanceId=process.env.JWB_INSTANCE_ID;
 if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/u.test(instanceId??''))throw new Error('invalid standalone instance identity');
-const observationProvider=new StandaloneRuntimeProvider({pool,backendType:config.backendType});
+const observationProvider=new StandaloneRuntimeProvider({pool,backendType:config.backendType,queryServiceId:config.queryServiceId});
 const runtimeProvider=async()=>{const observation=await observationProvider.observe(),syncState=observation.syncState;return{contractVersion:'jwb-runtime-v1',distribution:{type:'japan-wikibase',version:'0.1.0-rc.1'},instance:{id:instanceId},endpoints:{mediawiki:`${config.canonicalPublicUrl}/wiki/`,actionApi:`${config.canonicalPublicUrl}/api.php`},health:{state:syncState==='CURRENT'?'healthy':syncState==='ERROR'||syncState==='GAP_DETECTED'?'unhealthy':'degraded'},queryService:{enabled:true,backendType:config.backendType,logicalEndpoint:config.publicQueryUrl,syncState,freshness:observation.freshness,servingGeneration:observation.servingGeneration},capabilities:{queryOptional:true,instanceStopPreservesData:true}};};
 const server = createQueryRouterServer({ router, metrics,runtimeProvider, port: config.port,host:config.runtimeType==='compose'?'127.0.0.1':'0.0.0.0' });
 await server.start();

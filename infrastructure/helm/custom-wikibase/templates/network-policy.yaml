@@ -19,14 +19,121 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
-metadata: {name: core-flows}
+metadata: {name: allow-mariadb-ingress}
 spec:
-  podSelector: {matchLabels: {app.kubernetes.io/name: custom-wikibase}}
-  policyTypes: [Ingress, Egress]
+  podSelector: {matchLabels: {app.kubernetes.io/component: mariadb}}
+  policyTypes: [Ingress]
   ingress:
-    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: custom-wikibase}}}]
+    - from:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot{{ end }}]}
+      ports: [{protocol: TCP, port: 3306}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-core-database-egress}
+spec:
+  podSelector:
+    matchExpressions:
+      - {key: app.kubernetes.io/component, operator: In, values: [wikibase, job-runner{{ if ne .Values.profile "none" }}, rdf-snapshot{{ end }}]}
+  policyTypes: [Egress]
   egress:
-    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: custom-wikibase}}}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/component: mariadb}}}]
+      ports: [{protocol: TCP, port: 3306}]
+{{- if ne .Values.profile "none" }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-wikibase-query-readers}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/component: wikibase}}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot]}
+      ports: [{protocol: TCP, port: 80}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-query-source-egress}
+spec:
+  podSelector:
+    matchExpressions:
+      - {key: app.kubernetes.io/component, operator: In, values: [rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, rdf-snapshot]}
+  policyTypes: [Egress]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/component: wikibase}}}]
+      ports: [{protocol: TCP, port: 80}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-query-control-postgresql}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/component: postgresql}}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [migration, bootstrap, rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, query-router, rdf-coordinator]}
+      ports: [{protocol: TCP, port: 5432}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-query-control-egress}
+spec:
+  podSelector:
+    matchExpressions:
+      - {key: app.kubernetes.io/component, operator: In, values: [migration, bootstrap, rdf-source-reader, rdf-sync-worker-a, rdf-sync-worker-b, query-router, rdf-coordinator]}
+  policyTypes: [Egress]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/component: postgresql}}}]
+      ports: [{protocol: TCP, port: 5432}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-virtuoso-a-ingress}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/component: virtuoso-a}}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [rdf-sync-worker-a, query-router, rdf-coordinator]}
+      ports: [{protocol: TCP, port: 8890}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-virtuoso-b-ingress}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/component: virtuoso-b}}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [rdf-sync-worker-b, query-router, rdf-coordinator]}
+      ports: [{protocol: TCP, port: 8890}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-backend-egress}
+spec:
+  podSelector:
+    matchExpressions:
+      - {key: app.kubernetes.io/component, operator: In, values: [rdf-sync-worker-a, rdf-sync-worker-b, query-router, rdf-coordinator]}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchExpressions:
+              - {key: app.kubernetes.io/component, operator: In, values: [virtuoso-a, virtuoso-b]}
+      ports: [{protocol: TCP, port: 8890}]
+{{- end }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
