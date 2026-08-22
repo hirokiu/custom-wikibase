@@ -69,7 +69,7 @@ ingress:
   className: traefik
   hostname: custom-qualification-01.wb.utirik.lodac.nii.ac.jp
   clusterIssuer: letsencrypt-production
-  queryClusterIssuer: letsencrypt-staging
+  queryClusterIssuer: letsencrypt-production
   tlsSecretName: custom-qualification-01-tls
   queryHostname: query-custom-qualification-01.wb.utirik.lodac.nii.ac.jp
   queryTlsSecretName: query-custom-qualification-01-tls
