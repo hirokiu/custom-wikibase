@@ -15,8 +15,10 @@ test('constructor rejects an unstructured router boundary', () => {
 test('promotion and hot rollback accept only their exact protected lifecycle states',()=>{
   assert.equal(candidateLifecycleEligible({state:'READY',protection_state:'NONE'},'PROMOTE'),true);
   assert.equal(candidateLifecycleEligible({state:'RETIRING',protection_state:'ROLLBACK'},'ROLLBACK'),true);
+  assert.equal(candidateLifecycleEligible({state:'RETIRING',protection_state:'ROLLBACK'},'RESTORE'),true);
   for(const row of [{state:'READY',protection_state:'ROLLBACK'},{state:'RETIRING',protection_state:'NONE'},{state:'SERVING',protection_state:'SERVING'}]){
     assert.equal(candidateLifecycleEligible(row,'PROMOTE'),false);
     assert.equal(candidateLifecycleEligible(row,'ROLLBACK'),false);
+    assert.equal(candidateLifecycleEligible(row,'RESTORE'),false);
   }
 });

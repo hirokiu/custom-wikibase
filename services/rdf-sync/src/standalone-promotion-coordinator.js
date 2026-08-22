@@ -32,7 +32,7 @@ export class StandalonePromotionCoordinator {
   }
 
   async promote({ mode, crashAt = null }) {
-    if (!['PROMOTE', 'ROLLBACK'].includes(mode) || ![null, 'BEFORE_POINTER_CAS', 'AFTER_POINTER_CAS'].includes(crashAt))
+    if (!['PROMOTE', 'ROLLBACK', 'RESTORE'].includes(mode) || ![null, 'BEFORE_POINTER_CAS', 'AFTER_POINTER_CAS'].includes(crashAt))
       throw new Error('INVALID_STANDALONE_PROMOTION_REQUEST');
     const initialPointer = await this.#pointer();
     let pending = await this.#pending();
@@ -70,7 +70,8 @@ export class StandalonePromotionCoordinator {
     if (!SLOTS.has(pointer.generationId)) throw new Error('SERVING_SLOT_INVALID');
     const to = pointer.generationId === 'gen-a' ? 'gen-b' : 'gen-a';
     if (mode === 'PROMOTE' && pointer.generationId !== 'gen-a') throw new Error('PROMOTION_ALREADY_APPLIED');
-    if (mode === 'ROLLBACK' && pointer.previousGenerationId !== to) throw new Error('ROLLBACK_SLOT_NOT_RETAINED');
+    if (mode === 'RESTORE' && pointer.generationId !== 'gen-a') throw new Error('RESTORE_REQUIRES_GEN_A_SERVING');
+    if (['ROLLBACK','RESTORE'].includes(mode) && pointer.previousGenerationId !== to) throw new Error('ROLLBACK_SLOT_NOT_RETAINED');
     const result = await this.pool.query(`SELECT g.state,g.protection_state,g.validation_status,g.validation_checksum,
       g.normalization_model,g.partition_model,g.generation_manifest,s.state sync_state,s.schema_state,
       s.catchup_cursor_timestamp,s.catchup_cursor_rcid,src.ingestion_cursor_timestamp,src.ingestion_cursor_rcid
@@ -139,4 +140,4 @@ export class StandalonePromotionCoordinator {
 function promotion(row) { if (!row) throw new Error('PROMOTION_JOURNAL_MISSING'); return { id: row.id, fromGenerationId: row.from_generation_id, toGenerationId: row.to_generation_id, state: row.state, phase: row.phase, expectedPointerVersion: Number(row.expected_pointer_version), resultingPointerVersion: row.resulting_pointer_version === null ? null : Number(row.resulting_pointer_version), createdAt: row.created_at, completedAt: row.completed_at }; }
 function generation(row) { return { generationId: row.generation_id, state: row.state, protectionState: row.protection_state, validationStatus: row.validation_status, normalizationModel: row.normalization_model, partitionModel: row.partition_model, syncState: row.sync_state, schemaState: row.schema_state }; }
 function compare(aTime, aId, bTime, bId) { const a = Date.parse(aTime), b = Date.parse(bTime); return a === b ? Number(aId) - Number(bId) : a - b; }
-export function candidateLifecycleEligible(row,mode){return mode==='PROMOTE'?row.state==='READY'&&row.protection_state==='NONE':mode==='ROLLBACK'&&row.state==='RETIRING'&&row.protection_state==='ROLLBACK';}
+export function candidateLifecycleEligible(row,mode){return mode==='PROMOTE'?row.state==='READY'&&row.protection_state==='NONE':['ROLLBACK','RESTORE'].includes(mode)&&row.state==='RETIRING'&&row.protection_state==='ROLLBACK';}
